@@ -6,9 +6,9 @@ import {
   Link
 } from "react-router-dom";
 
-import './App.css';
+// import './App.css';
 import Login from './Login'
-import SignUp from './SignUp'
+import Register from './Register'
 import ProfilePage from '../screens/ProfilePage/profilePage'
 
 class App extends Component {
@@ -23,17 +23,13 @@ class App extends Component {
           <ProfilePage />
         </Route>
 
-        <Route path='/'>
+        <Route path='/' exact>
           <h1>Welcome to Teamder's</h1>
         </Route>
 
-        <Route path='/login'>
-          <Login />
-        </Route>
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register} />
 
-        <Route>
-          <SignUp />
-        </Route>
 
         
       </Switch>
