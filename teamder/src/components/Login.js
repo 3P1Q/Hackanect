@@ -22,7 +22,7 @@ const Login =() => {
     const [open, setOpen] = useState(true);
 
     const classes = useStyles();
-
+    console.log(document.forms);
     return <Container>
     <Form type="LOGIN"/>
     </Container>

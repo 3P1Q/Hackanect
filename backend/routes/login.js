@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 const User = require("../models/profileModel");
 const router = express.Router();
 
@@ -7,20 +8,19 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req,res) => {
-
-    var inputEmail = req.body.email;
-    var inputPassword = req.body.password;
-
-    User.findOne({email: inputEmail, password: inputPassword}, function(err){
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("home");
-        }
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password
     });
 
-
-    // res.send("Howdy-ho, this is the login page.");
+    req.login(user, (err) => {
+        if(err){
+            console.log(err);
+        }else{
+            passport.authenticate("local")(req, res, () => res.send("Welcome !"))
+        }
+    })
+    
 });
 
 module.exports = router;

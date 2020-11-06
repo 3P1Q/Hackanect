@@ -1,10 +1,12 @@
 // Mongoose profileModel goes here
 const { model } = require("mongoose");
 const mongoose = require("mongoose");
+const passport = require('passport');
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
     name: String,
-    email: String,
+    username: String,
     password: String,
     profilePic: String,
     about: String,
@@ -16,6 +18,11 @@ const userSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('userModel', userSchema);
+userSchema.plugin(passportLocalMongoose);
+
+const User = new mongoose.model("User", userSchema);
+passport.use(User.createStrategy());
+
+module.exports = User;
 
 
