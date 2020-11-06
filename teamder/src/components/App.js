@@ -6,7 +6,7 @@ import {
   Link
 } from "react-router-dom";
 
-// import './App.css';
+import './Profile.css';
 import Login from './Login'
 import Register from './Register'
 import ProfilePage from '../screens/ProfilePage/profilePage'

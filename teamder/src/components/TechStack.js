@@ -14,7 +14,7 @@ const TechStack = (props) => {
     });
     console.log(props.tags);
     return <div className="tech-stack">
-        <Grid container spacing={3}>
+        <Grid container>
             <Grid item sm={12} md={2}>
                 <h2 style={{margin:"0"}}>Tech Stack</h2>
             </Grid>

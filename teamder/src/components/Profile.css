@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+
 .name-and-avatar{
     height: 25rem;
     width: 25rem;
@@ -66,10 +69,12 @@
 
 .tech-stack{
     margin: 2% 0;
+    padding-bottom: 5%;
 }
 
 @media(max-width: 476px)
 {
+
     .name-and-avatar{
         height: 18rem;
         width: 18rem;
@@ -107,8 +112,27 @@
         float: left;
         margin: 0 2%;
     }
+    .bio{
+        padding: 200px;
+    }
 }
 
 .MuiGrid-spacing-xs-3{
     width: 95% !important;
+}
+
+.bio{
+    font-family: Montserrat !important;
+    padding: 30px 60px 30px 60px;
+    background-color: #4D4C7D;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 2% !important;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+    font-size: 1.2rem;
+}
+
+.menu{
+    margin-left: 50px;
 }
