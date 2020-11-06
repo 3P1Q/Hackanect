@@ -5,32 +5,29 @@ const bodyParser = require("body-parser");
 const lodash = require("lodash");
 
 const app = express();
-
-app.set('view engine', 'ejs');
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
 
-app.get("/", function(req,res){
-    res.send("This is the home page, should be working fine.");
-});
+/*Routes Config*/
 
-app.get("/login", function(req,res){
-    res.send("Howdy-ho, this is the login page.");
-});
+const indexRoute = require("./routes/index");
+const loginRoute = require("./routes/login");
+const registerRoute = require("./routes/register");
 
-app.get("/signup", function(req,res){
-    res.send("What's up man, sign up here!");
-});
+/*-----Routes Config End------*/
 
-app.post("/login", function(req,res){
-    console.log("Nothing to see here.");
-});
 
-app.post("/signup", function(req, res){
-    console.log("Hello friends, sign up karlo.");
-});
+/*App Config*/
 
-app.listen(3000, function(){
-    console.log("Server started locally at port 3000");
+app.use("/",indexRoute);
+app.use("/login",loginRoute);
+app.use("/register",registerRoute);
+
+/*------App Config End--------*/
+
+
+
+app.listen(port, function(){
+    console.log("Server started locally at port 5000");
 });
