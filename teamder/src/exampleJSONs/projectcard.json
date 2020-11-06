@@ -9,6 +9,11 @@
             "name": "random project 2",
             "link": "https://github.com",
             "technologies": ["js", "markdown"]
+        },
+        {
+            "name": "random project 3",
+            "link": "https://github.com",
+            "technologies": ["materialui", "lolno"]
         }
     ]
 }

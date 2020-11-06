@@ -44,7 +44,7 @@ export default function ProjectCard({deets}) {
 
   return (
     <div>  
-        <Grid container spacing={3}>
+        <Grid container>
 
             <Grid item sm={12} md={2}>
                 <h2 style={{margin:"0"}}>Projects</h2>
