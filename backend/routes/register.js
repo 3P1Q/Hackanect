@@ -26,7 +26,7 @@ router.post("/", (req,res) => {
             linkedIn: req.body.linkedIn,
             twitter: req.body.twitter
         },
-        discord: req.body.twitter
+        discord: req.body.discord
     });
 
     freshUser.save(function(err){
