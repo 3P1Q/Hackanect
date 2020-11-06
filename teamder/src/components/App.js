@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 
 import './App.css';
+import Login from './Login'
+import SignUp from './SignUp'
 import ProfilePage from '../screens/ProfilePage/profilePage'
 
 class App extends Component {
@@ -25,12 +27,19 @@ class App extends Component {
           <h1>Welcome to Teamder's</h1>
         </Route>
 
+        <Route path='/login'>
+          <Login />
+        </Route>
+
+        <Route>
+          <SignUp />
+        </Route>
+
         
       </Switch>
     </Router>
     );
   }
-  
 }
 
 export default App;
