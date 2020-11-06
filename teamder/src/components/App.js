@@ -1,8 +1,16 @@
 import './App.css';
+import NameAndAvatar from './NameAndAvatar';
+import Menu from './Menu';
+import TechStack from './TechStack';
+import {Container} from '@material-ui/core';
 
 function App() {
   return (
-    <h1>Welcome to Teamder</h1>
+    <Container>
+      {/* <NameAndAvatar src="" name="Harshdeep Singh Pruthi"/>
+      <Menu />
+      <TechStack tags={["React","Mongodb","Express","Node"]}/> */}
+    </Container>
   );
 }
 

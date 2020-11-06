@@ -1,0 +1,63 @@
+.name-and-avatar{
+    /* display: inline-block; */
+    height: 25rem;
+    width: 25rem;
+}
+
+.avatar-container{
+    height: 50%;
+    width: 50%;
+    font-size: 3em;
+    position: relative;
+    left: 25%;
+}
+.avatar{
+    height: 100% !important;
+    width: 100% !important;
+    font-size: inherit !important;
+    background-color: #827397 !important;
+}
+
+.name-container{
+    margin-top: 5%;
+    font-size: 1em;
+    background-color: #363062;
+    color: #d8b9c3;
+    text-align: center;
+    padding: 5%;
+    border-radius: 10px;
+}
+.name-container h1{
+    margin: 0;
+    font-weight: 400;
+}
+
+
+.menu{
+    width: 15rem;
+    flex-direction: column;
+    background-color: #363062;
+    color: #d8b9c3;
+    text-align: center;
+    border-radius: 10px;
+    padding: 3% 0;
+}
+
+.menu ul{
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.5rem;
+}
+
+.menu ul li{
+    margin: 10% 0;
+}
+
+
+.tag{
+    text-align: center;
+    background-color: #827397 !important;
+    color: #ffffff !important;
+    padding: 2%;
+    font-size: 1.25rem;
+}
