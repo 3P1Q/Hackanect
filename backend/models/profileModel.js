@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     profilePic: String,
     about: String,
     gender: String,
-    project: {title: String, link: String},
+    project: [{title: String, link: String}],
     techStack: [String],
     social: {github: String, facebook: String, linkedIn: String, twitter: String},
     discord: String
