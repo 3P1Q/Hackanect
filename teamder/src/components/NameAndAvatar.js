@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Avatar} from '@material-ui/core';
-import './App.css';
+import './Profile.css';
 
 const NameAndAvatar = (props) => {
     function getInitials(name)
