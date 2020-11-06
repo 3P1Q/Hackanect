@@ -1,18 +1,39 @@
 import React, {Component} from 'react';
+<<<<<<< Updated upstream
 import './App.css';
 <<<<<<< HEAD
 import ProjectCard from './ProjectCard/ProjectCard'
+=======
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+>>>>>>> Stashed changes
 
-//temporary json file(s)      (should be removed later)
-import projectcard from '../exampleJSONs/projectcard.json'
+import './App.css';
+import ProfilePage from '../screens/ProfilePage/profilePage'
 
 class App extends Component {
   render(){
     return (
-    <div>
-      <h1>Welcome to Teamder</h1>
-      <ProjectCard deets={projectcard} />
-    </div>
+      <Router>
+        <Link to="/">Home</Link>
+        <Link to="/profile">Profile</Link>
+        
+        <Switch>
+          <Route path="/profile">
+            <ProfilePage />
+          </Route>
+
+          <Route path='/'>
+            <h1>Welcome to Teamder</h1>
+          </Route>
+
+          
+        </Switch>
+      </Router>
     );
   }
   
