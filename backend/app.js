@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 const indexRoute = require("./routes/index");
 const loginRoute = require("./routes/login");
 const registerRoute = require("./routes/register");
+const { Schema } = require("mongoose");
+
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
 
 /*-----Routes Config End------*/
 
@@ -31,3 +34,4 @@ app.use("/register",registerRoute);
 app.listen(port, function(){
     console.log("Server started locally at port 5000");
 });
+
