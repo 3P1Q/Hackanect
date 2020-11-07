@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require("passport");
 
+const cors = require('cors');
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -25,6 +27,16 @@ app.use(session({
   app.use(passport.session());
 
 // Session setup complete
+
+app.use(
+  cors({
+    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true // allow session cookie from browser to pass through
+  })
+);
+
+
 
 
 // mongoDB Connection
@@ -53,6 +65,7 @@ const loginRoute = require("./routes/login");
 const registerRoute = require("./routes/register");
 const googleAuth = require("./routes/googleAuth");
 const githubAuth = require("./routes/githubAuth");
+const editProfile = require("./routes/editProfile");
 const { Schema } = require("mongoose");
 
 /*-----Routes Config End------*/
@@ -65,6 +78,7 @@ app.use("/login",loginRoute);
 app.use("/register",registerRoute);
 app.use("/auth/google", googleAuth);
 app.use("/auth/github", githubAuth);
+app.use("/profile/edit", editProfile);
 
 /*------App Config End--------*/
 
