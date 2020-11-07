@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 router.post("/", (req,res) => {
    
     User.register({username: req.body.username}, req.body.password, (err, user) => {
-        // console.log(req.body);
+        console.log(req.body);
         if(err){
             console.log(err);
         }else{

@@ -11,9 +11,12 @@ import Navbar from './Navbar'
 import Login from './Login'
 import Register from './Register'
 import ProfilePage from '../screens/ProfilePage/profilePage'
+// import Search Bar Component
 import HorizontalLinearStepper from "./SearchBar";
+// import Tags from './Tags';
+import Edit from './Edit';
 
-import Test from './Test';
+// import Test from './Test';
 
 
 const App = () => {
@@ -27,16 +30,18 @@ const App = () => {
         
           <Route path="/profile">
             <ProfilePage />
+            {/* <Tags /> */}
           </Route>
 
           <Route path='/' exact>
             <h1>Welcome to Teamder's</h1>
+            <Edit />
             <HorizontalLinearStepper/>
           </Route>
 
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
-          <Route path="/getalldata" exact component={Test} />
+          {/* <Route path="/getalldata" exact component={Test} /> */}
 
         </Switch>
       </Router>
