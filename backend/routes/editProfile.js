@@ -14,7 +14,7 @@ router.post("/", (req,res) => {
             about: req.body.about,
             gender: req.body.gender,
             project: req.body.projectArray,
-            techStack: req.body.stackArray,
+            techStack: req.body.techStack,
             social: {
                 github: req.body.github,
                 facebook: req.body.fb,
