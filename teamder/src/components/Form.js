@@ -66,6 +66,9 @@ const Form =(props) => {
         credentials: 'include',
         withCredentials: true
       }).then(function(response){
+        if (response.status == 200) {
+          window.location = "/profile" 
+        }
         console.log(response);
       });
     }
@@ -78,6 +81,9 @@ const Form =(props) => {
         credentials: 'include',
         withCredentials: true
       }).then(function(response){
+        if (response.status == 200) {
+          window.location = "/profile" 
+        }
         console.log(response);
       });
     }
@@ -169,7 +175,7 @@ const Form =(props) => {
                     labelWidth={70}
                     />
                 </FormControl>)}
-
+                
                 <Button onClick={sendRequest} className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
 
                 <div style={{margin:"2% 0"}}>
