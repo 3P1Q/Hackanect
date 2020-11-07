@@ -11,6 +11,8 @@ import Navbar from './Navbar'
 import Login from './Login'
 import Register from './Register'
 import ProfilePage from '../screens/ProfilePage/profilePage'
+// import Search Bar Component
+import HorizontalLinearStepper from "./SearchBar";
 // import Tags from './Tags';
 import Edit from './Edit';
 
@@ -34,6 +36,7 @@ const App = () => {
           <Route path='/' exact>
             <h1>Welcome to Teamder's</h1>
             <Edit />
+            <HorizontalLinearStepper/>
           </Route>
 
           <Route path="/login" exact component={Login} />

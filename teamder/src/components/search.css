@@ -1,0 +1,21 @@
+.root {
+    width: 80%;
+    margin: 200px auto;
+}
+
+.stepper {
+    border-radius: 25px;
+}
+
+.instructions {
+    margin: 200px;
+}
+
+button {
+    margin: 5px 20px;
+}
+
+.control {
+    height: 50px;
+    width: 200px;
+}
