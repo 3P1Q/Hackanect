@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
 
 
+.fullpage{
+    background-color: #d8b9c3;
+}
+
 .name-and-avatar{
     height: 25rem;
     width: 25rem;
@@ -56,6 +60,7 @@
 
 .menu ul li{
     margin: 25% 0;
+    cursor: pointer;
 }
 .menu ul .icons{
     font-size: 2rem;

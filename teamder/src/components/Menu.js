@@ -1,4 +1,5 @@
 import React from 'react';
+import Edit from './Edit';
 
 const Menu = (props) => {
     return <div>
@@ -6,7 +7,7 @@ const Menu = (props) => {
             <ul>
                 <li>Profile</li>
                 <li>Connect</li>
-                <li>Edit</li>
+                <li><Edit/></li>
                 <li>Logout</li>
             </ul>
         </div>
