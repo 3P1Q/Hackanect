@@ -31,9 +31,7 @@ function Navbar() {
       <AppBar position="static" style={{background: '#4D4C7D'}} >
         <Toolbar>
           <img src="./teamderwithoutname.png" alt="logo" style={{height:"3rem"}}/>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
+          <p style={{fontSize:"1.2rem", paddingLeft:"0.5rem"}}>Teamder</p>
           <Typography className={classes.title}>
           </Typography>
           <Link to='/' className={classes.link}>HOME</Link>

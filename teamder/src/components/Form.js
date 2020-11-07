@@ -55,8 +55,10 @@ const useStyles = makeStyles((theme) => ({
 const Form =(props) => {
 
   function sendRequest(){
+    console.log("requesting")
     if(props.type==="REGISTER")
     {
+        console.log("registering")
         axios.post("http://localhost:5000/register", querystring.stringify({username: values.username, password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -64,7 +66,10 @@ const Form =(props) => {
         credentials: 'include',
         withCredentials: true
       }).then(function(response){
-        console.log(response);
+        if (response.status == 200) {
+          window.location = "/profile" 
+        }
+        console.log("ye lo "+response);
       });
     }
     if(props.type==="LOGIN")
@@ -76,6 +81,9 @@ const Form =(props) => {
         credentials: 'include',
         withCredentials: true
       }).then(function(response){
+        if (response.status == 200) {
+          window.location = "/profile" 
+        }
         console.log(response);
       });
     }
@@ -167,7 +175,9 @@ const Form =(props) => {
                     labelWidth={70}
                     />
                 </FormControl>)}
-
+                
+                <button onClick={sendRequest}>lund</button>
+                {/* <Button onClick={sendRequest} variant="contained">lund</Button> */}
                 <Button onClick={sendRequest} className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
 
                 </CardContent>
