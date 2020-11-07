@@ -17,6 +17,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import React from "react";
 import axios from 'axios';
 import querystring from 'querystring';
+import GitHubIcon from '@material-ui/icons/GitHub';
+
 
 axios.defaults.withCredentials = true;
 
@@ -169,6 +171,18 @@ const Form =(props) => {
                 </FormControl>)}
 
                 <Button onClick={sendRequest} className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
+
+                <div style={{margin:"2% 0"}}>
+                  <Button style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
+                    {formType==="REGISTER"?<span>Sign Up With Google</span>:<span>Sign In With Google</span>}
+                  </Button>
+                </div>
+
+                <div style={{margin:"2% 0"}}>
+                  <Button style={{backgroundColor: "#323232", color: "white"}}  color="secondary">
+                    {formType==="REGISTER"?<span><GitHubIcon /> Sign Up With GitHub</span>:<span><GitHubIcon /> Sign In With GitHub</span>}
+                  </Button>
+                </div>
 
                 </CardContent>
                 {formType==="LOGIN" && (<Typography className={classes.newAcc} variant="body2" component="p">
