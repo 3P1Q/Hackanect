@@ -38,7 +38,7 @@ function Navbar() {
           </Typography>
           <Link to='/' className={classes.link}>HOME</Link>
           <Link to='/profile' className={classes.link}>PROFILE</Link>
-          <Link to='/' className={classes.link}>VEDEO CALL</Link>
+          <Link to='/' className={classes.link}>VIDEO CALL</Link>
         </Toolbar>
       </AppBar>
     </div>
