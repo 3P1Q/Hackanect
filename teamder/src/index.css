@@ -3,4 +3,7 @@
 body{
     background-color: #D8B9C3;
     font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    margin-top: 0;
+    margin-left: 0;
 }
