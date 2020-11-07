@@ -26,7 +26,7 @@ const Tags = () => {
                             <span className='tag-close-icon'
                                 onClick={() => removeTags(index)}
                             >
-                                x
+                                X
                             </span>
                         </li>
                     ))}
@@ -37,7 +37,7 @@ const Tags = () => {
                     onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
                     placeholder="Press enter to add tags"
                 />
-            </div>
+        </div>
         );
 
     

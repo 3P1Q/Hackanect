@@ -11,7 +11,8 @@ import Navbar from './Navbar'
 import Login from './Login'
 import Register from './Register'
 import ProfilePage from '../screens/ProfilePage/profilePage'
-import Tags from './Tags';
+// import Tags from './Tags';
+import Edit from './Edit';
 
 // import Test from './Test';
 
@@ -32,6 +33,7 @@ const App = () => {
 
           <Route path='/' exact>
             <h1>Welcome to Teamder's</h1>
+            <Edit />
           </Route>
 
           <Route path="/login" exact component={Login} />
