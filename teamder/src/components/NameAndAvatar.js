@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Avatar} from '@material-ui/core';
+import {Avatar} from '@material-ui/core';
 import './Profile.css';
 
 const NameAndAvatar = (props) => {

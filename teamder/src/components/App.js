@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
+// import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 import './Profile.css';
@@ -12,8 +12,11 @@ import Login from './Login'
 import Register from './Register'
 import ProfilePage from '../screens/ProfilePage/profilePage'
 
-class App extends Component {
-  render(){
+import Test from './Test';
+
+
+const App = () => {
+    // data();
     return (
       <Router>
         {/* <Link to="/">Home</Link> */}
@@ -31,11 +34,11 @@ class App extends Component {
 
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
+          <Route path="/getalldata" exact component={Test} />
 
         </Switch>
       </Router>
     );
-  }
 }
 
 export default App;

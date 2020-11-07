@@ -1,144 +1,144 @@
 // import projectcard from '../../exampleJSONs/projectcard.json'
-const Vector = require('vector-object');
-var natural = require('natural');
-var TfIdf = natural.TfIdf;
+// const Vector = require('vector-object');
+// var natural = require('natural');
+// var TfIdf = natural.TfIdf;
 
 
-const projectcard = {
-    "projects": [
-        {
-            "id": "1",
-            "name": "random project 1",
-            "link": "https://github.com",
-            "technologies": ["html", "css", "React.js"]
-        },
-        {
-            "id": "2",
-            "name": "random project 2",
-            "link": "https://github.com",
-            "technologies": ["js", "markdown"]
-        },
-        {
-            "id": "3",
-            "name": "random project 3",
-            "link": "https://github.com",
-            "technologies": ["materialui   ", "  lol_no", "python", "flask", "kya karu"]
-        }
-    ]
-}
+// const projectcard = {
+//     "projects": [
+//         {
+//             "id": "1",
+//             "name": "random project 1",
+//             "link": "https://github.com",
+//             "technologies": ["html", "css", "React.js"]
+//         },
+//         {
+//             "id": "2",
+//             "name": "random project 2",
+//             "link": "https://github.com",
+//             "technologies": ["js", "markdown"]
+//         },
+//         {
+//             "id": "3",
+//             "name": "random project 3",
+//             "link": "https://github.com",
+//             "technologies": ["materialui   ", "  lol_no", "python", "flask", "kya karu"]
+//         }
+//     ]
+// }
 
-const formatData = data => {
-    let formatted = [];
-    data.map(project => {
-        let tmpObj = {};
+// const formatData = data => {
+//     let formatted = [];
+//     data.map(project => {
+//         let tmpObj = {};
 
-        //formatting the strings to get a uniform structure throughout the db.
-        const technologiesCleaned = project.technologies.map(tool => {
-            tool = tool.trim();
-            tool = tool.replace(/ /g, '-');
-            tool = tool.replace(/_/g, '-');
-            tool = tool.replace(/\./g, '-');
-            tool = tool.toLowerCase()
+//         //formatting the strings to get a uniform structure throughout the db.
+//         const technologiesCleaned = project.technologies.map(tool => {
+//             tool = tool.trim();
+//             tool = tool.replace(/ /g, '-');
+//             tool = tool.replace(/_/g, '-');
+//             tool = tool.replace(/\./g, '-');
+//             tool = tool.toLowerCase()
             
-            return tool;
-        })
+//             return tool;
+//         })
         
-        const tech = technologiesCleaned.join(' ');
+//         const tech = technologiesCleaned.join(' ');
 
-        tmpObj = {
-            id: project.id,
-            content: tech
-        }
-        formatted.push(tmpObj);
-    })
+//         tmpObj = {
+//             id: project.id,
+//             content: tech
+//         }
+//         formatted.push(tmpObj);
+//     })
     
-    // console.log(formatted)
-    return formatted;
-  };
+//     console.log(formatted)
+//     return formatted;
+//   };
 
-  const createVectors = processedDocs => {
-    const tfidf = new TfIdf();
+//   const createVectors = processedDocs => {
+//     const tfidf = new TfIdf();
   
-    processedDocs.forEach(processedDocument => {
-      tfidf.addDocument(processedDocument.content);
-    });
-    const documentVectors = [];
+//     processedDocs.forEach(processedDocument => {
+//       tfidf.addDocument(processedDocument.content);
+//     });
+//     const documentVectors = [];
   
-    for (let i = 0; i < processedDocs.length; i += 1) {
-      const processedDocument = processedDocs[i];
-      const obj = {};
+//     for (let i = 0; i < processedDocs.length; i += 1) {
+//       const processedDocument = processedDocs[i];
+//       const obj = {};
   
-      const items = tfidf.listTerms(i);
-        // console.log(items)
-      for (let j = 0; j < items.length; j += 1) {
-        const item = items[j];
-        obj[item.term] = item.tfidf;
-      }
+//       const items = tfidf.listTerms(i);
+//         // console.log(items)
+//       for (let j = 0; j < items.length; j += 1) {
+//         const item = items[j];
+//         obj[item.term] = item.tfidf;
+//       }
   
-      const documentVector = {
-        id: processedDocument.id,
-        vector: new Vector(obj)
-      };
+//       const documentVector = {
+//         id: processedDocument.id,
+//         vector: new Vector(obj)
+//       };
   
-      documentVectors.push(documentVector);
+//       documentVectors.push(documentVector);
       
-    }
-        return documentVectors;
-    }
+//     }
+//         return documentVectors;
+//     }
 
-    const findSimilar = vectors => {
-        //number of results that you want to return
-        const MAX_SIMILAR = 20; 
-        //min cosine similarity score that should be returned
-        const MIN_SCORE = -100;
-        const data = {};
+//     const findSimilar = vectors => {
+//         //number of results that you want to return
+//         const MAX_SIMILAR = 20; 
+//         //min cosine similarity score that should be returned
+//         const MIN_SCORE = -100;
+//         const data = {};
       
-        vectors.forEach(vector => {
-            const { id } = vector;
-            data[id] = [];
-        })
+//         vectors.forEach(vector => {
+//             const { id } = vector;
+//             data[id] = [];
+//         })
       
-        //find similar vectors
-        for (let i = 0; i < vectors.length; i += 1) {
-          for (let j = 0; j < i; j += 1) {
-            const idi = vectors[i].id;
-            const vi = vectors[i].vector;
-            const idj = vectors[j].id;
-            const vj = vectors[j].vector;
-            const similarity = vi.getCosineSimilarity(vj);
+//         //find similar vectors
+//         for (let i = 0; i < vectors.length; i += 1) {
+//           for (let j = 0; j < i; j += 1) {
+//             const idi = vectors[i].id;
+//             const vi = vectors[i].vector;
+//             const idj = vectors[j].id;
+//             const vj = vectors[j].vector;
+//             const similarity = vi.getCosineSimilarity(vj);
       
-            if (similarity > MIN_SCORE) {
-              data[idi].push({ id: idj, score: similarity });
-              data[idj].push({ id: idi, score: similarity });
-            }
-          }
-        }
+//             if (similarity > MIN_SCORE) {
+//               data[idi].push({ id: idj, score: similarity });
+//               data[idj].push({ id: idi, score: similarity });
+//             }
+//           }
+//         }
       
-        // sort similar vectors in descending order
-        Object.keys(data).forEach(id => {
-          data[id].sort((a, b) => b.score - a.score);
+//         // sort similar vectors in descending order
+//         Object.keys(data).forEach(id => {
+//           data[id].sort((a, b) => b.score - a.score);
       
-          if (data[id].length > MAX_SIMILAR) {
-            data[id] = data[id].slice(0, MAX_SIMILAR);
-          }
-        });
+//           if (data[id].length > MAX_SIMILAR) {
+//             data[id] = data[id].slice(0, MAX_SIMILAR);
+//           }
+//         });
       
-        return data;
-    }
+//         return data;
+//     }
 
-    const formattedData = formatData(projectcard.projects)
-    const vectors = createVectors(formattedData)
-    const results = findSimilar(vectors)
+//     const formattedData = formatData(projectcard.projects)
+//     const vectors = createVectors(formattedData)
+//     const results = findSimilar(vectors)
 
-    // console.log(results)
+//     // console.log(results)
   
-    const getResults = (id, results) => {
-        let similarDocuments = results[id];
+//     const getResults = (id, results) => {
+//         let similarDocuments = results[id];
       
-        if (similarDocuments === undefined) {
-          return [];
-        }
-        return similarDocuments;
-      };
+//         if (similarDocuments === undefined) {
+//           return [];
+//         }
+//         return similarDocuments;
+//       };
 
-    console.log(getResults(2, results))
+//     console.log(getResults(2, results))

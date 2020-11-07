@@ -14,7 +14,11 @@ import {
   import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useState } from "react";
+import React from "react";
+import axios from 'axios';
+import querystring from 'querystring';
+
+axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
     submitButton:{
@@ -49,6 +53,36 @@ const useStyles = makeStyles((theme) => ({
   
 
 const Form =(props) => {
+
+  function sendRequest(){
+    if(props.type==="REGISTER")
+    {
+        axios.post("http://localhost:5000/register", querystring.stringify({username: values.username, password: values.password}), {
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        credentials: 'include',
+        withCredentials: true
+      }).then(function(response){
+        console.log(response);
+      });
+    }
+    if(props.type==="LOGIN")
+    {
+      axios.post("http://localhost:5000/login", querystring.stringify({username: values.username, password: values.password}), {
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        credentials: 'include',
+        withCredentials: true
+      }).then(function(response){
+        console.log(response);
+      });
+    }
+    
+
+  }
+
     const classes = useStyles();
 
     const formType = props.type;
@@ -134,7 +168,7 @@ const Form =(props) => {
                     />
                 </FormControl>)}
 
-                <Button className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
+                <Button onClick={sendRequest} className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
 
                 </CardContent>
                 {formType==="LOGIN" && (<Typography className={classes.newAcc} variant="body2" component="p">

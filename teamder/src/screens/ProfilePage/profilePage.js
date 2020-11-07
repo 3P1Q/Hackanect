@@ -3,7 +3,7 @@ import ProjectCards from '../../components/ProjectCards/ProjectCards';
 import NameAndAvatar from '../../components/NameAndAvatar';
 import TechStack from '../../components/TechStack';
 import Menu from '../../components/Menu';
-import {Grid, Container, Typography} from '@material-ui/core';
+import {Typography} from '@material-ui/core';
 
 // import {GitHubIcon, FacebookIcon, TwitterIcon, LinkedInIcon} from '@material-ui/icons';
 import FacebookIcon from '@material-ui/icons/Facebook';

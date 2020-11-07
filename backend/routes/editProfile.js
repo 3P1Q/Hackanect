@@ -1,5 +1,4 @@
 const express = require("express");
-const passport = require("passport");
 const User = require("../models/profileModel");
 const router = express.Router();
 
@@ -14,11 +13,8 @@ router.post("/", (req,res) => {
             profilePic: req.body.image,
             about: req.body.about,
             gender: req.body.gender,
-            // project: {
-            //     title: req.body.projectTitle,
-            //     link: req.body.projectLink
-            // },
-            // techStack: req.body.stackArray,
+            project: req.body.projectArray,
+            techStack: req.body.stackArray,
             social: {
                 github: req.body.github,
                 facebook: req.body.fb,
