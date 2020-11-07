@@ -30,7 +30,7 @@ function Navbar() {
     <div className={classes.root}>
       <AppBar position="static" style={{background: '#4D4C7D'}} >
         <Toolbar>
-          <img src="../teamder.png" alt="logo" />
+          <img src="./teamderwithoutname.png" alt="logo" style={{height:"3rem"}}/>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton> */}
@@ -38,7 +38,7 @@ function Navbar() {
           </Typography>
           <Link to='/' className={classes.link}>HOME</Link>
           <Link to='/profile' className={classes.link}>PROFILE</Link>
-          <Link to='/' className={classes.link}>VEDEO CALL</Link>
+          <Link to='/' className={classes.link}>VIDEO CALL</Link>
         </Toolbar>
       </AppBar>
     </div>
