@@ -174,8 +174,6 @@ const Form =(props) => {
                     />
                 </FormControl>)}
                 
-                <button onClick={sendRequest}>lund</button>
-                {/* <Button onClick={sendRequest} variant="contained">lund</Button> */}
                 <Button onClick={sendRequest} className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
 
                 </CardContent>
