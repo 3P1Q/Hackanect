@@ -15,6 +15,8 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
+    "react-github-login-button": "^1.0.1",
+    "react-google-login-button": "^1.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "vector-object": "^1.3.0",
