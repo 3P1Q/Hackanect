@@ -55,10 +55,8 @@ const useStyles = makeStyles((theme) => ({
 const Form =(props) => {
 
   function sendRequest(){
-    console.log("requesting")
     if(props.type==="REGISTER")
     {
-        console.log("registering")
         axios.post("http://localhost:5000/register", querystring.stringify({username: values.username, password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -69,7 +67,7 @@ const Form =(props) => {
         if (response.status == 200) {
           window.location = "/profile" 
         }
-        console.log("ye lo "+response);
+        console.log(response);
       });
     }
     if(props.type==="LOGIN")
