@@ -67,6 +67,7 @@ const googleAuth = require("./routes/googleAuth");
 const githubAuth = require("./routes/githubAuth");
 const editProfile = require("./routes/editProfile");
 const getAllData = require('./routes/getAllData');
+const getUserData = require('./routes/getUserData');
 const { Schema } = require("mongoose");
 
 /*-----Routes Config End------*/
@@ -81,6 +82,7 @@ app.use("/auth/google", googleAuth);
 app.use("/auth/github", githubAuth);
 app.use("/profile/edit", editProfile);
 app.use("/getalldata", getAllData);
+app.use("/getuserdata",getUserData);
 
 /*------App Config End--------*/
 

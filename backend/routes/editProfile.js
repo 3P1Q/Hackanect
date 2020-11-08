@@ -22,7 +22,8 @@ router.post("/", (req,res) => {
                 twitter: req.body.twitter
             }
         }
-        User.updateOne({_id: req.user._id}, userData, function(err, user){
+        /
+        User.update({_id: req.user._id, username: req.body.username}, userData, function(err, user){
             // user = {...user, userData};
             console.log("updated");
         });

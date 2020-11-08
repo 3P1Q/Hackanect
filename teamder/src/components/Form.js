@@ -67,9 +67,9 @@ const Form =(props) => {
         withCredentials: true
       }).then(function(response){
         if (response.status === 200) {
-          localStorage.setItem('username', response.data._id)
-          window.location = `/profile/${response.data._id}`
-          const data = response.data
+          localStorage.setItem('username', response.data.username)
+          window.location = `/profile/${response.data.username}`
+          // const data = response.data
           props.setUserData((prev) => {
             return {
               ...prev,
@@ -90,10 +90,10 @@ const Form =(props) => {
         withCredentials: true
       }).then(function(response){
         if (response.status === 200) {
-          localStorage.setItem('username', response.data._id)
-          window.location = `/profile/${response.data._id}`
-          const data = response.data
-          console.log(data);
+          localStorage.setItem('username', response.data.username)
+          window.location = `/profile/${response.data.username}`
+          // const data = response.data
+          // console.log(data);
           props.setUserData({_id: '1' })
         }
         console.log(response);

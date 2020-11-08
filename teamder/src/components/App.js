@@ -34,6 +34,7 @@ const App = () => {
     projects: [],
     bio: ""
   })
+  console.log(userData);
 
     // data();
     return (
@@ -43,10 +44,15 @@ const App = () => {
         <Navbar />
         <Switch>
         
-          <Route path="/profile">
-            <ProfilePage />
+          <Route 
+            path="/profile/:username" 
+            render={(props)=>(
+            <ProfilePage routerProps={props}/>
+            )
+          } />
+            {/* <ProfilePage /> */}
             {/* <Tags /> */}
-          </Route>
+          {/* </Route> */}
 
           <Route path='/' exact>
             <h1>Welcome to Teamder's</h1>

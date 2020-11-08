@@ -49,7 +49,7 @@ export default function ProjectCard({deets}) {
 
             <Grid item sm={12} md={10}>
                 <Grid container spacing={3}>
-                {deets.projects.map((card) => {
+                {deets.map((card) => {
                   return <Grid item sm={12} md={6}>
                      <Card className={classes.root}>
                       <CardContent className={classes.card}>
