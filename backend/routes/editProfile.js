@@ -11,7 +11,7 @@ router.post("/", (req,res) => {
         const userData = {
             name: req.body.name,
             profilePic: req.body.image,
-            about: req.body.about,
+            description: req.body.description,
             gender: req.body.gender,
             project: req.body.projectArray,
             techStack: req.body.techStack,
@@ -22,7 +22,7 @@ router.post("/", (req,res) => {
                 twitter: req.body.twitter
             }
         }
-        /
+        
         User.update({_id: req.user._id, username: req.body.username}, userData, function(err, user){
             // user = {...user, userData};
             console.log("updated");
