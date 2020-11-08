@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -20,6 +20,21 @@ import Edit from './Edit';
 
 
 const App = () => {
+  // constructor(){
+    // this.state = {
+    //   id: "",
+    //   techStack: [],
+    //   projects: [],
+    //   bio: ""
+    // }
+  // }
+  const [userData, setUserData] = useState({
+    _id: "",
+    techStack: [],
+    projects: [],
+    bio: ""
+  })
+
     // data();
     return (
       <Router>
@@ -39,8 +54,19 @@ const App = () => {
             <HorizontalLinearStepper/>
           </Route>
 
-          <Route path="/login" exact component={Login} />
-          <Route path="/register" exact component={Register} />
+          <Route 
+            path="/login" 
+            exact 
+            render={
+              () => <Login setUserData={setUserData}/>
+            } />
+
+          <Route 
+            path="/register" 
+            exact 
+            render={
+              () => <Register setUserData={setUserData}/>
+            } />
           {/* <Route path="/getalldata" exact component={Test} /> */}
 
         </Switch>
