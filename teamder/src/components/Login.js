@@ -2,10 +2,13 @@ import {Container} from "@material-ui/core";
 import React  from "react";
 import Form from "./Form";
 
-const Login =() => {
+const Login =({setUserData}) => {
     console.log(document.forms);
     return <Container>
-    <Form type="LOGIN"/>
+    <Form 
+        setUserData = {setUserData}
+        type="LOGIN"
+    />
     </Container>
 }
 
