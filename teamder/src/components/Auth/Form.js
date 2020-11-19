@@ -68,14 +68,7 @@ const Form =(props) => {
       }).then(function(response){
         if (response.status === 200) {
           localStorage.setItem('username', response.data.username)
-          window.location = `/profile/${response.data.username}`
-          // const data = response.data
-          props.setUserData((prev) => {
-            return {
-              ...prev,
-              ...response.data
-            }
-          })
+          window.location = `/profile/${response.data.username}`          
         }
         console.log(response);
       });
@@ -94,7 +87,7 @@ const Form =(props) => {
           window.location = `/profile/${response.data.username}`
           // const data = response.data
           // console.log(data);
-          props.setUserData({_id: '1' })
+          // props.setUserData({_id: '1' })
         }
         console.log(response);
       });

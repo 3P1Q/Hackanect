@@ -1,11 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import './Edit.css';
 
 const Tags = (props) => {
-
-    // return <h1>Hey</h1>
-        
-
+    
         const removeTags = indexToRemove => {
             props.setTags([...props.tags.filter((_, index) => index !== indexToRemove)]);
         }
