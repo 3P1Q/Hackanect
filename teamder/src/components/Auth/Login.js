@@ -6,7 +6,7 @@ const Login =({setUserData}) => {
     console.log(document.forms);
     return <Container>
     <Form 
-        setUserData = {setUserData}
+        // setUserData = {setUserData}
         type="LOGIN"
     />
     </Container>

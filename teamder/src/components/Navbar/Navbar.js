@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   const classes = useStyles();
-//   const img = <img src="https://unsplash.it/40/40" />
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{background: '#4D4C7D'}} >

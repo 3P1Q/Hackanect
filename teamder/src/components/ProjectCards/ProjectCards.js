@@ -25,14 +25,7 @@ const useStyles = makeStyles({
     fontFamily: "inherit"
   },
   link: {
-    // width: "10px",
-    // position: "relative",
-    // top: 15,
-    // alignItems: "right",
-    // left: 285,
-    // right: 0
     textAlign: "right"
-    // paddingLeft: "90%"
   }
 });
 
