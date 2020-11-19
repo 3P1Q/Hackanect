@@ -18,6 +18,7 @@ import React from "react";
 import axios from 'axios';
 import querystring from 'querystring';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import {ReactComponent as GoogleIcon} from '../search.svg';
 
 
 axios.defaults.withCredentials = true;
@@ -49,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
     },
     Formdata:{
         margin: " 5% 25%"
+
+          ,"& *" : {
+            color: "#e8e8e8"
+          }
     }
   }));
 
@@ -185,13 +190,13 @@ const Form =(props) => {
 
                 <div style={{margin:"2% 0"}}>
                   <Button style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
-                    {formType==="REGISTER"?<span>Sign Up With Google</span>:<span>Sign In With Google</span>}
+                    {formType==="REGISTER"?<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign Up With Google</span>:<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign In With Google</span>}
                   </Button>
                 </div>
 
                 <div style={{margin:"2% 0"}}>
                   <Button style={{backgroundColor: "#323232", color: "white"}}  color="secondary">
-                    {formType==="REGISTER"?<span><GitHubIcon /> Sign Up With GitHub</span>:<span><GitHubIcon /> Sign In With GitHub</span>}
+                    {formType==="REGISTER"?<span><GitHubIcon />&nbsp; Sign Up With GitHub</span>:<span><GitHubIcon />&nbsp; Sign In With GitHub</span>}
                   </Button>
                 </div>
 
