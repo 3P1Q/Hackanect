@@ -10,9 +10,9 @@ const TechStack = (props) => {
             </Grid>;
     }
     props.tags.forEach((tag) => {
-        console.log(tag);
+        // console.log(tag);
     });
-    console.log(props.tags);
+    // console.log(props.tags);
     return <div className="tech-stack">
         <Grid container>
             <Grid item sm={12} md={2}>
