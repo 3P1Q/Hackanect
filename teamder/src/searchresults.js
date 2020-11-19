@@ -1,4 +1,3 @@
-// import projectcard from '../../exampleJSONs/projectcard.json'
 var axios = require('axios');
 
 var Test = require('./components/Test');
@@ -8,11 +7,6 @@ var TfIdf = natural.TfIdf;
 
 
 axios.defaults.withCredentials = true;
-
-// const projectcard = Test();
-// console.log(projectcard);
-
-// Test().then(data => console.log(data))
 
 
 axios.post("http://localhost:5000/getalldata",{})

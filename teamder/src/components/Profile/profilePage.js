@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import ProjectCards from '../../components/ProjectCards/ProjectCards';
-import NameAndAvatar from '../../components/NameAndAvatar';
-import TechStack from '../../components/TechStack';
-import Menu from '../../components/Menu';
+import ProjectCards from '../ProjectCards/ProjectCards';
+import NameAndAvatar from './NameAndAvatar';
+import TechStack from './TechStack';
+import Menu from './Menu';
 import {Typography} from '@material-ui/core';
-
-// import {GitHubIcon, FacebookIcon, TwitterIcon, LinkedInIcon} from '@material-ui/icons';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -14,12 +12,7 @@ import axios from 'axios';
 
 import querystring from 'querystring';
 
-import '../../components/Profile.css'
-
-//temporary json file(s)      (should be removed later)
-import projectcard from '../../exampleJSONs/projectcard.json'
-
-// import userDataContext from '../../components/user-context';
+import './Profile.css'
 
 axios.defaults.withCredentials = true;
 
@@ -28,7 +21,6 @@ const userDataContext = React.createContext([{}, ()=>{}]);
 function ProfilePage(props){
 
     console.log(localStorage.getItem('username'));
-    const username = localStorage.getItem('username');
     console.log(props.routerProps.match.params.username);
 
 
@@ -46,7 +38,7 @@ function ProfilePage(props){
         setData(data);
     })
     
-    },[])
+    },[props.routerProps.match.params.username])
 
     useEffect(()=>{
             console.log(data);
@@ -68,8 +60,6 @@ function ProfilePage(props){
 
     console.log(data);
 
-    // const id = props.routerProps.match.params.id;
-    // console.log(id);
     return(
         <userDataContext.Provider value={[data, setData]}>
         <div className="fullpage" style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>

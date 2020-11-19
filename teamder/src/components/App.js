@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -6,41 +6,22 @@ import {
   Route
 } from "react-router-dom";
 
-import './Profile.css';
-import Navbar from './Navbar'
-import Login from './Login'
-import Register from './Register'
-import ProfilePage from '../screens/ProfilePage/profilePage'
+import './Profile/Profile.css';
+import Navbar from './Navbar/Navbar'
+import Login from './Auth/Login'
+import Register from './Auth/Register'
+import ProfilePage from './Profile/profilePage'
 // import Search Bar Component
 import HorizontalLinearStepper from "./SearchBar";
 // import Tags from './Tags';
-import Edit from './Edit';
 
 // import Test from './Test';
 
 
 const App = () => {
-  // constructor(){
-    // this.state = {
-    //   id: "",
-    //   techStack: [],
-    //   projects: [],
-    //   bio: ""
-    // }
-  // }
-  const [userData, setUserData] = useState({
-    _id: "",
-    techStack: [],
-    projects: [],
-    bio: ""
-  })
-  console.log(userData);
-
-    // data();
+  
     return (
       <Router>
-        {/* <Link to="/">Home</Link> */}
-        {/* <Link to="/profile">Profile</Link> */}
         <Navbar />
         <Switch>
         
@@ -56,7 +37,6 @@ const App = () => {
 
           <Route path='/' exact>
             <h1>Welcome to Teamder's</h1>
-            <Edit />
             <HorizontalLinearStepper/>
           </Route>
 
@@ -64,14 +44,14 @@ const App = () => {
             path="/login" 
             exact 
             render={
-              () => <Login setUserData={setUserData}/>
+              () => <Login/>
             } />
 
           <Route 
             path="/register" 
             exact 
             render={
-              () => <Register setUserData={setUserData}/>
+              () => <Register/>
             } />
           {/* <Route path="/getalldata" exact component={Test} /> */}
 

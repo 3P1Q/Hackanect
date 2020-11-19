@@ -4,7 +4,7 @@ var axios = require('axios');
 axios.defaults.withCredentials = true;
 
 function Test(){
-    var data = [];
+    
 axios.post("http://localhost:5000/getalldata",{})
 .then(res => console.log(res.data));
     // return data;
