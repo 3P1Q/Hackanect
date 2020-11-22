@@ -101,6 +101,9 @@
 
 @media(max-width: 1159px)
 {
+    .topsection{
+        display: block !important;
+    }
     .name-and-avatar{
         margin: auto !important;
         margin-left: 25%;
