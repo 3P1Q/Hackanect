@@ -135,7 +135,6 @@ const Form =(props) => {
                     id="username"
                     value={values.username}
                     onChange={handleChange('username')}
-                    labelWidth={70}
                     />
                 </FormControl>
 
@@ -159,7 +158,7 @@ const Form =(props) => {
                         </IconButton>
                     </InputAdornment>
                     }
-                    labelWidth={70}
+                    // labelWidth={70}
                     />
                 </FormControl>
 
@@ -182,7 +181,7 @@ const Form =(props) => {
                         </IconButton>
                     </InputAdornment>
                     }
-                    labelWidth={70}
+                    // labelWidth={70}
                     />
                 </FormControl>)}
                 

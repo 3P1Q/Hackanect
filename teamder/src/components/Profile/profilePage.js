@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProjectCards from '../ProjectCards/ProjectCards';
 import NameAndAvatar from './NameAndAvatar';
 import TechStack from './TechStack';
@@ -14,15 +14,18 @@ import querystring from 'querystring';
 
 import './Profile.css'
 
+import {userLoggedInContext} from '../App';
+import { Redirect } from 'react-router-dom';
+
 axios.defaults.withCredentials = true;
 
 const userDataContext = React.createContext([{}, ()=>{}]);
 
 function ProfilePage(props){
 
-    console.log(localStorage.getItem('username'));
-    console.log(props.routerProps.match.params.username);
-
+    // console.log(localStorage.getItem('username'));
+    // console.log(props.routerProps.match.params.username);
+    
 
     const [data, setData] = useState({});
     useEffect(()=>{
@@ -34,10 +37,9 @@ function ProfilePage(props){
         withCredentials: true
       })
       .then(res => res.data)
-    .then(data => {
-        setData(data);
-    })
-    
+      .then(data => {
+          setData(data);
+      })    
     },[props.routerProps.match.params.username])
 
     useEffect(()=>{
@@ -59,8 +61,8 @@ function ProfilePage(props){
       }, [data])
 
     console.log(data);
-
-    return(
+    
+    return (
         <userDataContext.Provider value={[data, setData]}>
         <div className="fullpage" style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>
             <div className="topsection" style={{display:"flex", flexDirection:"row"}}>
