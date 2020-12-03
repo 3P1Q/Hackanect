@@ -3,6 +3,7 @@ import {userDataContext} from './profilePage';
 import Name from '../ProfileEdit/Name';
 import Tags from '../ProfileEdit/Tags';
 import Description from '../ProfileEdit/Description';
+import Social from '../ProfileEdit/Social';
 import {Modal,Button} from 'react-bootstrap';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,6 +21,7 @@ const Edit = (props) => {
       const [name,setName] = useState(data.name || "");
       const [desc,setDesc] = useState(data.description || "");
       const [tags, setTags] = useState(data.techStack || []);
+      const [social, setSocial] = useState(data.social ? data.social : {facebook:"#", github:"#", twitter:"#", linkedin:"#"});
 
       async function update(e)
       {
@@ -30,7 +32,9 @@ const Edit = (props) => {
           ...prev,
           name:name,
           description: desc,
-          techStack: tags
+          techStack: tags,
+          socialString: social?JSON.stringify(social):'',
+          social: social
         }));
 
         // await updateDB(data);
@@ -51,6 +55,7 @@ const Edit = (props) => {
               <Name name={name} setName={setName}/>
               <Description desc={desc} setDesc={setDesc}/>
               <Tags tags={tags} setTags={setTags}/>
+              <Social social={social} setSocial={setSocial}/>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={update} style={{backgroundColor: "#363062",borderColor: "#363062"}}>Update</Button>

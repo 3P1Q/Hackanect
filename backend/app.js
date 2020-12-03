@@ -42,6 +42,10 @@ app.use(
 // mongoDB Connection
 mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set("useCreateIndex", true);
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log("MongoDB database connection established successfully");
+});
 // mongoDB connection finished
 
 
@@ -68,6 +72,7 @@ const githubAuth = require("./routes/githubAuth");
 const editProfile = require("./routes/editProfile");
 const getAllData = require('./routes/getAllData');
 const getUserData = require('./routes/getUserData');
+const isLoggedIn = require('./routes/isLoggedin');
 const { Schema } = require("mongoose");
 
 /*-----Routes Config End------*/
@@ -83,6 +88,7 @@ app.use("/auth/github", githubAuth);
 app.use("/profile/edit", editProfile);
 app.use("/getalldata", getAllData);
 app.use("/getuserdata",getUserData);
+app.use("/loggedin", isLoggedIn);
 
 /*------App Config End--------*/
 

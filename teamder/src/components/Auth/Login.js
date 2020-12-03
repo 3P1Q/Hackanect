@@ -3,7 +3,6 @@ import React  from "react";
 import Form from "./Form";
 
 const Login =({setUserData}) => {
-    console.log(document.forms);
     return <Container>
     <Form 
         // setUserData = {setUserData}

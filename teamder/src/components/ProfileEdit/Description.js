@@ -10,7 +10,7 @@ const Description = (props) => {
           label="Description ( Max 100 letters )"
           multiline
           rows={4}
-          defaultValue="Default Value"
+        //   defaultValue="Default Value"
           variant="outlined"
           value={props.desc}
           onChange={(e) =>{props.setDesc(e.target.value)}}
