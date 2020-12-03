@@ -1,0 +1,111 @@
+.oval-back{
+    display: inline-block;
+    position: relative;
+    left: -25%;
+    overflow: hidden;
+    border-radius: 70%;
+    min-height: 500px;
+    width: 150%;
+    background-color: #4D4C7D;
+}
+.oval-content{
+    display: flex;
+    width: 60%;
+    height: 100%;
+    min-height: 500px;
+    margin: auto;
+    padding: 3%;
+    text-align: center;
+}
+.oval-head{
+    display: inline-block;
+    margin: auto;
+    flex: 60%;
+    color: #D8B9C3;
+}
+.oval-head h1{
+    font-weight: 600;
+}
+.teampic{
+    position: relative;
+    left: 0;
+    max-width: 100% !important;
+    width: 400px;
+    flex: 40%;
+    margin-top: -1%;
+    font-size: 0.5rem;;
+}
+
+.oval-signin{
+    flex: 50%;
+    margin: auto;
+    color: #D8B9C3;
+}
+.oval-signin h1{
+    font-weight: 600;
+    margin-bottom: 5%;
+}
+.sign-button{
+    display: inline-block;
+    padding: 2%;
+    /* margin: 5% 0; */
+    border: 1px #6C63FF solid;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    background-color: #D8B9C3;
+    color: #4D4C7D;
+    font-weight: 600;
+    cursor: pointer !important;
+}
+.sign-button:hover{
+    text-decoration: none;
+    color: #4D4C7D;
+    font-weight: 800;
+}
+
+
+.feature{
+    width: 50%;
+    margin: 10% auto;
+}
+.feature h4{
+    display: inline-block;
+    width: 90%;
+    color: #4D4C7D;
+    font-weight: 600;
+}
+.feature *{
+    margin: 2% 0;
+}
+.feature img{
+    width: 300px;
+    max-width: 100%;
+}
+
+@media(max-width: 900px){
+    .oval-content-2{
+        display: block;
+    }
+    .oval-signin{
+        margin: 15% auto;
+    }
+}
+
+@media(max-width: 800px){
+    .oval-content{
+        display: block;
+        padding: 5%;
+    }
+    .oval-head{
+        margin: 2%;
+    }
+}
+
+@media(max-width: 500px){
+    .feature{
+        width: 90%;
+    }
+    .feature h4{
+        width: 100%;
+    }
+}

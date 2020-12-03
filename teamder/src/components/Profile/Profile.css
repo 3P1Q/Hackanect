@@ -81,6 +81,16 @@
     padding-bottom: 5%;
 }
 
+.social-modal-button{
+    display: inline-block;
+    padding: 1%;
+    margin: 2% 0px;
+    background-color: #827397;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 @media(max-width: 476px)
 {
 
@@ -179,9 +189,10 @@
     text-align: center;
 }
 .social-icons *{
+    color: black;
     font-size: 2rem !important;
     margin-top: 3%;
-    margin-left: 10%;
+    margin-left: 5%;
 }
 
 /* .menu{

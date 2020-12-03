@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     gender: String,
     project: [{title: String, link: String}],
     techStack: [String],
-    social: {github: String, facebook: String, linkedIn: String, twitter: String},
+    social: {github: String, facebook: String, linkedin: String, twitter: String},
     discord: String
 
 });

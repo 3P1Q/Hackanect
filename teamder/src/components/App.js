@@ -12,6 +12,7 @@ import Navbar from './Navbar/Navbar'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
 import ProfilePage from './Profile/profilePage'
+import Home from './Land/Home'
 // import Search Bar Component
 import HorizontalLinearStepper from "./SearchBar";
 // import Tags from './Tags';
@@ -81,8 +82,9 @@ const App = () => {
           {/* <PrivateRoute path="profile/:username" component={ProfilePage} /> */}
 
           <Route path='/' exact>
-            <h1>Welcome to Teamder's</h1>
-            <HorizontalLinearStepper/>
+            {/* <h1>Welcome to Teamder's</h1>
+            <HorizontalLinearStepper/> */}
+            <Home />
           </Route>
 
           <Route 

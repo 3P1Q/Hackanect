@@ -3,11 +3,8 @@ import ProjectCards from '../ProjectCards/ProjectCards';
 import NameAndAvatar from './NameAndAvatar';
 import TechStack from './TechStack';
 import Menu from './Menu';
+import Bio from './Bio';
 import {Typography} from '@material-ui/core';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import axios from 'axios';
 
 import querystring from 'querystring';
@@ -28,6 +25,7 @@ function ProfilePage(props){
     
 
     const [data, setData] = useState({});
+    const [load, setLoad] = useState(false);
     useEffect(()=>{
         axios.post("http://localhost:5000/getuserdata", querystring.stringify({username: props.routerProps.match.params.username}), {
         headers: {
@@ -39,6 +37,7 @@ function ProfilePage(props){
       .then(res => res.data)
       .then(data => {
           setData(data);
+          setLoad(true);
       })    
     },[props.routerProps.match.params.username])
 
@@ -62,15 +61,16 @@ function ProfilePage(props){
 
     console.log(data);
     
-    return (
+    return !load?"Loading":(
         <userDataContext.Provider value={[data, setData]}>
         <div className="fullpage" style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>
             <div className="topsection" style={{display:"flex", flexDirection:"row"}}>
                 <div className="name-avatar-container"><NameAndAvatar myname={data.name || "Your Name"} style={{minWidth:"300px"}} className="NaA"  src="" name="Random User"/></div>
-                    <div className="bio-container">
-                        <Typography style={{height: "50%", width: "50%"}} className="bio">{data.description}</Typography>
-                        <div className="social-icons"><FacebookIcon /><GitHubIcon /><TwitterIcon /><LinkedInIcon /></div>
-                    </div>
+                    <Bio description={data.description} 
+                    facebook={data.social? data.social.facebook :"#"} 
+                    github={data.social ? data.social.github : "#"}
+                    twitter={data.social ? data.social.twitter :"#"} 
+                    linkedin={data.social ? data.social.linkedin : "#"}/>
             </div>
             <div className="bottomsection" style={{display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"space-between"}}>    
                 <div className="menu-container"><Menu className="menu"/></div>
