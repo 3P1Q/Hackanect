@@ -33,7 +33,7 @@ const Edit = (props) => {
           name:name,
           description: desc,
           techStack: tags,
-          socialString: social?JSON.stringify(social):'',
+          //socialString: social?JSON.stringify(social):'',
           social: social
         }));
 

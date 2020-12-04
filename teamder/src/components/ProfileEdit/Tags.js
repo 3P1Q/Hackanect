@@ -18,7 +18,7 @@ const Tags = (props) => {
         <div className="tags-input">
                 <ul id="tags">
                     {props.tags.map((tag, index) => (
-                        <li key={index} className="tag">
+                        <li key={index} className="tag-edit">
                             <span className='tag-title'>{tag}</span>
                             <span className='tag-close-icon'
                                 onClick={() => removeTags(index)}

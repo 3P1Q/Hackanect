@@ -16,7 +16,7 @@ router.post("/", (req,res) => {
             gender: req.body.gender,
             project: req.body.projectArray,
             techStack: req.body.techStack,
-            social: req.body.socialString?JSON.parse(req.body.socialString):{}
+            social: req.body.social
         }
         
         User.updateOne({_id: req.user._id, username: req.body.username}, userData, function(err, user){
