@@ -22,7 +22,12 @@ router.post("/", (req,res) => {
                 const vectors = createVectors(formattedData);
                 const results = findSimilar(vectors);
 
-                res.send(getResults(req.user._id, results));
+                const similars = getResults(req.user._id, results);
+
+                const sim = similars.map(obj => obj.id);
+                User.find({_id:{$in : sim}}, function(err, users){
+                    res.send(users);
+                })
             }
         });
     }

@@ -8,7 +8,8 @@ router.get("/", (req, res) => {
 
 router.post("/", (req,res) => {
     if (req.isAuthenticated()){
-        console.log(req.body);
+        try{
+            console.log("Social"+req.body.socialString);
         const userData = {
             name: req.body.name,
             profilePic: req.body.image,
@@ -16,7 +17,8 @@ router.post("/", (req,res) => {
             gender: req.body.gender,
             project: req.body.projectArray,
             techStack: req.body.techStack,
-            social: req.body.social
+            social: JSON.parse(req.body.socialString),
+            socialString: req.body.socialString
         }
         
         User.updateOne({_id: req.user._id, username: req.body.username}, userData, function(err, user){
@@ -26,6 +28,11 @@ router.post("/", (req,res) => {
             console.log("updated");
         });
         res.send("authenticetd");
+        }
+        catch{
+            
+        }
+        
       } else {  // Redirect to login page here
         res.redirect("/login");
       }
