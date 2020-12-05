@@ -40,7 +40,7 @@
   padding: 0;
   margin: 8px 0 0 0;
 }
-.tag {
+.tag-edit {
   width: auto;
   height: 32px;
   display: flex;
@@ -52,9 +52,9 @@
   list-style: none;
   border-radius: 6px;
   margin: 0 8px 8px 0;
-  background: #0052cc;
+  background: #827397;
 }
-.tag .tag-close-icon {
+.tag-edit .tag-close-icon {
   display: block;
   width: 16px;
   height: 16px;

@@ -73,6 +73,7 @@ const editProfile = require("./routes/editProfile");
 const getAllData = require('./routes/getAllData');
 const getUserData = require('./routes/getUserData');
 const isLoggedIn = require('./routes/isLoggedin');
+const similarUsers = require('./routes/ML/similarusers');
 const { Schema } = require("mongoose");
 
 /*-----Routes Config End------*/
@@ -89,6 +90,7 @@ app.use("/profile/edit", editProfile);
 app.use("/getalldata", getAllData);
 app.use("/getuserdata",getUserData);
 app.use("/loggedin", isLoggedIn);
+app.use("/similarusers", similarUsers);
 
 /*------App Config End--------*/
 
