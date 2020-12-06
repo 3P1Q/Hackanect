@@ -48,6 +48,10 @@ connection.once('open', () => {
 });
 // mongoDB connection finished
 
+const updateHackathon = require('./routes/Hackathon/updateHackathon');
+updateHackathon();
+setInterval(updateHackathon, 43200000); // every 12 hours
+
 
 const User = require("./models/profileModel");
 passport.use(User.createStrategy());
