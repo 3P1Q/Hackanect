@@ -57,21 +57,37 @@ async function updateHackathon() {
         }
         return arr2;
     });
+
+    let validate = await page.$$eval('.ekGSTk', function(a){
+        var arr3 = [];
+        
+        for(var i=0;i<a.length;i++)
+        {
+            //var n = await page.$$eval(`.kIFYmG:nth-child(${i+1})`, i => i.innerHTML);
+            arr3.push( a[i].innerHTML);
+
+        }
+        return arr3;
+    });
     await browser.close();
 
     var hacks = [];
     for(var i=0;i<hacksLinks.length; i++)
     {
-        hacks.push({
-            link: hacksLinks[i],
-            name: hacksNames[i]
-        })
+        if(validate[i] === "View submissions")
+            continue;
+
+        else
+            hacks.push({
+                link: hacksLinks[i],
+                name: hacksNames[i]
+            })
     }
 
     hacks.forEach((hack)=>{
         Hackathon.findOrCreate({name: hack.name},{name:hack.name, link:hack.link});
     })
-    //console.log(hacks);
+    //console.log(validate);
 }
 
 module.exports = updateHackathon;
