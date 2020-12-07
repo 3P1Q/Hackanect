@@ -79,6 +79,8 @@ const getUserData = require('./routes/getUserData');
 const isLoggedIn = require('./routes/isLoggedin');
 const similarUsers = require('./routes/ML/similarusers');
 const hackathons = require('./routes/getHackathons');
+const myHackathons = require('./routes/getMyHackathons');
+const addHackathon = require('./routes/addMyHackathon');
 const { Schema } = require("mongoose");
 
 /*-----Routes Config End------*/
@@ -97,6 +99,8 @@ app.use("/getuserdata",getUserData);
 app.use("/loggedin", isLoggedIn);
 app.use("/similarusers", similarUsers);
 app.use("/hackathons", hackathons);
+app.use("/myhackathons", myHackathons);
+app.use("/addmyhackathon", addHackathon);
 
 /*------App Config End--------*/
 
