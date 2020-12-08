@@ -76,7 +76,6 @@ async function updateHackathon() {
     {
         if(validate[i] === "View submissions")
             continue;
-
         else
             hacks.push({
                 link: hacksLinks[i],

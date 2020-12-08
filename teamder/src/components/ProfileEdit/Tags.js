@@ -15,7 +15,9 @@ const Tags = (props) => {
             }
         };
         return (
-        <div className="tags-input">
+        <div className="tags-input"
+        style = {typeof props.disable === 'undefined' ? {} : props.disable ? {display:"none"} : {}}
+        >
                 <ul id="tags">
                     {props.tags.map((tag, index) => (
                         <li key={index} className="tag-edit">
@@ -33,6 +35,8 @@ const Tags = (props) => {
                     type="text"
                     onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
                     placeholder="Press enter to add tags"
+                    // style={{pointerEvents: "none",opacity: "0.3"}}
+                    disabled={typeof props.disable === 'undefined' ? false : props.disable}
                 />
         </div>
         );
