@@ -4,12 +4,7 @@ const User = require("../models/profileModel");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    res.send("Welcome to getHackathons");
-});
-
-router.post("/", (req,res) => {
-    // console.log(req);
-       if(req.user)
+    if(req.user)
        {
            User.findOne({_id: req.user._id}, function(err, user){
                if(!err)
@@ -18,6 +13,11 @@ router.post("/", (req,res) => {
                }
            })
        }
+});
+
+router.post("/", (req,res) => {
+    // console.log(req);
+       
 });
 
 module.exports = router;
