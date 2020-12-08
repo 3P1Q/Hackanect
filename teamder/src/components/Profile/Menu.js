@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Edit from './Edit';
-
+import {Link} from 'react-router-dom';
 import {userLoggedInContext} from '../App';
 import {userDataContext} from './profilePage';
 
@@ -11,7 +11,7 @@ const Menu = (props) => {
         <div className="menu">
             <ul>
                 <li>Profile</li>
-                <li>Connect</li>
+                <li><Link to="/connect" style={{textDecoration:"none", color:"inherit"}}>Connect</Link></li>
                 {data.username===localStorage.getItem("username") && <li><Edit/></li>}                
                 <li>Logout</li>
             </ul>

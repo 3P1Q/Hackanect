@@ -83,7 +83,7 @@ export default function Asynchronous(props) {
       loading={loading}
       renderInput={(params) => (
         <TextField
-          style={props.disable?{pointerEvents:"none",opacity:"0.3"}:{}}
+          style={props.disable?{display:"none"}:{}}
           //disabled={props.disable}
           {...params}
           label="Select Hackathon"

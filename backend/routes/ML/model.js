@@ -109,7 +109,7 @@ const formatData = data => {
         let similarDocuments = results[id];
       
         if (similarDocuments === undefined) {
-          return [];
+          return ["lol"];
         }
         return similarDocuments;
       };
