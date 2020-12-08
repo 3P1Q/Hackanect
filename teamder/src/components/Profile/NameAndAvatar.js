@@ -11,7 +11,7 @@ const NameAndAvatar = (props) => {
     }
     return <div className="name-and-avatar">
         <div className="avatar-container">
-            {props.src === "" ? <Avatar className="avatar">{getInitials(props.myname)}</Avatar> : <Avatar className="avatar" alt={props.name} src={props.src} />}
+            {props.src === null ? <Avatar className="avatar">{getInitials(props.myname)}</Avatar> : <Avatar className="avatar" alt={props.name} src={props.src} />}
         </div>
         <div className="name-container">
             <h1> {props.myname} </h1>

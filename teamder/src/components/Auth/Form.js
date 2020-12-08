@@ -61,6 +61,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Form =(props) => {
 
+  function authG(){
+    axios.get("/auth/google")
+    .then(res=>{console.log(res)})
+  }
+
   function sendRequest(){
     if(props.type==="REGISTER")
     {
@@ -188,7 +193,7 @@ const Form =(props) => {
                 <Button onClick={sendRequest} className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
 
                 <div style={{margin:"2% 0"}}>
-                  <Button style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
+                  <Button onClick={authG} style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
                     {formType==="REGISTER"?<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign Up With Google</span>:<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign In With Google</span>}
                   </Button>
                 </div>
