@@ -15,7 +15,7 @@ import ProfilePage from './Profile/profilePage'
 import Home from './Land/Home'
 import Hackathon from './Hackathon/Hackathon';
 // import Search Bar Component
-import HorizontalLinearStepper from "./SearchBar";
+import HorizontalLinearStepper from "./Search/SearchBar";
 // import Tags from './Tags';
 
 // import Test from './Test';
@@ -84,7 +84,8 @@ const App = () => {
 
           <Route path='/' exact>
             {/* <h1>Welcome to Teamder's</h1> */}
-            {/* <HorizontalLinearStepper/> */}
+            <HorizontalLinearStepper/>
+            {/* <HackathonSelector /> */}
             <Home />
           </Route>
 

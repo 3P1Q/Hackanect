@@ -23,13 +23,13 @@ const Hackathon = () => {
     //     return hacks;
     // }
     useEffect(()=>{
-        axios.post("http://localhost:5000/hackathons")
+        axios.get("http://localhost:5000/hackathons")
         .then(res => res.data)
         .then(data => {
             setAllHackathons(data)
         })
 
-        axios.post("http://localhost:5000/myhackathons")
+        axios.get("http://localhost:5000/myhackathons")
         .then(res => res.data)
         .then(data => {
             setMyHackathons(data);

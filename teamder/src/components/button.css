@@ -1,7 +1,0 @@
-.root {
-    color: green;
-}
-
-.root::checked {
-    color: rgb(61, 214, 61);
-}
