@@ -112,9 +112,12 @@ const App = () => {
 
             <Route 
             path="/connect" 
-            render={
-              () => <SearchBar/>
-            } />
+            render={(props)=>logwait?("Loading")
+            :(loggedIn?(
+            <SearchBar/>
+            )
+            :(<Redirect to="/login" />))
+          } />
 
         </Switch>
       </Router>

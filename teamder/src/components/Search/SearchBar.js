@@ -12,6 +12,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import HackathonSelector from './HackathonSelector';
 import Tags from "../ProfileEdit/Tags";
+import axios from 'axios';
+import querystring from 'querystring';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +42,8 @@ export default function SearchBar() {
   const [stackFilter,setStackFilter] = React.useState("yes");
   const [reqStack,setReqStack] = React.useState([]);
 
+  const [results, setResults] = React.useState([]);
+
   function changeHackFilter(e){
       setHackFilter(e.target.value);
   }
@@ -60,7 +64,7 @@ export default function SearchBar() {
       case 1:
         return (<div>
           <RadioGroup aria-label="Stack-Filter" name="Stack-Filter" value={stackFilter} onChange={changeStackFilter}>
-            <FormControlLabel value="yes" control={<Radio />} label="Similar to your Tech Stack ?" />
+            <FormControlLabel value="yes" control={<Radio />} label="Similar to my own Tech Stack" />
             <FormControlLabel value="no" control={<Radio />} label="Specify a Tech Stack" />
             <Tags tags={reqStack} setTags={setReqStack} disable={stackFilter==="yes"?true:false}  />
           </RadioGroup>
@@ -70,6 +74,7 @@ export default function SearchBar() {
     }
   }
 
+  
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -79,7 +84,27 @@ export default function SearchBar() {
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if(activeStep ==1)
+      getResults();
   };
+
+  async function getResults(){
+    var hackathon = {};
+    if(hackFilter === 'yes')
+    {
+      hackathon = hackChoice;
+      console.log(hackathon);
+    }
+    const res = await axios.post("http://localhost:5000/similarusers", querystring.stringify({data:JSON.stringify(hackathon), techStack:reqStack, stackFilter: stackFilter}), {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      credentials: 'include',
+      withCredentials: true
+    });
+    setResults(res.data);
+  }
+  console.log(results);
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);

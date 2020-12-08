@@ -6,44 +6,68 @@ const router = express.Router();
 const {formatData, createVectors, findSimilar, getResults} = require("./model");
 
 router.get("/", (req, res) => {
-    res.send("Make a post request to get similar users.");
+    
 });
 
 router.post("/", (req,res) => {
-    // console.log(req);
-    const id = req.body.id;
+    const hackathon = req.body.data!==''?JSON.parse(req.body.data):'';
+    const name = hackathon.name;
+    console.log(hackathon);
+    console.log(typeof hackathon);
+    const techStack = req.body.techStack;
+    const stackFilter = req.body.stackFilter;
+    console.log(stackFilter);
+    console.log(techStack);
     if(req.user)
     {
         User.find({}, function(err, users)
         {
             if(!err)
             {
-                const formattedData = formatData(users);
+                const userArr = users;
+                if(stackFilter==='no')
+                {
+                    console.log("coming here");
+                    userArr.push({
+                        _id:"%temp%",
+                        name:"%temp%",
+                        techStack: techStack
+                    })
+                    console.log("added to ussArr");
+                }
+                const formattedData = formatData(userArr);
+                console.log(formattedData);
                 const vectors = createVectors(formattedData);
                 const results = findSimilar(vectors);
 
-                const similars = getResults(req.user._id, results);
+                var similars;
+                if(stackFilter=='no'){
+                    similars = getResults("%temp%", results);
+                    console.log("here");
+                }
+                else
+                    similars = getResults(req.user._id, results);
 
+                console.log(similars);
                 const sim = similars.map(obj => obj.id);
-                User.find({_id:{$in : sim}}, function(err, users){
-                    res.send(users);
-                })
+                if(typeof hackathon.name !== 'undefined'){
+                    console.log("Reaching");
+                    User.find({_id:{$in : sim},hackathons:{$elemMatch :{name: name}}}, function(err, users){
+                        res.send(users);
+                    })
+                }
+                else{
+                    User.find({_id:{$in : sim}}, function(err, users){
+                        res.send(users);
+                    })
+                }
+                
             }
         });
     }
     else{
         res.send("Not Authenticated");
     }
-    
-//    if(req.user){
-//        User.find({}, function(err, users)
-//        {
-//            console.log(users);
-//            res.send(users);
-//        })
-//    }else{
-//        res.send("Not Authenticated");
-//    }
 });
 
 module.exports = router;

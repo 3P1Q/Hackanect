@@ -23,9 +23,9 @@ router.post("/", (req,res) => {
         
         User.updateOne({_id: req.user._id, username: req.body.username}, userData, function(err, user){
             // user = {...user, userData};
-            console.log(req.user._id);
-            console.log(req.body.username);
-            console.log("updated");
+            // console.log(req.user._id);
+            // console.log(req.body.username);
+            // console.log("updated");
         });
         res.send("authenticetd");
         }

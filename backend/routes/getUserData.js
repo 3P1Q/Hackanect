@@ -10,12 +10,12 @@ router.get("/", (req, res) => {
 router.post("/", (req,res) => {
     // console.log(req);
     const id = req.body.username;
-    console.log(id);
+    // console.log(id);
     
    if(req.user){
        User.findOne({username:id}, function(err, user)
        {
-        console.log(user);
+        // console.log(user);
         //    console.log(users);
            res.send(user);
        })
