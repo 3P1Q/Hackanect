@@ -12,12 +12,12 @@ router.get("/", (req, res) => {
 router.post("/", (req,res) => {
     const hackathon = req.body.data!==''?JSON.parse(req.body.data):'';
     const name = hackathon.name;
-    console.log(hackathon);
-    console.log(typeof hackathon);
+    // console.log(hackathon);
+    // console.log(typeof hackathon);
     const techStack = req.body.techStack;
     const stackFilter = req.body.stackFilter;
-    console.log(stackFilter);
-    console.log(techStack);
+    // console.log(stackFilter);
+    // console.log(techStack);
     if(req.user)
     {
         User.find({}, function(err, users)
@@ -27,23 +27,26 @@ router.post("/", (req,res) => {
                 const userArr = users;
                 if(stackFilter==='no')
                 {
-                    console.log("coming here");
+                    //console.log("coming here");
                     userArr.push({
                         _id:"%temp%",
                         name:"%temp%",
                         techStack: techStack
                     })
-                    console.log("added to ussArr");
+                    //console.log("added to ussArr");
                 }
                 const formattedData = formatData(userArr);
-                console.log(formattedData);
+                //console.log(formattedData);
                 const vectors = createVectors(formattedData);
                 const results = findSimilar(vectors);
 
                 var similars;
                 if(stackFilter=='no'){
                     similars = getResults("%temp%", results);
-                    console.log("here");
+                    similars = similars.filter((user)=>{
+                        return !user.id.equals(req.user._id);
+                    })
+                    //console.log("here");
                 }
                 else
                     similars = getResults(req.user._id, results);

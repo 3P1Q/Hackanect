@@ -15,6 +15,8 @@ import Tags from "../ProfileEdit/Tags";
 import axios from 'axios';
 import querystring from 'querystring';
 
+import Results from './Results'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -43,6 +45,7 @@ export default function SearchBar() {
   const [reqStack,setReqStack] = React.useState([]);
 
   const [results, setResults] = React.useState([]);
+  const [loaded, setLoaded] = React.useState('inactive');
 
   function changeHackFilter(e){
       setHackFilter(e.target.value);
@@ -89,6 +92,7 @@ export default function SearchBar() {
   };
 
   async function getResults(){
+    setLoaded('loading');
     var hackathon = {};
     if(hackFilter === 'yes')
     {
@@ -103,6 +107,7 @@ export default function SearchBar() {
       withCredentials: true
     });
     setResults(res.data);
+    setLoaded('loaded')
   }
   console.log(results);
 
@@ -116,7 +121,7 @@ export default function SearchBar() {
   //console.log(hackChoice);
   return (
     <div className={classes.root}>
-      <Stepper activeStep={activeStep} orientation="vertical">
+      <Stepper style={{width:"80%", margin:"auto"}} activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
@@ -146,13 +151,14 @@ export default function SearchBar() {
         ))}
       </Stepper>
       {activeStep === steps.length && (
-        <Paper square elevation={0} className={classes.resetContainer}>
-          <Typography>Fetching Results... </Typography>
+        <Paper style={{width:"80%", margin:"auto"}} square elevation={0} className={classes.resetContainer}>
+          <Typography >{loaded==='loading'?"Fetching Results ...":""} </Typography>
           <Button onClick={handleReset} className={classes.button}>
             Reset
           </Button>
         </Paper>
       )}
+      <Results loaded={loaded} results={results}/>
     </div>
   );
 }
