@@ -11,6 +11,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import HackathonSelector from './HackathonSelector';
+import Tags from "../ProfileEdit/Tags";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,35 +30,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Want to team up for a Hackathon ?', 'Create an ad group', 'Create an ad'];
+  return ['Want to team up for a Hackathon ?', 'Specify Similary Check options'];
 }
 
 
 
 export default function SearchBar() {
   const [hackFilter, setHackFilter] = React.useState("yes");
+  const [stackFilter,setStackFilter] = React.useState("yes");
+  const [reqStack,setReqStack] = React.useState([]);
 
   function changeHackFilter(e){
-      setHackFilter(e.target.value)
+      setHackFilter(e.target.value);
   }
+  function changeStackFilter(e){
+    setStackFilter(e.target.value);
+}
 
   function getStepContent(step) {
     switch (step) {
       case 0:
         return (<div>
-                <RadioGroup aria-label="gender" name="gender1" value={hackFilter} onChange={changeHackFilter}>
+                <RadioGroup aria-label="Hack-Filter" name="Hack-Filter" value={hackFilter} onChange={changeHackFilter}>
                   <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                   <HackathonSelector disable={hackFilter==="no"?true:false} hackChoice={hackChoice} setHackChoice={setHackChoice}/>
                   <FormControlLabel value="no" control={<Radio />} label="No" />
                 </RadioGroup>
               </div>);
       case 1:
-        return 'An ad group contains one or more ads which target a shared set of keywords.';
-      case 2:
-        return `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`;
+        return (<div>
+          <RadioGroup aria-label="Stack-Filter" name="Stack-Filter" value={stackFilter} onChange={changeStackFilter}>
+            <FormControlLabel value="yes" control={<Radio />} label="Similar to your Tech Stack ?" />
+            <FormControlLabel value="no" control={<Radio />} label="Specify a Tech Stack" />
+            <Tags tags={reqStack} setTags={setReqStack} disable={stackFilter==="yes"?true:false}  />
+          </RadioGroup>
+        </div>);
       default:
         return 'Unknown step';
     }
@@ -105,7 +112,7 @@ export default function SearchBar() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Search' : 'Next'}
                   </Button>
                 </div>
               </div>
@@ -115,7 +122,7 @@ export default function SearchBar() {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} className={classes.resetContainer}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Typography>Fetching Results... </Typography>
           <Button onClick={handleReset} className={classes.button}>
             Reset
           </Button>

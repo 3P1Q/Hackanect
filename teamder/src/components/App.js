@@ -14,12 +14,14 @@ import Register from './Auth/Register'
 import ProfilePage from './Profile/profilePage'
 import Home from './Land/Home'
 import Hackathon from './Hackathon/Hackathon';
+
 // import Search Bar Component
 import HorizontalLinearStepper from "./Search/SearchBar";
 // import Tags from './Tags';
 
 // import Test from './Test';
 import axios from 'axios';
+import SearchBar from './Search/SearchBar';
 // import querystring from 'querystring';
 
 axios.defaults.withCredentials = true;
@@ -84,7 +86,7 @@ const App = () => {
 
           <Route path='/' exact>
             {/* <h1>Welcome to Teamder's</h1> */}
-            <HorizontalLinearStepper/>
+            {/* <HorizontalLinearStepper/> */}
             {/* <HackathonSelector /> */}
             <Home />
           </Route>
@@ -106,6 +108,12 @@ const App = () => {
             path="/hackathons" 
             render={
               () => <Hackathon/>
+            } />
+
+            <Route 
+            path="/connect" 
+            render={
+              () => <SearchBar/>
             } />
 
         </Switch>
