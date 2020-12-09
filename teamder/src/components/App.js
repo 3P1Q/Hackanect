@@ -18,6 +18,7 @@ import Hackathon from './Hackathon/Hackathon';
 // import Search Bar Component
 import HorizontalLinearStepper from "./Search/SearchBar";
 import Google from './OAuth/Google';
+import Github from './OAuth/Github';
 // import Tags from './Tags';
 
 // import Test from './Test';
@@ -123,6 +124,10 @@ const App = () => {
             <Route 
             path="/google/login/:username" 
             render={(props)=> <Google routerProps={props}/>} />
+
+          <Route 
+            path="/github/login/:username" 
+            render={(props)=> <Github routerProps={props}/>} />
 
         </Switch>
       </Router>
