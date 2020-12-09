@@ -199,7 +199,7 @@ const Form =(props) => {
                 </div>
 
                 <div style={{margin:"2% 0"}}>
-                  <Button style={{backgroundColor: "#323232", color: "white"}}  color="secondary">
+                  <Button href="/auth/github" style={{backgroundColor: "#323232", color: "white"}}  color="secondary">
                     {formType==="REGISTER"?<span><GitHubIcon />&nbsp; Sign Up With GitHub</span>:<span><GitHubIcon />&nbsp; Sign In With GitHub</span>}
                   </Button>
                 </div>
