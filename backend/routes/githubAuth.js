@@ -10,10 +10,28 @@ const router = express.Router();
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/auth/github/teamder"
+    callbackURL: "http://localhost:5000/auth/github/teamder",
+    proxy: true,
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ githubId: profile.id }, function (err, user) {
+    // console.log(profile);
+    User.findOrCreate({ githubId: profile.id, }, function (err, user,created) {
+      // return done(err, user);
+      console.log(user);
+      console.log(created);
+      console.log(profile._json.html_url);
+      if(created===true){
+        User.updateOne({ githubId: profile.id, },{
+            username: profile.username, 
+            profilePic: profile._json.avatar_url,
+            name: profile.displayName, 
+            description: profile._json.bio.length > 100 ? profile._json.bio.substring(0,100) : profile._json.bio,
+            '$set' : {'social.github': profile._json.html_url }
+          },(err) => {console.log(err)
+        });
+        user.username = profile.username;
+      }
+      // social: {$set : {github: profile._json.html_url}}
       return done(err, user);
     });
   }
@@ -42,7 +60,9 @@ router.get("/teamder",
   passport.authenticate('github', { failureRedirect: "/login" }),
   function(req, res) {
     // Successful authentication, redirect to secrets.
-    res.send("Github Authentication Done");
+    // res.send("Github Authentication Done");
+    console.log(req.user);
+    res.redirect(`http://localhost:3000/github/login/${req.user.username}`);
   });
 
   module.exports= router;
