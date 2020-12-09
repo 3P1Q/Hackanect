@@ -16,7 +16,16 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
 
-    User.findOrCreate({ username: profile.email, googleId: profile.id, profilePic: profile.picture, name: profile.displayName}, function (err, user) {
+    User.findOrCreate({ googleId: profile.id}, function (err, user) {
+      if(created===true){
+        User.updateOne({ googleId: profile.id, },
+          {username: profile.email, 
+          profilePic: profile.picture,
+          name: profile.displayName},
+          (err) => {console.log(err)
+        });
+        user.username = profile.username;
+      }
       return cb(err, user);
     });
   }

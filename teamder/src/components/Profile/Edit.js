@@ -35,7 +35,8 @@ const Edit = (props) => {
           techStack: tags,
           socialString: JSON.stringify(social),
           social: social
-        }));
+        })
+      );
 
         // await updateDB(data);
       }

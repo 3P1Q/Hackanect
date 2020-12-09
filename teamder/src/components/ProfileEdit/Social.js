@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 // import {userDataContext} from '../Profile/profilePage';
-import {Modal,Button} from 'react-bootstrap';
+// import {Modal,Button} from 'react-bootstrap';
 import {TextField} from '@material-ui/core';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -57,12 +57,11 @@ const Social = (props) => {
      return (
           <>
             
-            <div className="social-modal-button">Social Media links</div>
+            <div style={{fontWeight: '700',color: 'black',marginTop: "30px",fontSize: "20px"}}>Social Media links</div>
             <TextField   style={{margin: "2% 0"}} fullWidth value={props.social.facebook} onChange={valChanged} id="outlined-basic facebook" label="Facebook" variant="outlined"/>
             <TextField   style={{margin: "2% 0"}} fullWidth value={props.social.github} onChange={valChanged} id="outlined-basic github" label="Github" variant="outlined"/>
             <TextField   style={{margin: "2% 0"}} fullWidth value={props.social.twitter} onChange={valChanged} id="outlined-basic twitter" label="Twitter" variant="outlined"/>
             <TextField   style={{margin: "2% 0"}} fullWidth value={props.social.linkedin} onChange={valChanged} id="outlined-basic linkedin" label="LinkedIn" variant="outlined"/>
-            
           </>
         );
 
