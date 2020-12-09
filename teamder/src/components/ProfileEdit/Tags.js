@@ -34,7 +34,7 @@ const Tags = (props) => {
                     className="tags-placeholder"
                     type="text"
                     onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
-                    placeholder="Press enter to add tags"
+                    placeholder="Enter your Teck Stack, Press enter to add tags"
                     // style={{pointerEvents: "none",opacity: "0.3"}}
                     disabled={typeof props.disable === 'undefined' ? false : props.disable}
                 />

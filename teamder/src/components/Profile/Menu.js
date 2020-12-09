@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import Edit from './Edit';
+// import Edit from './Edit';
+import Edit from './Edit1';
 import {Link} from 'react-router-dom';
 import {userLoggedInContext} from '../App';
 import {userDataContext} from './profilePage';
