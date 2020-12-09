@@ -82,6 +82,8 @@ const similarUsers = require('./routes/ML/similarusers');
 const hackathons = require('./routes/getHackathons');
 const myHackathons = require('./routes/getMyHackathons');
 const addHackathon = require('./routes/addMyHackathon');
+const createNewChat = require('./routes/createNewChat');
+const updateChat = require('./routes/updateChat');
 const { Schema } = require("mongoose");
 
 /*-----Routes Config End------*/
@@ -102,6 +104,8 @@ app.use("/similarusers", similarUsers);
 app.use("/hackathons", hackathons);
 app.use("/myhackathons", myHackathons);
 app.use("/addmyhackathon", addHackathon);
+app.use("/newchat",createNewChat);
+app.use("/updatechat", updateChat);
 
 /*------App Config End--------*/
 

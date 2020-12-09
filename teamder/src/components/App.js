@@ -26,6 +26,8 @@ import axios from 'axios';
 import SearchBar from './Search/SearchBar';
 // import querystring from 'querystring';
 
+import ChatPage from './Chats/ChatPage';
+
 axios.defaults.withCredentials = true;
 
 const userLoggedInContext = React.createContext([Boolean, ()=>Boolean]);
@@ -110,6 +112,12 @@ const App = () => {
             path="/hackathons" 
             render={
               () => <Hackathon/>
+            } />
+
+            <Route 
+            path="/chats" 
+            render={
+              () => <ChatPage/>
             } />
 
             <Route 

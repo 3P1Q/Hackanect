@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
     project: [{title: String, link: String}],
     techStack: [String],
     social: {github: String, facebook: String, linkedin: String, twitter: String},
-    hackathons: [{name:String, link:String}]
+    hackathons: [{name:String, link:String}],
+    chats: Array
 
 });
 
