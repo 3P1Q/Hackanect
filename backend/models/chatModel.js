@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 
 const chatSchema = new mongoose.Schema({
-    users: Array,
-    messages: Array
+    user1: String,
+    user2: String,
+    messages: Array,
+    ts:Date
 });
 
 chatSchema.plugin(findOrCreate);
