@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req,res) => {
-    if (req.isAuthenticated()){
+    if (req.user){
         try{
             console.log("Social"+req.body.socialString);
         const userData = {
@@ -22,20 +22,17 @@ router.post("/", (req,res) => {
         }
         
         User.updateOne({_id: req.user._id, username: req.body.username}, userData, function(err, user){
-            // user = {...user, userData};
-            // console.log(req.user._id);
-            // console.log(req.body.username);
-            // console.log("updated");
+            res.write("Edited");
         });
-        res.send("authenticetd");
         }
         catch{
             
         }
-        
-      } else {  // Redirect to login page here
-        res.redirect("/login");
-      }
+        res.send();
+    } 
+    else {  // Redirect to login page here
+        res.send("Not Authenticated");
+    }
     
 });
 

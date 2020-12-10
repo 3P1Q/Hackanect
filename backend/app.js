@@ -84,6 +84,8 @@ const myHackathons = require('./routes/getMyHackathons');
 const addHackathon = require('./routes/addMyHackathon');
 const createNewChat = require('./routes/createNewChat');
 const updateChat = require('./routes/updateChat');
+const getChats = require('./routes/getChats');
+const getCurrentChat = require('./routes/getCurrentChat');
 const { Schema } = require("mongoose");
 
 /*-----Routes Config End------*/
@@ -106,6 +108,8 @@ app.use("/myhackathons", myHackathons);
 app.use("/addmyhackathon", addHackathon);
 app.use("/newchat",createNewChat);
 app.use("/updatechat", updateChat);
+app.use("/getchats", getChats);
+app.use("/getcurrentchat", getCurrentChat);
 
 /*------App Config End--------*/
 

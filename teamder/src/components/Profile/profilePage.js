@@ -4,6 +4,7 @@ import NameAndAvatar from './NameAndAvatar';
 import TechStack from './TechStack';
 import Menu from './Menu';
 import Bio from './Bio';
+import NewChat from './NewChat';
 import {Typography} from '@material-ui/core';
 import axios from 'axios';
 
@@ -65,7 +66,7 @@ function ProfilePage(props){
         <userDataContext.Provider value={[data, setData]}>
         <div className="fullpage" style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>
             <div className="topsection" style={{display:"flex", flexDirection:"row"}}>
-                <div className="name-avatar-container"><NameAndAvatar myname={data.name || "Your Name"} style={{minWidth:"300px"}} className="NaA"  src={data.profilePic} name="Random User"/></div>
+                <div className="name-avatar-container"><NameAndAvatar myname={data.name || "Your Name"} style={{minWidth:"300px"}} className="NaA"  src={data.profilePic} name="Random User"/><NewChat user={data.username}/></div>
                     <Bio description={data.description} 
                     facebook={data.social? data.social.facebook :"#"} 
                     github={data.social ? data.social.github : "#"}
