@@ -14,6 +14,7 @@ import Name from '../ProfileEdit/Name';
 import Tags from '../ProfileEdit/Tags';
 import Description from '../ProfileEdit/Description';
 import Social from '../ProfileEdit/Social';
+import Project from '../ProfileEdit/Project'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,7 @@ const Edit = (props) => {
         const [desc,setDesc] = React.useState(data.description || "");
         const [tags, setTags] = React.useState(data.techStack || []);
         const [social, setSocial] = React.useState(data.social ? data.social : {facebook:"#", github:"#", twitter:"#", linkedin:"#"});
+        const [projects,setProjects] = React.useState(data.project ? data.project : []);
 
         async function update(e){
                 e.preventDefault();
@@ -48,7 +50,8 @@ const Edit = (props) => {
                 description: desc,
                 techStack: tags,
                 socialString: JSON.stringify(social),
-                social: social
+                social: social,
+                project: projects
                 }));
         }
         return (
@@ -71,6 +74,7 @@ const Edit = (props) => {
                 <Description desc={desc} setDesc={setDesc}/>
                 <Tags tags={tags} setTags={setTags}/>
                 <Social social={social} setSocial={setSocial}/>
+                <Project projects={projects} setProjects={setProjects}/>
             </div>
         </Dialog>
         );
