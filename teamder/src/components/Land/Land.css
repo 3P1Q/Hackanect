@@ -25,6 +25,7 @@
 }
 .oval-head h1{
     font-weight: 600;
+    font-size: 2.5rem;
 }
 .teampic{
     position: relative;
@@ -56,6 +57,7 @@
     color: #4D4C7D;
     font-weight: 600;
     cursor: pointer !important;
+    text-decoration: none;
 }
 .sign-button:hover{
     text-decoration: none;
@@ -73,6 +75,7 @@
     width: 90%;
     color: #4D4C7D;
     font-weight: 600;
+    font-size: 1.5rem;
 }
 .feature *{
     margin: 2% 0;
@@ -80,6 +83,10 @@
 .feature img{
     width: 500px;
     max-width: 100%;
+}
+
+.menu-items *:hover, .res-menu-items *:hover{
+    text-decoration: underline;
 }
 
 @media(max-width: 900px){

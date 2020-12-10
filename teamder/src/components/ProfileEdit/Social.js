@@ -3,7 +3,6 @@ import React, { useState} from 'react';
 // import {Modal,Button} from 'react-bootstrap';
 import {TextField} from '@material-ui/core';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 axios.defaults.withCredentials = true;
 
