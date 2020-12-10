@@ -16,13 +16,13 @@ router.post("/", async (req, res) => {
         await User.updateOne({_id: req.user._id, 'chats.user':req.body.chatUser },
             {$set:{'chats.$.messages' : JSON.parse(req.body.messages), 'chats.$.ts':new Date()}},
             function(err, user){
-                res.write("First update done");
+                // res.write("First update done");
             })
 
         await User.updateOne({username: chatUser, 'chats.user':req.user.username },
             {$set:{'chats.$.messages' : JSON.parse(req.body.messages), 'chats.$.ts':new Date()}},
             function(err, user){
-                res.write("Second update done");
+                // res.write("Second update done");
             })   
         //     await User.updateOne({_id: req.user._id, 'chats.user':req.body.chatUser },
         //     {$push:{}},
@@ -57,7 +57,7 @@ router.post("/", async (req, res) => {
         //     console.log("IN FIND");
         //     console.log(user);
         // })
-        res.send();
+        res.send("Done");
     }
     else
     {
