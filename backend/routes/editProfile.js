@@ -10,12 +10,13 @@ router.post("/", (req,res) => {
     if (req.user){
         try{
             console.log("Social"+req.body.socialString);
+            console.log(req.body);
         const userData = {
             name: req.body.name,
             profilePic: req.body.image,
             description: req.body.description,
             gender: req.body.gender,
-            project: req.body.projectArray,
+            project: req.body.projects,
             techStack: req.body.techStack,
             social: JSON.parse(req.body.socialString),
             socialString: req.body.socialString

@@ -78,7 +78,7 @@ function ProfilePage(props){
                 <div className="content-container">
                     <div style={{display:"flex", flexDirection:"column", flexWrap:"wrap", minWidth:"60vw"}}>
                         <TechStack className="stack" tags={data.techStack || []}/>
-                        <ProjectCards className="projects" deets={data.project || []}/>
+                        <ProjectCards className="projects" deets={data.projects || []}/>
                     </div>
                 </div>
                 

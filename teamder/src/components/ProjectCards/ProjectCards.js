@@ -21,7 +21,11 @@ const useStyles = makeStyles({
   title: {
     color: '#FFF',
     marginTop: 10,
-    marginLeft: 10,
+    fontFamily: "inherit"
+  },
+  desc: {
+    marginTop: 10,
+    marginBottom: 10,
     fontFamily: "inherit"
   },
   link: {
@@ -29,7 +33,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ProjectCard({deets}) {
+export default function ProjectCard(props) {
   const classes = useStyles();
 
   return (
@@ -42,15 +46,18 @@ export default function ProjectCard({deets}) {
 
             <Grid item sm={12} md={10}>
                 <Grid container spacing={3}>
-                {deets.map((card) => {
+                {props.deets.map((card) => {
                   return <Grid item sm={12} md={6}>
                      <Card className={classes.root}>
                       <CardContent className={classes.card}>
                           <Typography maxWid variant={"h5"} className={classes.title} color="textSecondary" gutterBottom>
-                          {card.name}
+                          {card.title}
+                          </Typography>
+                          <Typography variant="body2" color="textSecondary" component="p" className={classes.desc}>
+                          {card.description}
                           </Typography>
                           <Typography className={classes.link}>
-                          <Link href={card.link}  color="inherit">
+                          <Link href={card.githubLink}  color="inherit">
                               <GitHubIcon></GitHubIcon>
                           </Link>
                       </Typography>
