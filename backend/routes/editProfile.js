@@ -16,20 +16,22 @@ router.post("/", (req,res) => {
             profilePic: req.body.image,
             description: req.body.description,
             gender: req.body.gender,
-            project: req.body.projects,
+            projects: JSON.parse(req.body.projectsString),
             techStack: req.body.techStack,
             social: JSON.parse(req.body.socialString),
-            socialString: req.body.socialString
+            socialString: req.body.socialString,
+            // projectsString: req.body.
         }
         
         User.updateOne({_id: req.user._id, username: req.body.username}, userData, function(err, user){
-            res.write("Edited");
+            // res.write("Edited");
+            // res.se
         });
         }
         catch{
             
         }
-        res.send();
+        res.send("Edited");
     } 
     else {  // Redirect to login page here
         res.send("Not Authenticated");

@@ -37,7 +37,7 @@ const Edit = (props) => {
         const [desc,setDesc] = React.useState(data.description || "");
         const [tags, setTags] = React.useState(data.techStack || []);
         const [social, setSocial] = React.useState(data.social ? data.social : {facebook:"#", github:"#", twitter:"#", linkedin:"#"});
-        const [projects,setProjects] = React.useState(data.project ? data.project : []);
+        const [projects,setProjects] = React.useState(data.projects ? data.projects : []);
 
         async function update(e){
                 e.preventDefault();
@@ -51,7 +51,8 @@ const Edit = (props) => {
                 techStack: tags,
                 socialString: JSON.stringify(social),
                 social: social,
-                project: projects
+                projects: projects,
+                projectsString: JSON.stringify(projects)
                 }));
         }
         return (

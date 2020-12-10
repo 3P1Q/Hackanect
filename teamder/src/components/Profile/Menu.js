@@ -13,6 +13,7 @@ const Menu = (props) => {
             <ul>
                 <li>Profile</li>
                 <li><Link to="/connect" style={{textDecoration:"none", color:"inherit"}}>Connect</Link></li>
+                <li><Link to="/hackathons" style={{textDecoration:"none", color:"inherit"}}>Hackathons</Link></li>
                 {data.username===localStorage.getItem("username") && <li><Edit/></li>}                
                 <li>Logout</li>
             </ul>
