@@ -116,9 +116,12 @@ const App = () => {
 
             <Route 
             path="/chats" 
-            render={
-              () => <ChatPage/>
-            } />
+            render={(props)=>logwait?("Loading")
+            :(loggedIn?(
+            <ChatPage/>
+            )
+            :(<Redirect to="/login" />))
+          } />
 
             <Route 
             path="/connect" 

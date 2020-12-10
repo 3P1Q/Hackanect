@@ -4,8 +4,9 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     // const userArray= req.body.users;
+    const chatUser = req.body.chatUser;
     console.log(req.body.chatUser);
-    console.log(req.body.messages);
+    console.log(JSON.parse(req.body.messages));
     if(req.user)
     {
         // User.findOne({_id: req.user._id}, function(err, user){
@@ -13,10 +14,16 @@ router.post("/", async (req, res) => {
         //     console.log(user);
         // })
         await User.updateOne({_id: req.user._id, 'chats.user':req.body.chatUser },
-            {$set:{'chats.$.messages' : req.body.messages, 'chats.$.ts':new Date()}},
+            {$set:{'chats.$.messages' : JSON.parse(req.body.messages), 'chats.$.ts':new Date()}},
             function(err, user){
-                res.send("Updated Chat");
+                res.write("First update done");
             })
+
+        await User.updateOne({username: chatUser, 'chats.user':req.user.username },
+            {$set:{'chats.$.messages' : JSON.parse(req.body.messages), 'chats.$.ts':new Date()}},
+            function(err, user){
+                res.write("Second update done");
+            })   
         //     await User.updateOne({_id: req.user._id, 'chats.user':req.body.chatUser },
         //     {$push:{}},
         //     function(err, user){
@@ -50,6 +57,7 @@ router.post("/", async (req, res) => {
         //     console.log("IN FIND");
         //     console.log(user);
         // })
+        res.send();
     }
     else
     {

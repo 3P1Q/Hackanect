@@ -54,7 +54,7 @@ function Navbar() {
             ?<Link to={`/profile/`+localStorage.getItem("username")} className={classes.link}>PROFILE</Link>
             :<Link to='/login' className={classes.link}>LOGIN</Link>}
             {loggedIn
-            ?<Link to='/' className={classes.link}>VIDEO CALL</Link>
+            ?<Link to='/chats' className={classes.link}>CHATS</Link>
             :<Link to='/register' className={classes.link}>REGISTER</Link>}
           </div>
           
@@ -70,7 +70,7 @@ function Navbar() {
             ?<Link to={`/profile/`+localStorage.getItem("username")} className={classes.link}>PROFILE</Link>
             :<Link to='/login' className={classes.link}>LOGIN</Link>}
             {loggedIn
-            ?<Link to='/' className={classes.link}>VIDEO CALL</Link>
+            ?<Link to='/chats' className={classes.link}>CHATS</Link>
             :<Link to='/register' className={classes.link}>REGISTER</Link>}
           </div>
         </Fade>
