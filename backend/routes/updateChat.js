@@ -2,7 +2,7 @@ const express = require("express");
 const User = require("../models/profileModel");
 const router = express.Router();
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     // const userArray= req.body.users;
     console.log(req.body.chatUser);
     console.log(req.body.messages);
@@ -12,11 +12,34 @@ router.post("/", (req, res) => {
         //     console.log("Inide Find");
         //     console.log(user);
         // })
-        User.findOneAndUpdate({_id: req.user._id, 'chats.user':req.body.chatUser },
-            {'$set':{'chats.$.messages' : req.body.messages} },
+        await User.updateOne({_id: req.user._id, 'chats.user':req.body.chatUser },
+            {$set:{'chats.$.messages' : req.body.messages, 'chats.$.ts':new Date()}},
             function(err, user){
                 res.send("Updated Chat");
             })
+        //     await User.updateOne({_id: req.user._id, 'chats.user':req.body.chatUser },
+        //     {$push:{}},
+        //     function(err, user){
+        //         res.send("Updated Chat");
+        //     })
+        // await User.updateOne({_id: req.user._id},
+        //         {$set:{$sort:{'chats.ts':-1}}})
+        
+        await User.aggregate([
+            { $match : {
+                _id: req.user._id
+            }},
+
+            {$unwind: '$chats'},
+
+            {$sort: {
+                'chats.ts' : -1
+            }}
+        ]);
+
+        // ^ Ye try kiya but isse nahi ho raha kuch
+
+
         // User.findOneAndUpdate({_id: req.user._id, chats: { $elemMatch : { user: req.body.chatUser}} },
         //     {'$set':{'chats' : {user:req.body.chatUser, messages:["new"]}} },
         //     function(err, user){

@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
                 // console.log(user);
                 if(!user)
                 {
-                    User.updateOne({_id:req.user._id},{$push:{chats : {user:chatUser, messages:[]} }}, function(err, user){
+                    User.updateOne({_id:req.user._id},{$push:{chats : {user:chatUser, messages:[], ts: new Date(0)} }}, function(err, user){
                         console.log("Updated User");
                         console.log(user);
                     });
