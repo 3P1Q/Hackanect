@@ -3,12 +3,12 @@ import React  from "react";
 import Form from "./Form";
 
 const Login =({setUserData}) => {
-    return <Container>
+    return <div>
     <Form 
         // setUserData = {setUserData}
         type="LOGIN"
     />
-    </Container>
+    </div>
 }
 
 export default Login;
