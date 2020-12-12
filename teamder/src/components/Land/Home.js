@@ -12,7 +12,7 @@ const Home =() =>{
                         <h1>Meet and Collaborate with other Techies</h1>
                         <h4>based on your skillset and interests</h4>
                     </div>
-                    <img className="teampic" src="/teampic.svg"></img>
+                    <img className="teampic" src="/images/teampic.svg"></img>
                 </div>
                 
             </div>

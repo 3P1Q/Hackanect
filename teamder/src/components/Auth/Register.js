@@ -3,11 +3,11 @@ import React from "react";
 import Form from "./Form";
 
 const Register =({setUserData}) => {
-    return <Container ><Form 
+    return <div ><Form 
         // setUserData={setUserData} 
         style={{marginTop:"50px"}} 
         type="REGISTER" 
-    /></Container>
+    /></div>
 }
 
 export default Register;

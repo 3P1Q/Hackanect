@@ -11,6 +11,7 @@ import {
     Typography
   } from "@material-ui/core";
   import Button from '@material-ui/core/Button';
+  import Divider from '@material-ui/core/Divider';
   import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,19 +21,21 @@ import querystring from 'querystring';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {ReactComponent as GoogleIcon} from '../search.svg';
 import { Redirect } from "react-router-dom";
-
+import "./Auth.css";
 
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
     submitButton:{
-        margin:"3% auto"
+        margin:"3% auto",
+        display: "block"
     },
     Card: {
       marginBottom: "1rem",
     },
     Head:{
-        textAlign:"center"
+        textAlign:"center",
+        marginTop:"5%"
     },
     Content:{
         textAlign:"center",
@@ -43,15 +46,14 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "5%"
     },
     Form:{
-        margin: "15% auto 15%",
-        width: "40%",
+        margin: "0",
+        width: "100%",
         minWidth:"400px",
         backgroundColor: "#827397",
         color: "#ececec"
     },
     Formdata:{
-        margin: " 5% 25%"
-
+        margin: " 2% 25%"
           ,"& *" : {
             color: "#e8e8e8"
           }
@@ -129,90 +131,125 @@ const Form =(props) => {
         event.preventDefault();
       };
 
-    return <Container>
-            <Card className={classes.Form}>
-                <CardHeader title={formType} className={classes.Head}/>
-                <CardContent className={classes.Content}>
-                <FormControl className={classes.Formdata} variant="filled">
-                <InputLabel htmlFor="username">Username</InputLabel>
-                    <FilledInput
-                    name="username"
-                    id="username"
-                    value={values.username}
-                    onChange={handleChange('username')}
-                    />
-                </FormControl>
+    return <div className={`containers ${formType==="LOGIN" && "containers-login"}`} style={{marginTop: formType==="REGISTER" && "-2%"}}>
+            <div className="content" style={{display: formType==="LOGIN" ? "block" : "none"}}>
+              <h1>New Here!?</h1>
+              {/* <img src="/images/welcome.svg"/> */}
+              <div>
+                Start your journey with us!
+              </div>
+              <div>
+                Register Now
+              </div>
+              <Button style={{marginTop: "30px"}} variant="contained" color="primary" href="/register">
+                Register
+              </Button>
+            </div>
+            <div className="card-container">
+              {/* <Card className={classes.Form}> */}
+                <div>
+                  {/* <CardHeader title={formType==="LOGIN" ? "Sign In to TEAMDER" : "Create Account"} className={classes.Head}/> */}
+                  <h1 className={classes.Head}>{formType==="LOGIN" ? "Sign In to TEAMDER" : "Create Account"}</h1>
+                  <div style={{textAlign:"center",marginTop:"4%"}}>
+                  <div style={{margin:"2% 1%",display:"inline-block"}}>
+                    <Button href="/auth/google" style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
+                      {formType==="REGISTER"?<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign Up With Google</span>:<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign In With Google</span>}
+                    </Button>
+                  </div>
 
-                <FormControl className={classes.Formdata} variant="filled">
-                <InputLabel htmlFor="password">Password</InputLabel>
-                    <FilledInput
-                    name="password"
-                    id="password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChange('password')}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                        >
-                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                    // labelWidth={70}
-                    />
-                </FormControl>
+                  <div style={{margin:"2% 1%",display:"inline-block"}}>
+                    <Button href="/auth/github" style={{backgroundColor: "#323232", color: "white", borderRadius: "2%"}}  color="secondary">
+                      {formType==="REGISTER"?<span><GitHubIcon />&nbsp; Sign Up With GitHub</span>:<span><GitHubIcon />&nbsp; Sign In With GitHub</span>}
+                    </Button>
+                  </div>
+                  </div>
+                  {/* <Divider variant="middle"/> */}
+                  <div class="separator">OR</div>
+                  <CardContent className={classes.Content}>
+                  <FormControl className={classes.Formdata} variant="filled">
+                  <InputLabel htmlFor="username">Username</InputLabel>
+                      <FilledInput
+                      name="username"
+                      id="username"
+                      value={values.username}
+                      onChange={handleChange('username')}
+                      // width="125%"
+                      // fullWidth
+                      />
+                  </FormControl>
 
-                {formType==="REGISTER" && (<FormControl className={classes.Formdata} variant="filled">
-                <InputLabel htmlFor="confirm-password">Confirm Password</InputLabel>
-                    <FilledInput
-                    id="confirm-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.cpassword}
-                    onChange={handleChange('cpassword')}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                        >
-                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                    // labelWidth={70}
-                    />
-                </FormControl>)}
-                
-                <Button onClick={sendRequest} className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
+                  <FormControl className={classes.Formdata} variant="filled">
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                      <FilledInput
+                      name="password"
+                      id="password"
+                      type={values.showPassword ? 'text' : 'password'}
+                      value={values.password}
+                      onChange={handleChange('password')}
+                      endAdornment={
+                      <InputAdornment position="end">
+                          <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                          >
+                          {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                      </InputAdornment>
+                      }
+                      // labelWidth={70}
+                      />
+                  </FormControl>
 
-                <div style={{margin:"2% 0"}}>
-                  <Button href="/auth/google" style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
-                    {formType==="REGISTER"?<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign Up With Google</span>:<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign In With Google</span>}
-                  </Button>
-                </div>
-
-                <div style={{margin:"2% 0"}}>
-                  <Button href="/auth/github" style={{backgroundColor: "#323232", color: "white"}}  color="secondary">
-                    {formType==="REGISTER"?<span><GitHubIcon />&nbsp; Sign Up With GitHub</span>:<span><GitHubIcon />&nbsp; Sign In With GitHub</span>}
-                  </Button>
-                </div>
-
-                </CardContent>
-                {formType==="LOGIN" && (<Typography className={classes.newAcc} variant="body2" component="p">
-                Don't have an account already?
-                <br></br>
-                <a href="/register">Create a new account here</a>
-                </Typography>)}
-
-                </Card>
-            </Container>
+                  {formType==="REGISTER" && (<FormControl className={classes.Formdata} variant="filled">
+                  <InputLabel htmlFor="confirm-password">Confirm Password</InputLabel>
+                      <FilledInput
+                      id="confirm-password"
+                      type={values.showPassword ? 'text' : 'password'}
+                      value={values.cpassword}
+                      onChange={handleChange('cpassword')}
+                      endAdornment={
+                      <InputAdornment position="end">
+                          <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                          >
+                          {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                      </InputAdornment>
+                      }
+                      // labelWidth={70}
+                      />
+                  </FormControl>)}
+                  
+                  <Button onClick={sendRequest} size="large" className={classes.submitButton} variant="contained" color="primary">{formType}</Button>
+      
+                  </CardContent>
+                  {/* {formType==="LOGIN" && (<Typography className={classes.newAcc} variant="body2" component="p">
+                  Don't have an account already?
+                  <br></br>
+                  <a href="/register">Create a new account here</a>
+                  </Typography>)} */}
+                  </div>
+                  {/* </Card> */}
+              </div>
+              <div className="content" style={{display: formType==="LOGIN" ? "none" : "block"}}>
+                    <h1>Already Joined!</h1>
+                    {/* <img src="/images/welcome.svg"/> */}
+                    <div>
+                      To keep connected with us login 
+                    </div>
+                    <div>
+                      with your personal info
+                    </div>
+                    <Button style={{marginTop: "30px"}} variant="contained" color="primary" href="/login">
+                      Login
+                    </Button>
+              </div>
+            </div>
 }
 
 export default Form;
