@@ -25,6 +25,10 @@
     color: #000000;
 }
 
+svg{
+    vertical-align: middle;
+}
+
 .content h1{
     margin: 30% 5% 10% ;
     font-size: 45px;

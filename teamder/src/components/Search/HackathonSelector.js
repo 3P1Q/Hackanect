@@ -5,6 +5,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 
+import SERVER_URL from '../../utils/constants';
+
 function sleep(delay = 0) {
   return new Promise((resolve) => {
     setTimeout(resolve, delay);
@@ -27,7 +29,7 @@ export default function Asynchronous(props) {
     }
 
     (async () => {
-      const response = await axios.get('http://localhost:5000/hackathons');
+      const response = await axios.get(`${SERVER_URL}/hackathons`);
       //await sleep(1e3); // For demo purposes.
       //console.log(response);
       const countries = await response.data;

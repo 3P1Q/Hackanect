@@ -16,7 +16,7 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
 
-    User.findOrCreate({ googleId: profile.id}, function (err, user) {
+    User.findOrCreate({ googleId: profile.id}, function (err, user, created) {
       if(created===true){
         User.updateOne({ googleId: profile.id, },
           {username: profile.email, 
@@ -24,7 +24,7 @@ passport.use(new GoogleStrategy({
           name: profile.displayName},
           (err) => {console.log(err)
         });
-        user.username = profile.username;
+        user.username = profile.email;
       }
       return cb(err, user);
     });
