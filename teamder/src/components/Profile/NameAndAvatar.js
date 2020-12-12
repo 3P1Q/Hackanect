@@ -3,6 +3,7 @@ import {Avatar} from '@material-ui/core';
 import './Profile.css';
 
 const NameAndAvatar = (props) => {
+    console.log(props.src);
     function getInitials(name)
     {
         var initials = name.match(/\b\w/g) || [];
@@ -11,7 +12,7 @@ const NameAndAvatar = (props) => {
     }
     return <div className="name-and-avatar">
         <div className="avatar-container">
-            {props.src === null ? <Avatar className="avatar">{getInitials(props.myname)}</Avatar> : <Avatar className="avatar" alt={props.name} src={props.src} />}
+            {props.src === null || props.src === '' || typeof props.src === 'undefined'? <Avatar className="avatar">{getInitials(props.myname)}</Avatar> : <Avatar className="avatar" alt={props.name} src={props.src} />}
         </div>
         <div className="name-container">
             <h1> {props.myname} </h1>

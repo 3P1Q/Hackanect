@@ -5,6 +5,8 @@ import './Chat.css';
 
 import axios from 'axios';
 import querystring from 'querystring';
+
+import SERVER_URL from '../../utils/constants';
 axios.defaults.withCredentials = true;
 
 const ChatPage = () => {
@@ -25,7 +27,7 @@ const ChatPage = () => {
         //     setNewMessage("");
         // }
         //console.log(currChat);
-        const res = await axios.get("http://localhost:5000/getchats");
+        const res = await axios.get(`${SERVER_URL}/getchats`);
         const data = res.data;
         setChats(data);
         setLoad(true);

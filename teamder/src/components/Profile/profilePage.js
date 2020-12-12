@@ -10,6 +10,8 @@ import axios from 'axios';
 
 import querystring from 'querystring';
 
+import SERVER_URL from '../../utils/constants';
+
 import './Profile.css'
 
 import {userLoggedInContext} from '../App';
@@ -28,7 +30,7 @@ function ProfilePage(props){
     const [data, setData] = useState({});
     const [load, setLoad] = useState(false);
     useEffect(()=>{
-        axios.post("http://localhost:5000/getuserdata", querystring.stringify({username: props.routerProps.match.params.username}), {
+        axios.post(`${SERVER_URL}/getuserdata`, querystring.stringify({username: props.routerProps.match.params.username}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
@@ -37,6 +39,7 @@ function ProfilePage(props){
       })
       .then(res => res.data)
       .then(data => {
+        console.log(data);
           setData(data);
           setLoad(true);
       })    
@@ -44,7 +47,7 @@ function ProfilePage(props){
 
     useEffect(()=>{
             console.log(data);
-          axios.post("http://localhost:5000/profile/edit", querystring.stringify(data), {
+          axios.post(`${SERVER_URL}/profile/edit`, querystring.stringify(data), {
             headers: {
               'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
             },
@@ -62,11 +65,11 @@ function ProfilePage(props){
 
     console.log(data);
     
-    return !load?"Loading":(
+    return !load?"Loading":(typeof data.username === 'undefined'?<h1 style={{textAlign:"center"}}>User does not exist</h1>:(
         <userDataContext.Provider value={[data, setData]}>
         <div className="fullpage" style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>
             <div className="topsection" style={{display:"flex", flexDirection:"row"}}>
-                <div className="name-avatar-container"><NameAndAvatar myname={data.name || "Your Name"} style={{minWidth:"300px"}} className="NaA"  src={data.profilePic} name="Random User"/><NewChat user={data.username}/></div>
+                <div className="name-avatar-container"><NameAndAvatar myname={data.name || "Your Name"} style={{minWidth:"300px"}} className="NaA"  src={data.profilePic} name="Random User"/></div>
                     <Bio description={data.description} 
                     facebook={data.social? data.social.facebook :"#"} 
                     github={data.social ? data.social.github : "#"}
@@ -85,7 +88,7 @@ function ProfilePage(props){
             </div>
         </div>
         </userDataContext.Provider>
-    );
+    ));
 }
 
 export default ProfilePage ;

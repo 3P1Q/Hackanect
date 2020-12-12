@@ -23,6 +23,9 @@ import {ReactComponent as GoogleIcon} from '../search.svg';
 import { Redirect } from "react-router-dom";
 import "./Auth.css";
 
+import SERVER_URL from '../../utils/constants';
+
+
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
@@ -71,7 +74,7 @@ const Form =(props) => {
   function sendRequest(){
     if(props.type==="REGISTER")
     {
-        axios.post("http://localhost:5000/register", querystring.stringify({username: values.username, password: values.password}), {
+        axios.post(`${SERVER_URL}/register`, querystring.stringify({username: values.username, password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
@@ -87,7 +90,7 @@ const Form =(props) => {
     }
     if(props.type==="LOGIN")
     {
-      axios.post("http://localhost:5000/login", querystring.stringify({username: values.username, password: values.password}), {
+      axios.post(`${SERVER_URL}/login`, querystring.stringify({username: values.username, password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },

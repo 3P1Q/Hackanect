@@ -23,6 +23,7 @@ import Github from './OAuth/Github';
 
 // import Test from './Test';
 import axios from 'axios';
+import SERVER_URL from '../utils/constants';
 import SearchBar from './Search/SearchBar';
 // import querystring from 'querystring';
 
@@ -41,7 +42,7 @@ const App = () => {
   // console.log(loggedIn);
 
   const getLogStatus = () => {
-    return axios.post("http://localhost:5000/loggedin");
+    return axios.post(`${SERVER_URL}/loggedin`);
   }
 
   useEffect(()=>{

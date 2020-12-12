@@ -13,7 +13,7 @@ router.post("/", (req,res) => {
             console.log(req.body);
         const userData = {
             name: req.body.name,
-            profilePic: req.body.image,
+            profilePic: req.body.profilePic,
             description: req.body.description,
             gender: req.body.gender,
             projects: JSON.parse(req.body.projectsString),

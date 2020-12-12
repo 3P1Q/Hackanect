@@ -14,6 +14,7 @@ import HackathonSelector from './HackathonSelector';
 import Tags from "../ProfileEdit/Tags";
 import axios from 'axios';
 import querystring from 'querystring';
+import SERVER_URL from '../../utils/constants';
 
 import Results from './Results'
 
@@ -99,7 +100,7 @@ export default function SearchBar() {
       hackathon = hackChoice;
       console.log(hackathon);
     }
-    const res = await axios.post("http://localhost:5000/similarusers", querystring.stringify({data:JSON.stringify(hackathon), techStack:reqStack, stackFilter: stackFilter}), {
+    const res = await axios.post(`${SERVER_URL}/similarusers`, querystring.stringify({data:JSON.stringify(hackathon), techStack:reqStack, stackFilter: stackFilter}), {
       headers: {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       },

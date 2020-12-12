@@ -3,6 +3,7 @@ import React from "react";
 import { Avatar } from "@material-ui/core";
 import {Link} from 'react-router-dom';
 import "./Results.css";
+import Fade from 'react-reveal/Fade';
 
 const Results = (props) => {
 
@@ -26,7 +27,7 @@ const Results = (props) => {
   function viewUser(user) {
       console.log(user.name);
     return (
-        
+        <Fade bottom>
         <div className="result-user-profile">
             <div className="result-user">
             <div className="result-avatar">
@@ -44,6 +45,7 @@ const Results = (props) => {
             </div>
             <Link style={{color:"inherit"}} to={`/profile/${user.username}`}>View Profile</Link>
         </div>
+        </Fade>
     );
   }
 
