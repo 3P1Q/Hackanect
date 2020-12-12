@@ -7,13 +7,15 @@ import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios';
 import querystring from 'querystring';
 
+import SERVER_URL from '../../utils/constants';
+
 axios.defaults.withCredentials = true;
 
 const Chat = (props) =>{
     const [newMessage, setNewMessage] = useState("");
     async function sendMessages(msgs){
         console.log("ye chala tha");
-        await axios.post("http://localhost:5000/updatechat", querystring.stringify({chatUser:props.currChat.user, messages:JSON.stringify(msgs)}));
+        await axios.post(`${SERVER_URL}/updatechat`, querystring.stringify({chatUser:props.currChat.user, messages:JSON.stringify(msgs)}));
     }
 
     async function composeMessage(msg){
@@ -33,7 +35,7 @@ const Chat = (props) =>{
     }
 
     useEffect(async ()=>{
-        const res = await axios.post("http://localhost:5000/getcurrentchat", querystring.stringify({chatUser: props.currChat.user}));
+        const res = await axios.post(`${SERVER_URL}/getcurrentchat`, querystring.stringify({chatUser: props.currChat.user}));
         const data = res.data;
         props.setCurrChat(data);
     },[props.chats])

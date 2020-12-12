@@ -4,6 +4,8 @@ import querystring from 'querystring';
 import './Hackathon.css';
 import { data1, data2 } from "./data";
 
+import SERVER_URL from '../../utils/constants';
+
 import {userLoggedInContext} from '../App';
 
 axios.defaults.withCredentials = true;
@@ -23,13 +25,13 @@ const Hackathon = () => {
     //     return hacks;
     // }
     useEffect(()=>{
-        axios.get("http://localhost:5000/hackathons")
+        axios.get(`${SERVER_URL}/hackathons`)
         .then(res => res.data)
         .then(data => {
             setAllHackathons(data)
         })
 
-        axios.get("http://localhost:5000/myhackathons")
+        axios.get(`${SERVER_URL}/myhackathons`)
         .then(res => res.data)
         .then(data => {
             setMyHackathons(data);
@@ -46,7 +48,7 @@ const Hackathon = () => {
     useEffect(()=>{
         if(load)
         {
-            axios.post("http://localhost:5000/addmyhackathon", querystring.stringify({myHackathons: string}), {
+            axios.post(`${SERVER_URL}/addmyhackathon`, querystring.stringify({myHackathons: string}), {
                 headers: {
                 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
                 },

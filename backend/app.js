@@ -86,6 +86,7 @@ const createNewChat = require('./routes/createNewChat');
 const updateChat = require('./routes/updateChat');
 const getChats = require('./routes/getChats');
 const getCurrentChat = require('./routes/getCurrentChat');
+const getProfilePictures = require('./routes/getProfilePictures');
 const { Schema } = require("mongoose");
 
 /*-----Routes Config End------*/
@@ -110,6 +111,7 @@ app.use("/newchat",createNewChat);
 app.use("/updatechat", updateChat);
 app.use("/getchats", getChats);
 app.use("/getcurrentchat", getCurrentChat);
+app.use("/getprofilepictures", getProfilePictures);
 
 /*------App Config End--------*/
 

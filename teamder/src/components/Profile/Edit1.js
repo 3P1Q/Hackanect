@@ -15,6 +15,7 @@ import Tags from '../ProfileEdit/Tags';
 import Description from '../ProfileEdit/Description';
 import Social from '../ProfileEdit/Social';
 import Project from '../ProfileEdit/Project'
+import Picture from '../ProfileEdit/Picture';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,7 @@ const Edit = (props) => {
   function Modal(props){
         const [data,setData] = React.useContext(userDataContext); 
         const [name,setName] = React.useState(data.name || "");
+        const [profilePic,setProfilePic] = React.useState(data.profilePic || "");
         const [desc,setDesc] = React.useState(data.description || "");
         const [tags, setTags] = React.useState(data.techStack || []);
         const [social, setSocial] = React.useState(data.social ? data.social : {facebook:"#", github:"#", twitter:"#", linkedin:"#"});
@@ -48,6 +50,7 @@ const Edit = (props) => {
                 ...prev,
                 name:name,
                 description: desc,
+                profilePic: profilePic,
                 techStack: tags,
                 socialString: JSON.stringify(social),
                 social: social,
@@ -73,6 +76,7 @@ const Edit = (props) => {
             <div style={{margin: "3% 5%"}}>
                 <Name name={name} setName={setName}/>
                 <Description desc={desc} setDesc={setDesc}/>
+                <Picture profilePic={profilePic} setProfilePic={setProfilePic}/>
                 <Tags tags={tags} setTags={setTags}/>
                 <Social social={social} setSocial={setSocial}/>
                 <Project projects={projects} setProjects={setProjects}/>

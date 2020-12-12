@@ -21,6 +21,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import {ReactComponent as GoogleIcon} from '../search.svg';
 import { Redirect } from "react-router-dom";
 
+import SERVER_URL from '../../utils/constants';
+
 
 axios.defaults.withCredentials = true;
 
@@ -69,7 +71,7 @@ const Form =(props) => {
   function sendRequest(){
     if(props.type==="REGISTER")
     {
-        axios.post("http://localhost:5000/register", querystring.stringify({username: values.username, password: values.password}), {
+        axios.post(`${SERVER_URL}/register`, querystring.stringify({username: values.username, password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
@@ -85,7 +87,7 @@ const Form =(props) => {
     }
     if(props.type==="LOGIN")
     {
-      axios.post("http://localhost:5000/login", querystring.stringify({username: values.username, password: values.password}), {
+      axios.post(`${SERVER_URL}/login`, querystring.stringify({username: values.username, password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
@@ -194,7 +196,7 @@ const Form =(props) => {
 
                 <div style={{margin:"2% 0"}}>
                   <Button href="/auth/google" style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
-                    {formType==="REGISTER"?<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign Up With Google</span>:<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign In With Google</span>}
+                    {formType==="REGISTER"?<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%", marginBottom:"-3%"}}/> &nbsp; Sign Up With Google</span>:<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%", marginBottom:"-3%"}}/> &nbsp; Sign In With Google</span>}
                   </Button>
                 </div>
 

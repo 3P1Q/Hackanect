@@ -50,6 +50,7 @@
 .chat-section{
     padding: 2%;
     height: 65vh;
+    background-color: #bbbbbb;
     overflow: auto;
 }
 .compose-section{
