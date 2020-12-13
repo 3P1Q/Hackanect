@@ -42,8 +42,9 @@ app.use(session({
 
 
 // mongoDB Connection
-const MONGODB_URI = `mongodb+srv://team-epic:${process.env.MONGO_PASSWORD}@cluster0.l7m6u.mongodb.net/Teamder?retryWrites=true&w=majority`;
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+// const MONGODB_URI = `mongodb+srv://team-epic:${process.env.MONGO_PASSWORD}@cluster0.l7m6u.mongodb.net/Teamder?retryWrites=true&w=majority`;
+// mongoose.connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/test", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set("useCreateIndex", true);
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -95,30 +96,52 @@ const { Schema } = require("mongoose");
 
 /*App Config*/
 
-app.use("/",indexRoute);
-app.use("/login",loginRoute);
-app.use("/register",registerRoute);
-app.use("/auth/google", googleAuth);
-app.use("/auth/github", githubAuth);
-app.use("/profile/edit", editProfile);
-app.use("/getalldata", getAllData);
-app.use("/getuserdata",getUserData);
-app.use("/loggedin", isLoggedIn);
-app.use("/similarusers", similarUsers);
-app.use("/hackathons", hackathons);
-app.use("/myhackathons", myHackathons);
-app.use("/addmyhackathon", addHackathon);
-app.use("/newchat",createNewChat);
-app.use("/updatechat", updateChat);
-app.use("/getchats", getChats);
-app.use("/getcurrentchat", getCurrentChat);
-app.use("/getprofilepictures", getProfilePictures);
+app.use("/api/",indexRoute);
+app.use("/api/login",loginRoute);
+app.use("/api/register",registerRoute);
+app.use("/api/auth/google", googleAuth);
+app.use("/api/auth/github", githubAuth);
+app.use("/api/profile/edit", editProfile);
+app.use("/api/getalldata", getAllData);
+app.use("/api/getuserdata",getUserData);
+app.use("/api/loggedin", isLoggedIn);
+app.use("/api/similarusers", similarUsers);
+app.use("/api/hackathons", hackathons);
+app.use("/api/myhackathons", myHackathons);
+app.use("/api/addmyhackathon", addHackathon);
+app.use("/api/newchat",createNewChat);
+app.use("/api/updatechat", updateChat);
+app.use("/api/getchats", getChats);
+app.use("/api/getcurrentchat", getCurrentChat);
+app.use("/api/getprofilepictures", getProfilePictures);
 
 /*------App Config End--------*/
 
 
 
-app.listen(port, function(){
+const server = app.listen(port, function(){
     console.log("Server started locally at port 5000");
 });
 
+const socket = require('socket.io');
+
+const io = socket(server, {cors:{origin:'*'}});
+
+io.on('connection', socket => {
+    console.log("Connected to socket");
+    const username = socket.handshake.query.username;
+    socket.join(username);
+
+    socket.on('send-message', ({chatUser, message})=>{
+      console.log("SOCKET" + chatUser);
+      socket.broadcast.to(chatUser).emit('receive-message',{
+        source: username,
+        message: message,
+        ts: new Date()
+      });
+    })
+    
+    socket.on('typing', ({chatUser})=>{
+      socket.broadcast.to(chatUser).emit('typing-received',{source: username});
+    })
+});
