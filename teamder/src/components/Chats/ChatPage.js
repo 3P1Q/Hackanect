@@ -32,8 +32,6 @@ function ChatPage(){
 
         setSocket(newSocket);
 
-        console.log(socket);
-
         return () => newSocket.close();
     }, [username])
 
@@ -57,11 +55,16 @@ function ChatPage(){
     useEffect(async () => {
         await getChats();
     }, [])
+
+    useEffect(()=>{
+        setChats((prev) => {
+            return prev.sort((a,b)=>a.ts>=b.ts?-1:1)
+        })
+    },[chats])
     
     useEffect(()=>{
         if(socket == null)  return;
 
-        console.log("use effect chala");
 
         socket.on('receive-message', async ({source,message,ts}) => {
             setTyping("");
@@ -71,13 +74,20 @@ function ChatPage(){
             if (index !== -1){
                 let temporaryarray = chats.slice();
                 temporaryarray[index]['messages'] = [...temporaryarray[index]['messages'],{source:source, message:message}];
+                temporaryarray[index]['ts'] = ts;
                 setChats(temporaryarray);
             }
             else {
-                console.log('no match');
+                // console.log('no match');
+                // // setChats((prev)=>([...prev, {source:source, messages:[], ts: new Date().getTime()}]));
+                // let temporaryarray = [...chats, {source:source, messages:[{source:source, message:message}], ts: new Date().getTime()}];
+                // // temporaryarray.push({source:source, messages:[{source:source, message:message}], ts: new Date().getTime()});
+                // // temporaryarray[index]['messages'] = [...temporaryarray[index]['messages'],{source:source, message:message}];
+                // // temporaryarray[index]['ts'] = ts;
+                // setChats(temporaryarray);
+                getChats();
             }
-            console.log(chats);
-            changeCurrChat(source);
+            // changeCurrChat(source);
         });
         return ()=>socket.off('receive-message');
     },[socket, chats])
@@ -86,7 +96,6 @@ function ChatPage(){
         if(socket == null) return;
 
         socket.on('typing-received',({source, typed}) => {
-            console.log("TYPING REC");
             setTyping(source);
             if(typed === '')
             {

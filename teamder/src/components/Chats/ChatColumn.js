@@ -6,7 +6,6 @@ import querystring from 'querystring';
 import SERVER_URL from '../../utils/constants';
 
 const ChatColumn = (props) =>{
-    console.log(props.typing);
     const [pics, setPics] = useState([]);
     useEffect(async ()=>{
         let users = [];
@@ -35,7 +34,13 @@ const ChatColumn = (props) =>{
     }
     function changeChat(evt){
         evt.preventDefault();
-        props.changeCurrChat(evt.target.textContent);
+        let user = evt.currentTarget.textContent;
+        if(user.includes("Typing..."))
+        {
+            props.changeCurrChat(user.substring(0,user.length-9));
+        }
+        else
+            props.changeCurrChat(user);
     }
     function makeChatCard(user, ind){
         const srcImg = searchPic(user.user)

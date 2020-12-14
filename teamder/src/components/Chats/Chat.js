@@ -13,7 +13,6 @@ import SERVER_URL from '../../utils/constants';
 axios.defaults.withCredentials = true;
 
 function Chat(props){
-    console.log(props.typing);
     const [newMessage, setNewMessage] = useState("");
 
     async function sendMessages(msgs){
@@ -53,11 +52,11 @@ function Chat(props){
         props.setChatView(false);
     }
 
-    // const ref = useRef(null);
+    const ref = useRef(null);
 
-    // useLayoutEffect(() => {
-    //     ref.current.scrollTop = ref.current.scrollHeight;
-    // }, []);
+    useLayoutEffect(() => {
+        ref.current.scrollTop = ref.current.scrollHeight;
+    }, [props.currChat]);
     return !props.currChat?("Loading"):(
         <div className={`chat ${!props.chatView && " hide"}`}>
             <div className="chat-header-user">
@@ -65,7 +64,7 @@ function Chat(props){
                 {props.currChat.user}
                 <span className="typing">{props.typing?" Typing... ":""}</span>
             </div>
-            <div className="chat-section">
+            <div ref={ref} className="chat-section">
                 {props.currChat.messages.map(makeMessage)}
             </div>
             <div className="compose-section">

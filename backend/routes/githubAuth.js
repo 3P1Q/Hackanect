@@ -10,7 +10,7 @@ const router = express.Router();
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/auth/github/teamder",
+    callbackURL: "http://localhost:5000/api/auth/github/teamder",
     proxy: true,
   },
   function(accessToken, refreshToken, profile, done) {
