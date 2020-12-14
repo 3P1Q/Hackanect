@@ -6,6 +6,7 @@ import querystring from 'querystring';
 import SERVER_URL from '../../utils/constants';
 
 const ChatColumn = (props) =>{
+    console.log(props.typing);
     const [pics, setPics] = useState([]);
     useEffect(async ()=>{
         let users = [];
@@ -43,12 +44,15 @@ const ChatColumn = (props) =>{
                 <div className="chat-user-img">
                     <img src={srcImg} onError={(e)=>{console.log("here"); e.target.onerror = null; e.target.src="/images/defaultPic.jpg"}} alt="dp"/>
                 </div>
-                <div className="chat-user-name">{user.user}</div>
+                <div className="chat-user-name">
+                    {user.user}
+                    <div className="typing">{user.user === props.typing?"Typing...":""}</div>
+                </div>
             </div>
         )
     }
     return(
-        <div className="chat-column">
+        <div className={`chat-column ${props.chatView && " hide"}`}>
             <h2 style={{textAlign:"center", borderBottom:"1px solid #dfdfdf", fontWeight:"800"}}>CHATS</h2>
             {props.chats.map(makeChatCard)}
         </div>

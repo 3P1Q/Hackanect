@@ -3,6 +3,7 @@ import {chatData} from './data';
 import {TextField} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import axios from 'axios';
 import querystring from 'querystring';
@@ -12,18 +13,18 @@ import SERVER_URL from '../../utils/constants';
 axios.defaults.withCredentials = true;
 
 function Chat(props){
-    //console.log(props);
+    console.log(props.typing);
     const [newMessage, setNewMessage] = useState("");
-    async function sendMessages(msgs){
-        console.log("ye chala tha");
-        await axios.post(`${SERVER_URL}/updatechat`, querystring.stringify({chatUser:props.currChat.user, messages:JSON.stringify(msgs)}));
 
+    async function sendMessages(msgs){
+        await axios.post(`${SERVER_URL}/updatechat`, querystring.stringify({chatUser:props.currChat.user, messages:JSON.stringify(msgs)}));
     }
 
     function composeMessage(msg){
-        console.log("chal pada");
+        if(newMessage === '')
+            return;
+
         const msgs = props.currChat.messages;
-        console.log(newMessage);
         msgs.push({source:localStorage.getItem("username"), message:newMessage});
         
         props.socket.emit('send-message',{
@@ -34,26 +35,6 @@ function Chat(props){
         setNewMessage("");
         sendMessages(msgs);
     }
-
-    
-    useEffect(()=>{
-        props.socket.on('typing-received',({source, typed})=>{
-            if(typed === "")
-            {
-                props.setTyping(false);
-            }
-            else
-            {
-                if(props.currChat.user === source)
-                    props.setTyping(true);
-            }
-        })
-    },[props.socket])
-
-    useEffect(()=>{
-        console.log("CHAT changed");
-        //console.log(props.chats);
-    },[props.chats])
 
     function writingMessage(e){
         setNewMessage(e.target.value);
@@ -68,11 +49,9 @@ function Chat(props){
         )
     }
 
-    // useEffect(async ()=>{
-    //     const res = await axios.post(`${SERVER_URL}/getcurrentchat`, querystring.stringify({chatUser: props.currChat.user}));
-    //     const data = res.data;
-    //     props.setCurrChat(data);
-    // },[props.chats])
+    function backButtonPressed(){
+        props.setChatView(false);
+    }
 
     // const ref = useRef(null);
 
@@ -80,10 +59,11 @@ function Chat(props){
     //     ref.current.scrollTop = ref.current.scrollHeight;
     // }, []);
     return !props.currChat?("Loading"):(
-        <div className="chat">
+        <div className={`chat ${!props.chatView && " hide"}`}>
             <div className="chat-header-user">
+                <ArrowBackIcon onClick={backButtonPressed} className="back-to-all-chats"/>
                 {props.currChat.user}
-                <span id="typing">{props.typing?" Typing... ":""}</span>
+                <span className="typing">{props.typing?" Typing... ":""}</span>
             </div>
             <div className="chat-section">
                 {props.currChat.messages.map(makeMessage)}

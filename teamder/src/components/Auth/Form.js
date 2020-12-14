@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "5%"
     },
     Form:{
+        display: "block",
         margin: "0",
         width: "100%",
         minWidth:"400px",
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#ececec"
     },
     Formdata:{
-        margin: " 2% 25%"
+        margin: " 2% 5%"
           ,"& *" : {
             color: "#e8e8e8"
           }
@@ -177,7 +178,6 @@ const Form =(props) => {
                       value={values.username}
                       onChange={handleChange('username')}
                       // width="125%"
-                      // fullWidth
                       />
                   </FormControl>
 
