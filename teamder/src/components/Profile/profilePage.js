@@ -67,22 +67,39 @@ function ProfilePage(props){
     
     return !load?"Loading":(typeof data.username === 'undefined'?<h1 style={{textAlign:"center"}}>User does not exist</h1>:(
         <userDataContext.Provider value={[data, setData]}>
-        <div className="fullpage" style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>
-            <div className="topsection" style={{display:"flex", flexDirection:"row"}}>
-                <div className="name-avatar-container"><NameAndAvatar myname={data.name || "Your Name"} style={{minWidth:"300px"}} className="NaA"  src={data.profilePic} name="Random User"/></div>
-                    <Bio description={data.description} 
+        <div className="fullpage">
+
+
+            <div className="topsection">
+                <div className="name-avatar-container">
+                  <NameAndAvatar 
+                    myname={data.name || "Your Name"}
+                    style={{minWidth:"300px"}} className="NaA"  
+                    src={data.profilePic} name="Random User"
+                  />
+                </div>
+
+                <div className="bio-container">
+                    <Bio 
+                    description={data.description} 
                     facebook={data.social? data.social.facebook :"#"} 
                     github={data.social ? data.social.github : "#"}
                     twitter={data.social ? data.social.twitter :"#"} 
-                    linkedin={data.social ? data.social.linkedin : "#"}/>
+                    linkedin={data.social ? data.social.linkedin : "#"}
+                    />
+                </div>
             </div>
-            <div className="bottomsection" style={{display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"space-between"}}>    
-                <div className="menu-container"><Menu className="menu"/></div>
+
+
+            <div className="bottomsection">    
+                <div className="menu-container">
+                  <Menu className="menu"/>
+                </div>
                 <div className="content-container">
-                    <div style={{display:"flex", flexDirection:"column", flexWrap:"wrap", minWidth:"60vw"}}>
+                    {/* <div className="tech-and-projects"> */}
                         <TechStack className="stack" tags={data.techStack || []}/>
                         <ProjectCards className="projects" deets={data.projects || []}/>
-                    </div>
+                    {/* </div> */}
                 </div>
                 
             </div>

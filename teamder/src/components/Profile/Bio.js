@@ -10,7 +10,7 @@ const Bio = (props) => {
     const links = props.social;
     //console.log(links.facebook);
     return (
-        <div className="bio-container">
+        <>
         <Typography style={{height: "50%", width: "50%"}} className="bio">{props.description}</Typography>
         <div className="social-icons">
             <a href={props.facebook}><FacebookIcon/></a>
@@ -18,7 +18,7 @@ const Bio = (props) => {
             <a href={props.twitter}><TwitterIcon /></a>
             <a href={props.linkedin}><LinkedInIcon /></a>
         </div>
-        </div>
+        </>
     )
 }
 

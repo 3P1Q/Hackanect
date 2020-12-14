@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
             User.findOne({_id: req.user._id, "chats.user":chatUser}, function(err, user){
                 if(!user)
                 {
-                    User.updateOne({_id:req.user._id},{$push:{chats : {user:chatUser, messages:[], ts: new Date(0)} }}, function(err, user){
+                    User.updateOne({_id:req.user._id},{$push:{chats : {user:chatUser, messages:[], ts: new Date(0).getTime()} }}, function(err, user){
                         console.log("Updated User");
                         console.log(user);
                     });
@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
                 console.log(user);
                 if(!user)
                 {
-                    User.updateOne({username: chatUser},{$push:{chats : {user:req.user.username, messages:[], ts: new Date(0)} }}, function(err, user){
+                    User.updateOne({username: chatUser},{$push:{chats : {user:req.user.username, messages:[], ts: new Date(0).getTime()} }}, function(err, user){
                         console.log("Updated User");
                         console.log("the second one");
                         console.log(user);

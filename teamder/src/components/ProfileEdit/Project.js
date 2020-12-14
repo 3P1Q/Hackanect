@@ -49,13 +49,13 @@ const Project = (props) => {
                         />
                         <TextField
                             id="outlined-multiline-static description"
-                            label="Description ( Max 100 characters )"
+                            label="Description ( Max 200 characters )"
                             multiline
                             rows={4}
                             variant="outlined"
                             value={project.description}
                             onChange={(e) => {valChanged(e,index)}}
-                            inputProps={{maxLength: 100}}
+                            inputProps={{maxLength: 200}}
                             fullWidth
                             style={{margin: "1% 0"}}
                         />

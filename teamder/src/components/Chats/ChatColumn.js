@@ -34,7 +34,13 @@ const ChatColumn = (props) =>{
     }
     function changeChat(evt){
         evt.preventDefault();
-        props.changeCurrChat(evt.target.textContent);
+        let user = evt.currentTarget.textContent;
+        if(user.includes("Typing..."))
+        {
+            props.changeCurrChat(user.substring(0,user.length-9));
+        }
+        else
+            props.changeCurrChat(user);
     }
     function makeChatCard(user, ind){
         const srcImg = searchPic(user.user)
@@ -43,12 +49,15 @@ const ChatColumn = (props) =>{
                 <div className="chat-user-img">
                     <img src={srcImg} onError={(e)=>{console.log("here"); e.target.onerror = null; e.target.src="/images/defaultPic.jpg"}} alt="dp"/>
                 </div>
-                <div className="chat-user-name">{user.user}</div>
+                <div className="chat-user-name">
+                    {user.user}
+                    <div className="typing">{user.user === props.typing?"Typing...":""}</div>
+                </div>
             </div>
         )
     }
     return(
-        <div className="chat-column">
+        <div className={`chat-column ${props.chatView && " hide"}`}>
             <h2 style={{textAlign:"center", borderBottom:"1px solid #dfdfdf", fontWeight:"800"}}>CHATS</h2>
             {props.chats.map(makeChatCard)}
         </div>

@@ -5,7 +5,7 @@
 }
 
 .chat-column{
-    flex: 20%;
+    flex: 25%;
     background-color: #fffafa;
     margin: 0 1%;
     padding: 2% 0;
@@ -31,10 +31,12 @@
     flex: 50%;
     font-size: 1.25rem;
     margin: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chat{
-    flex: 80%;
+    flex: 75%;
     background-color: #fffafa;
     margin: 0 1%;
     padding: 2% 0;
@@ -46,6 +48,15 @@
     border-bottom: 1px solid #dfdfdf;
     font-size: 1.75rem;
     font-weight: 600;
+}
+.back-to-all-chats{
+    margin:0 2%;
+    cursor: pointer;
+}
+.typing{
+    font-size: 1rem;
+    font-style: italic;
+    color: #5aa469;
 }
 .chat-section{
     padding: 2%;
@@ -83,4 +94,15 @@
 }
 .user-msg-right{
     background-color: #dcf8c6;
+}
+
+@media(max-width: 600px){
+    .hide{
+        display: none;
+    }    
+}
+@media(min-width:601px){
+    .back-to-all-chats{
+        display: none !important;
+    }
 }

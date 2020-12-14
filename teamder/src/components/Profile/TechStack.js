@@ -5,25 +5,25 @@ import './Profile.css';
 const TechStack = (props) => {
     function getTag(tag, index)
     {
-        return <Grid key={index} item xs={5} sm={4} md={3}>
-            <Paper className="tag"> {tag} </Paper>
-            </Grid>;
+        return (
+                <div key={index} className="tag"> {tag} </div>
+           );
     }
     props.tags.forEach((tag) => {
         // console.log(tag);
     });
     // console.log(props.tags);
     return <div className="tech-stack">
-        <Grid container>
-            <Grid item sm={12} md={2}>
-                <h2 style={{margin:"0"}}>Tech Stack</h2>
-            </Grid>
-            <Grid item sm={12} md={10}>
-                <Grid container spacing={3}>
+        <div>
+            <div>
+                <h2>Tech Stack</h2>
+            </div>
+            <div>
+                <div>
                     {props.tags.map((tag, index)=>getTag(tag, index))}
-                </Grid>
-            </Grid>
-        </Grid>
+                </div>
+            </div>
+        </div>
         
     </div>
 }

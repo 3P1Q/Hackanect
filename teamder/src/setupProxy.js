@@ -3,13 +3,13 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 // const SERVER_URL = require('./utils/constants')
 module.exports = function(app) {
   app.use(
-    '/auth/google',
+    '/api/auth/google',
     createProxyMiddleware({
       target: "http://localhost:5000"
     })
   );
   app.use(
-    '/auth/github',
+    '/api/auth/github',
     createProxyMiddleware({
       target: "http://localhost:5000"
     })

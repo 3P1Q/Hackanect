@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "5%"
     },
     Form:{
+        display: "block",
         margin: "0",
         width: "100%",
         minWidth:"400px",
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#ececec"
     },
     Formdata:{
-        margin: " 2% 25%"
+        margin: " 2% 5%"
           ,"& *" : {
             color: "#e8e8e8"
           }
@@ -155,13 +156,13 @@ const Form =(props) => {
                   <h1 className={classes.Head}>{formType==="LOGIN" ? "Sign In to TEAMDER" : "Create Account"}</h1>
                   <div style={{textAlign:"center",marginTop:"4%"}}>
                   <div style={{margin:"2% 1%",display:"inline-block"}}>
-                    <Button href="/auth/google" style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
+                    <Button href="/api/auth/google" style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
                       {formType==="REGISTER"?<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign Up With Google</span>:<span><GoogleIcon style={{height: "30px", backgroundColor:"white", padding:"2%"}}/> &nbsp; Sign In With Google</span>}
                     </Button>
                   </div>
 
                   <div style={{margin:"2% 1%",display:"inline-block"}}>
-                    <Button href="/auth/github" style={{backgroundColor: "#323232", color: "white", borderRadius: "2%"}}  color="secondary">
+                    <Button href="/api/auth/github" style={{backgroundColor: "#323232", color: "white", borderRadius: "2%"}}  color="secondary">
                       {formType==="REGISTER"?<span><GitHubIcon />&nbsp; Sign Up With GitHub</span>:<span><GitHubIcon />&nbsp; Sign In With GitHub</span>}
                     </Button>
                   </div>
@@ -177,7 +178,6 @@ const Form =(props) => {
                       value={values.username}
                       onChange={handleChange('username')}
                       // width="125%"
-                      // fullWidth
                       />
                   </FormControl>
 

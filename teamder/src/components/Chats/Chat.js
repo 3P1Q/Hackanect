@@ -3,6 +3,7 @@ import {chatData} from './data';
 import {TextField} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import axios from 'axios';
 import querystring from 'querystring';
@@ -11,21 +12,34 @@ import SERVER_URL from '../../utils/constants';
 
 axios.defaults.withCredentials = true;
 
-const Chat = (props) =>{
+function Chat(props){
     const [newMessage, setNewMessage] = useState("");
+
     async function sendMessages(msgs){
-        console.log("ye chala tha");
         await axios.post(`${SERVER_URL}/updatechat`, querystring.stringify({chatUser:props.currChat.user, messages:JSON.stringify(msgs)}));
     }
 
-    async function composeMessage(msg){
-        console.log("chal pada");
+    function composeMessage(msg){
+        if(newMessage === '')
+            return;
+
         const msgs = props.currChat.messages;
-        console.log(newMessage);
         msgs.push({source:localStorage.getItem("username"), message:newMessage});
+        
+        props.socket.emit('send-message',{
+            chatUser: props.currChat.user,
+            message: newMessage
+        });
+
         setNewMessage("");
-        await sendMessages(msgs);
+        sendMessages(msgs);
     }
+
+    function writingMessage(e){
+        setNewMessage(e.target.value);
+        props.socket.emit('typing',{chatUser: props.currChat.user, typed: e.target.value});
+    }
+
     function makeMessage(msgData){
         return(
             <div className={`user-msg-container ${msgData.source!==props.currChat.user?"user-msg-container-right":""}`}>
@@ -34,21 +48,21 @@ const Chat = (props) =>{
         )
     }
 
-    useEffect(async ()=>{
-        const res = await axios.post(`${SERVER_URL}/getcurrentchat`, querystring.stringify({chatUser: props.currChat.user}));
-        const data = res.data;
-        props.setCurrChat(data);
-    },[props.chats])
+    function backButtonPressed(){
+        props.setChatView(false);
+    }
 
     const ref = useRef(null);
 
     useLayoutEffect(() => {
         ref.current.scrollTop = ref.current.scrollHeight;
-    }, []);
+    }, [props.currChat]);
     return !props.currChat?("Loading"):(
-        <div className="chat">
+        <div className={`chat ${!props.chatView && " hide"}`}>
             <div className="chat-header-user">
+                <ArrowBackIcon onClick={backButtonPressed} className="back-to-all-chats"/>
                 {props.currChat.user}
+                <span className="typing">{props.typing?" Typing... ":""}</span>
             </div>
             <div ref={ref} className="chat-section">
                 {props.currChat.messages.map(makeMessage)}
@@ -63,7 +77,7 @@ const Chat = (props) =>{
                     multiline
                     margin="normal"
                     value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
+                    onChange={writingMessage}
                     InputLabelProps={{
                         shrink: true,
                     }}

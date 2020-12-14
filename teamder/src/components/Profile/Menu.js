@@ -9,7 +9,7 @@ import NewChat from './NewChat';
 const Menu = (props) => {
     const [loggedIn,SetLoggedIn] = useContext(userLoggedInContext);
     const [data, setData] = useContext(userDataContext);
-    return <div>
+    return <>
         <div className="menu">
             <ul>
                 <li>Profile</li>
@@ -23,7 +23,7 @@ const Menu = (props) => {
                 <li>Logout</li>
             </ul>
         </div>
-    </div>
+    </>
 }
 
 export default Menu;

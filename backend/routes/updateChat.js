@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
             })
 
         await User.updateOne({username: chatUser, 'chats.user':req.user.username },
-            {$set:{'chats.$.messages' : JSON.parse(req.body.messages), 'chats.$.ts':new Date()}},
+            {$set:{'chats.$.messages' : JSON.parse(req.body.messages), 'chats.$.ts':new Date().getTime()}},
             function(err, user){
                 // res.write("Second update done");
             })   
