@@ -12,18 +12,26 @@ const passport = require("passport");
 const cors = require('cors');
 require('dotenv').config();
 
+const path = require('path');
+
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(
-  cors({
-    origin: "http://localhost:3000", // allow to server to accept request from different origin
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true // allow session cookie from browser to pass through
-  })
-);
+if(process.env.NODE_ENV === 'production')
+{
+  app.use(express.static(path.join(__dirname, "../teamder/build")));
+}
+else{
+  app.use(
+    cors({
+      origin: "http://localhost:3000", // allow to server to accept request from different origin
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true // allow session cookie from browser to pass through
+    })
+  );
+}
 // Set up sessions
 app.use(session({
     secret: "The Tinder for Techies.",
@@ -128,6 +136,13 @@ app.use("/api/getprofilepictures", getProfilePictures);
 const server = app.listen(port, function(){
     console.log("Server started locally at port 5000");
 });
+
+if(process.env.NODE_ENV === 'production')
+{
+  app.get("*", (req, res) => { 
+    res.sendFile(path.join(__dirname , "../teamder/build/index.html"));
+    });
+}
 
 const socket = require('socket.io');
 

@@ -8,69 +8,60 @@ import Link from '@material-ui/core/Link';
 import {Grid} from '@material-ui/core';
 
 const useStyles = makeStyles({
-  root: {
-    // minWidth: 275,
-    maxWidth: 350,
-    backgroundColor: '#827397',
-    margin: 0,
-    color: '#FFF'
-  },
-  card: {
-    paddingBottom: 10
-  },
-  title: {
-    color: '#FFF',
-    marginTop: 10,
-    fontFamily: "inherit"
-  },
-  desc: {
-    marginTop: 10,
-    marginBottom: 10,
-    fontFamily: "inherit"
-  },
-  link: {
-    textAlign: "right"
-  }
+  // root: {
+  //   // minWidth: 275,
+  //   maxWidth: 350,
+  //   backgroundColor: '#827397',
+  //   margin: 0,
+  //   color: '#FFF'
+  // },
+  // card: {
+  //   paddingBottom: 10
+  // },
+  // title: {
+  //   color: '#FFF',
+  //   marginTop: 10,
+  //   fontFamily: "inherit"
+  // },
+  // desc: {
+  //   marginTop: 10,
+  //   marginBottom: 10,
+  //   fontFamily: "inherit"
+  // },
+  // link: {
+  //   textAlign: "right"
+  // }
 });
 
 export default function ProjectCard(props) {
   const classes = useStyles();
 
   return (
-    <div>  
-        <Grid container>
+    <div className="projects-container">  
 
-            <Grid item sm={12} md={2}>
-                <h2 style={{margin:"0"}}>Projects</h2>
-            </Grid>
+            <div>
+                <h2>Projects</h2>
+            </div>
 
-            <Grid item sm={12} md={10}>
-                <Grid container spacing={3}>
+            <div className="projects">
                 {props.deets.map((card) => {
-                  return <Grid item sm={12} md={6}>
-                     <Card className={classes.root}>
-                      <CardContent className={classes.card}>
-                          <Typography maxWid variant={"h5"} className={classes.title} color="textSecondary" gutterBottom>
-                          {card.title}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary" component="p" className={classes.desc}>
-                          {card.description}
-                          </Typography>
-                          <Typography className={classes.link}>
-                          <Link href={card.githubLink}  color="inherit">
-                              <GitHubIcon></GitHubIcon>
-                          </Link>
-                      </Typography>
-                      </CardContent>
-                        
-                          
-                      </Card>
-                      </Grid>
+                  return (
+                     <div className="project-card">
+                            <div className="project-title">
+                            {card.title}
+                            </div>
+                            <div className="project-description">
+                            {card.description}
+                            </div>
+                            <div className="project-link">
+                              <Link to={card.githubLink}  color="inherit">
+                                  <GitHubIcon></GitHubIcon>
+                              </Link>
+                            </div>
+                      </div>
+                  )
                   })}
-                </Grid>
-            </Grid>
-        </Grid>
-        
+           </div>      
         
     </div>
   );

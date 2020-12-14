@@ -54,13 +54,27 @@ function ChatPage(){
 
     useEffect(async () => {
         await getChats();
+        // sortChats();
+        // setCurrChat(chats[0]);
     }, [])
 
-    useEffect(()=>{
-        setChats((prev) => {
-            return prev.sort((a,b)=>a.ts>=b.ts?-1:1)
-        })
-    },[chats])
+    // useEffect(async ()=>{
+    //     // await setChats((prev) => {
+    //     //     return prev.sort((a,b)=>a.ts>=b.ts?-1:1)
+    //     // })
+    //     let temporaryarray = chats.slice();
+    //     temporaryarray = temporaryarray.sort((a,b)=>a.ts>=b.ts?-1:1)
+    //     // temporaryarray[index]['messages'] = [...temporaryarray[index]['messages'],{source:source, message:message}];
+    //     // temporaryarray[index]['ts'] = ts;
+    //     setChats(temporaryarray);    
+    // },[chats])
+    function sortChats(){
+        let temporaryarray = chats.slice();
+        temporaryarray = temporaryarray.sort((a,b)=>a.ts>=b.ts?-1:1)
+        // temporaryarray[index]['messages'] = [...temporaryarray[index]['messages'],{source:source, message:message}];
+        // temporaryarray[index]['ts'] = ts;
+        setChats(temporaryarray);   
+    }
     
     useEffect(()=>{
         if(socket == null)  return;
@@ -88,6 +102,7 @@ function ChatPage(){
                 getChats();
             }
             // changeCurrChat(source);
+            sortChats();
         });
         return ()=>socket.off('receive-message');
     },[socket, chats])

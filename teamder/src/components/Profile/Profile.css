@@ -5,6 +5,11 @@
     background-color: #d8b9c3;
 }
 
+                                                    /* TOP SECTION */
+
+.topsection{
+    display: flex;
+}
 .name-and-avatar{
     height: 25rem;
     width: 25rem;
@@ -41,6 +46,12 @@
 }
 
 
+                                                    /* BOTTOM SECTION */
+
+.bottomsection{
+    display: flex;
+}
+
 .menu{
     width: 15rem;
     flex-direction: column;
@@ -69,11 +80,13 @@
 
 
 .tag{
-    text-align: center;
+    display: inline-block;
     background-color: #827397 !important;
     color: #ffffff !important;
-    padding: 2%;
+    padding: 0.75% 2%;
     font-size: 1.25rem;
+    margin: 0 2% 2% 0;
+    border-radius: 10px;
 }
 
 .tech-stack{
@@ -90,6 +103,42 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.projects{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.projects-container{
+    width: 95%;
+}
+.project-card{
+    color: #fff;
+    flex: 48% ;
+    max-width: 48%;
+    background-color: #827397;
+    margin: 0 auto 4%;
+    padding: 2%;
+    border-radius: 10px;
+}
+.project-title{
+    font-size: 1.5rem;
+    font-weight: 600 !important;
+}
+.project-description{
+    margin: 3% 0 !important;
+    height: 100px;
+    font-size: 1rem !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.project-link{
+    text-align: right;
+    cursor: pointer;
+}
+
+
+                                                    /* MEDIA QUERIES */
 
 @media(max-width: 476px)
 {
@@ -109,10 +158,35 @@
     
 }
 
+@media(max-width: 550px)
+{
+    .projects{
+        flex-direction: column;
+    }
+    .project-card{
+        flex: 90%;
+        max-width: 90%;
+        width: 90%;
+    }
+}
+
+@media(max-width: 800px)
+{
+    .project-description{
+        height: 150px;
+    }
+}
+
 @media(max-width: 1159px)
 {
     .topsection{
-        display: block !important;
+        flex-direction: column;
+    }
+    .bottomsection{
+        flex-direction: column;
+    }
+    .projects-container{
+        width: 100% !important;
     }
     .name-and-avatar{
         margin: auto !important;
@@ -181,6 +255,8 @@
 }
 .content-container{
     flex: 65%;
+    width: 90%;
+    margin: auto;
 }
 .social-icons{
     margin: auto;
