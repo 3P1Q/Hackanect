@@ -84,6 +84,7 @@ const Form =(props) => {
       }).then(function(response){
         if (response.status === 200) {
           localStorage.setItem('username', response.data.username)
+          localStorage.setItem('newUser',"true");
           window.location = `/profile/${response.data.username}`          
         }
         console.log(response);
@@ -100,6 +101,7 @@ const Form =(props) => {
       }).then(function(response){
         if (response.status === 200) {
           localStorage.setItem('username', response.data.username)
+          localStorage.setItem('newUser',"false");
           window.location = `/profile/${response.data.username}`
           // const data = response.data
           // console.log(data);

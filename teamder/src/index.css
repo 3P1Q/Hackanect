@@ -4,10 +4,26 @@ body{
     background-color: #D8B9C3 !important;
     font-family: 'Montserrat', sans-serif;
     width: 100%;
-    margin-top: 0;
-    margin-left: 0;
+    margin: 0;
 }
 
 body *{
     font-family: 'Montserrat', sans-serif !important;
+}
+
+.footer{
+    margin-top: 8%;
+    background-color: #4D4C7D;
+    color: #D8B9C3;
+    padding: 3%;
+    text-align: center;
+    font-size: 1.25rem;
+    position: relative;
+    clear: both;
+    width: 100%;
+    /* bottom: 0; */
+}
+
+.team-stamp{
+    margin-bottom: 1%;
 }

@@ -14,18 +14,14 @@ import Register from './Auth/Register'
 import ProfilePage from './Profile/profilePage'
 import Home from './Land/Home'
 import Hackathon from './Hackathon/Hackathon';
+import Footer from "./Footer/Footer";
 
-// import Search Bar Component
-import HorizontalLinearStepper from "./Search/SearchBar";
 import Google from './OAuth/Google';
 import Github from './OAuth/Github';
-// import Tags from './Tags';
 
-// import Test from './Test';
 import axios from 'axios';
 import SERVER_URL from '../utils/constants';
 import SearchBar from './Search/SearchBar';
-// import querystring from 'querystring';
 
 import ChatPage from './Chats/ChatPage';
 
@@ -56,21 +52,7 @@ const App = () => {
     userLogInStatus();
   },[])
 
-  console.log(loggedIn);
-
-//   async function PrivateRoute ({component: Component, ...rest}) {
-//     const what = await userLogInStatus()
-//     return (
-
-//         // Show the component only when the user is logged in
-//         // Otherwise, redirect the user to /signin page
-//         <Route {...rest} render={props => (
-//             what ?
-//                 <Component routerProps={props} />
-//             : <Redirect to="/login" />
-//         )} />
-//     );
-// };
+  // console.log(loggedIn);
 
     return (
       <userLoggedInContext.Provider value={[loggedIn, setLoggedIn]}>
@@ -78,7 +60,6 @@ const App = () => {
         <Navbar />
         <Switch>
 
-          {/* <Route path="/profile" */}
           <Route 
             path="/profile/:username" 
             render={(props)=>logwait?("Loading")
@@ -87,12 +68,8 @@ const App = () => {
             )
             :(<Redirect to="/login" />))
           } />
-          {/* <PrivateRoute path="profile/:username" component={ProfilePage} /> */}
 
           <Route path='/' exact>
-            {/* <h1>Welcome to Teamder's</h1> */}
-            {/* <HorizontalLinearStepper/> */}
-            {/* <HackathonSelector /> */}
             <Home />
           </Route>
 
@@ -107,7 +84,6 @@ const App = () => {
             render={
               () => <Register/>
             } />
-          {/* <Route path="/getalldata" exact component={Test} /> */}
 
           <Route 
             path="/hackathons" 
@@ -142,6 +118,7 @@ const App = () => {
             render={(props)=> <Github routerProps={props}/>} />
 
         </Switch>
+        <Footer />
       </Router>
       </userLoggedInContext.Provider>
     );
