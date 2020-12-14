@@ -31,7 +31,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Edit = (props) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  let token = localStorage.getItem('newUser');
+  const [open, setOpen] = React.useState(token==="true" ? true :false);
+  localStorage.setItem('newUser',"false");
   function Modal(props){
         const [data,setData] = React.useContext(userDataContext); 
         const [name,setName] = React.useState(data.name || "");
