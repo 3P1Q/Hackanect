@@ -8,6 +8,9 @@ const formatData = data => {
         let tmpObj = {};
 
         //formatting the strings to get a uniform structure throughout the db.
+        if(!project.techStack){
+          return;  
+        }
         const technologiesCleaned = project.techStack.map(tool => {
             tool = tool.trim();
             tool = tool.replace(/ /g, '-');

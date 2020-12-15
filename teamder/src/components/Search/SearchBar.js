@@ -15,12 +15,20 @@ import Tags from "../ProfileEdit/Tags";
 import axios from 'axios';
 import querystring from 'querystring';
 import SERVER_URL from '../../utils/constants';
+import UserSelector from '../Profile/UserSelector';
 
 import Results from './Results'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: '80%',
+    backgroundColor: "#fff",
+    margin: "0 auto",
+    borderRadius: "20px",
+    padding: "2% 0"
+  },
+  heading:{
+    marginLeft: "10%"
   },
   button: {
     marginTop: theme.spacing(1),
@@ -85,6 +93,8 @@ export default function SearchBar() {
   const steps = getSteps();
 
   const [hackChoice, setHackChoice] = React.useState({name:""});
+  const [resultMessage,setResultMessage] = React.useState("");
+ 
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -108,9 +118,11 @@ export default function SearchBar() {
       withCredentials: true
     });
     setResults(res.data);
+    if(res.data.length===0){
+      setResultMessage("No Results Found");
+    }
     setLoaded('loaded')
   }
-  console.log(results);
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -118,10 +130,12 @@ export default function SearchBar() {
 
   const handleReset = () => {
     setActiveStep(0);
+    setResultMessage("");
   };
-  //console.log(hackChoice);
+
   return (
-    <div className={classes.root}>
+    <div className={classes.root + " connect-user-container"}>
+      <h1 className={classes.heading}>Connect To A User</h1>
       <Stepper style={{width:"80%", margin:"auto"}} activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => (
           <Step key={label}>
@@ -159,7 +173,7 @@ export default function SearchBar() {
           </Button>
         </Paper>
       )}
-      <Results loaded={loaded} results={results}/>
+      <Results resultMessage={resultMessage} loaded={loaded} results={results}/>
     </div>
   );
 }

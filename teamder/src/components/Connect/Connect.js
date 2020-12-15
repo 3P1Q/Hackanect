@@ -10,4 +10,4 @@ const Connect =() =>{
     )
 }
 
-export default Connect
+export default Connect;

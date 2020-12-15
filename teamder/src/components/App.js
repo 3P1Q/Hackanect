@@ -22,7 +22,7 @@ import Github from './OAuth/Github';
 import axios from 'axios';
 import SERVER_URL from '../utils/constants';
 import SearchBar from './Search/SearchBar';
-
+import UserSelector from './Profile/UserSelector';
 import ChatPage from './Chats/ChatPage';
 
 axios.defaults.withCredentials = true;
@@ -65,6 +65,16 @@ const App = () => {
             render={(props)=>logwait?("Loading")
             :(loggedIn?(
             <ProfilePage routerProps={props}/>
+            )
+            :(<Redirect to="/login" />))
+          } />
+
+          <Route 
+            exact
+            path="/profile" 
+            render={()=>logwait?("Loading")
+            :(loggedIn?(
+            <UserSelector />
             )
             :(<Redirect to="/login" />))
           } />

@@ -22,10 +22,9 @@ const Results = (props) => {
     
     else if(ind === 9)
     return <span className="result-user-tag">...more</span>
-    // return ind <5 && (<span className="result-user-tag">{tag}</span>);
   }
+  
   function viewUser(user) {
-      console.log(user.name);
     return (
         <Fade bottom>
         <div className="result-user-profile">
@@ -48,8 +47,11 @@ const Results = (props) => {
         </Fade>
     );
   }
-
-  return <div className="similar-users">{props.results.map(viewUser)}</div>;
+  
+  return <div className="similar-users">{typeof props.results!== 'undefined' && (props.results.length!==0 ? (
+    props.results.map(viewUser)):(
+       <h1>{props.resultMessage}</h1>)
+  )}</div>;
 };
 
 export default Results;

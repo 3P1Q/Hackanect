@@ -15,7 +15,10 @@ const userSchema = new mongoose.Schema({
     description: String,
     gender: String,
     projects: [{title: String, description: String, githubLink: String}],
-    techStack: [String],
+    techStack: {
+        type: Array,
+        default: []
+    },
     social: {github: String, facebook: String, linkedin: String, twitter: String},
     hackathons: [{name:String, link:String}],
     chats: Array
