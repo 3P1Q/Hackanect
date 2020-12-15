@@ -38,8 +38,9 @@ function ChatPage(){
     async function getChats() {
         const res = await axios.get(`${SERVER_URL}/getchats`);
         const data = res.data;
-        setChats(data);
+        setChats(data.sort((a,b)=>a.ts>=b.ts?-1:1));
         setLoad(true);
+        // sortChats();
     }
 
     function changeCurrChat(userChat) {
@@ -70,7 +71,8 @@ function ChatPage(){
     // },[chats])
     function sortChats(){
         let temporaryarray = chats.slice();
-        temporaryarray = temporaryarray.sort((a,b)=>a.ts>=b.ts?-1:1)
+        temporaryarray = temporaryarray.sort((a,b)=>a.ts>=b.ts?-1:1);
+        console.log(temporaryarray);
         // temporaryarray[index]['messages'] = [...temporaryarray[index]['messages'],{source:source, message:message}];
         // temporaryarray[index]['ts'] = ts;
         setChats(temporaryarray);   

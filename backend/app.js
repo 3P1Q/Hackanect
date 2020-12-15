@@ -158,7 +158,7 @@ io.on('connection', socket => {
       socket.broadcast.to(chatUser).emit('receive-message',{
         source: username,
         message: message,
-        ts: new Date().getTime()
+        ts: new Date()
       });
     })
     

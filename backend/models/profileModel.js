@@ -22,7 +22,6 @@ const userSchema = new mongoose.Schema({
     social: {github: String, facebook: String, linkedin: String, twitter: String},
     hackathons: [{name:String, link:String}],
     chats: Array
-
 });
 
 userSchema.plugin(passportLocalMongoose);
