@@ -11,22 +11,24 @@ router.get("/", (req,res) => {
        {
         //    console.log(users);
            Chat.find({_id : { $in : user.chats }}, function(err, chats){
-               const chatsData = chats;
-               var newChats = chatsData.map((chat) => {
-                   console.log(chat);
-                    let user = "";
-                    if(chat.users[0] === req.user.username)
-                        user = chat.users[1];
-                    else    
-                        user = chat.users[0];
+               if(chats){
+                const chatsData = chats;
+                var newChats = chatsData.map((chat) => {
+                    console.log(chat);
+                        let user = "";
+                        if(chat.users[0] === req.user.username)
+                            user = chat.users[1];
+                        else    
+                            user = chat.users[0];
 
-                    return {
-                        user: user,
-                        messages: chat.messages,
-                        ts: chat.ts
-                    }
-               });
-               res.send(newChats);
+                        return {
+                            user: user,
+                            messages: chat.messages,
+                            ts: chat.ts
+                        }
+                });
+                res.send(newChats);
+                }
            })
        })
    }else{
