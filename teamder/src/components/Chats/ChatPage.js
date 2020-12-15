@@ -55,26 +55,12 @@ function ChatPage(){
 
     useEffect(async () => {
         await getChats();
-        // sortChats();
-        // setCurrChat(chats[0]);
     }, [])
 
-    // useEffect(async ()=>{
-    //     // await setChats((prev) => {
-    //     //     return prev.sort((a,b)=>a.ts>=b.ts?-1:1)
-    //     // })
-    //     let temporaryarray = chats.slice();
-    //     temporaryarray = temporaryarray.sort((a,b)=>a.ts>=b.ts?-1:1)
-    //     // temporaryarray[index]['messages'] = [...temporaryarray[index]['messages'],{source:source, message:message}];
-    //     // temporaryarray[index]['ts'] = ts;
-    //     setChats(temporaryarray);    
-    // },[chats])
     function sortChats(){
         let temporaryarray = chats.slice();
         temporaryarray = temporaryarray.sort((a,b)=>a.ts>=b.ts?-1:1);
         console.log(temporaryarray);
-        // temporaryarray[index]['messages'] = [...temporaryarray[index]['messages'],{source:source, message:message}];
-        // temporaryarray[index]['ts'] = ts;
         setChats(temporaryarray);   
     }
     
@@ -94,16 +80,8 @@ function ChatPage(){
                 setChats(temporaryarray);
             }
             else {
-                // console.log('no match');
-                // // setChats((prev)=>([...prev, {source:source, messages:[], ts: new Date().getTime()}]));
-                // let temporaryarray = [...chats, {source:source, messages:[{source:source, message:message}], ts: new Date().getTime()}];
-                // // temporaryarray.push({source:source, messages:[{source:source, message:message}], ts: new Date().getTime()});
-                // // temporaryarray[index]['messages'] = [...temporaryarray[index]['messages'],{source:source, message:message}];
-                // // temporaryarray[index]['ts'] = ts;
-                // setChats(temporaryarray);
                 getChats();
             }
-            // changeCurrChat(source);
             sortChats();
         });
         return ()=>socket.off('receive-message');
@@ -135,7 +113,7 @@ function ChatPage(){
                 chatView={chatView} 
                 setChatView={setChatView}/>
         </div>
-    ) : "Loading"
+    ) : <img className="loader" src="/gifs/loader.gif" />
 }
 
 export default ChatPage;

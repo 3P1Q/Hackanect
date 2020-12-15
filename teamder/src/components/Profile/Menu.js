@@ -5,10 +5,21 @@ import {Link} from 'react-router-dom';
 import {userLoggedInContext} from '../App';
 import {userDataContext} from './profilePage';
 import NewChat from './NewChat';
+import Axios from 'axios';
+import SERVER_URL from '../../utils/constants';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const Menu = (props) => {
     const [loggedIn,SetLoggedIn] = useContext(userLoggedInContext);
     const [data, setData] = useContext(userDataContext);
+
+    function handleLogout(){
+        axios.get(`${SERVER_URL}/logout`);
+        window.location = "/";
+    }
+
     return <>
         <div className="menu">
             <ul>
@@ -18,9 +29,10 @@ const Menu = (props) => {
                 ) : (
                     <li><Link to="/connect" style={{textDecoration:"none", color:"inherit"}}>Find</Link></li>
                 )}
-                <li><Link to="/hackathons" style={{textDecoration:"none", color:"inherit"}}>Hackathons</Link></li>
+                {data.username===localStorage.getItem("username") && <li><Link to="/hackathons" style={{textDecoration:"none", color:"inherit"}}>Hackathons</Link></li>}
                 {data.username===localStorage.getItem("username") && <li><Edit/></li>}                
-                <li>Logout</li>
+                {data.username===localStorage.getItem("username") && (
+                <li onClick={handleLogout}>Logout</li>) }
             </ul>
         </div>
     </>

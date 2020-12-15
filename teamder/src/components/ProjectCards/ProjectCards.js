@@ -44,9 +44,9 @@ export default function ProjectCard(props) {
             </div>
 
             <div className="projects">
-                {props.deets.map((card) => {
+                {props.deets.map((card, index) => {
                   return (
-                     <div className="project-card">
+                     <div key={index} className="project-card">
                             <div className="project-title">
                             {card.title}
                             </div>

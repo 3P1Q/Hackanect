@@ -46,7 +46,6 @@ function ProfilePage(props){
     },[props.routerProps.match.params.username])
 
     useEffect(()=>{
-            console.log(data);
           axios.post(`${SERVER_URL}/profile/edit`, querystring.stringify(data), {
             headers: {
               'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -62,10 +61,9 @@ function ProfilePage(props){
           });
           
       }, [data])
-
-    console.log(data);
     
-    return !load?"Loading":(typeof data.username === 'undefined'?<h1 style={{textAlign:"center"}}>User does not exist</h1>:(
+    return !load?<img className="loader" src="/gifs/loader.gif" />:(
+      typeof data.username === 'undefined'?<h1 style={{textAlign:"center"}}>User does not exist</h1>:(
         <userDataContext.Provider value={[data, setData]}>
         <div className="fullpage">
 
