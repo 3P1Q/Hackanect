@@ -70,7 +70,7 @@ export default function Asynchronous(props) {
     value={props.hackChoice}
     onChange={(e,v) => {props.setHackChoice(v)} }
       id="asynchronous-demo"
-      style={{ width: 300 }}
+      className="hackathon-search"
       open={open}
       onOpen={() => {
         setOpen(true);
