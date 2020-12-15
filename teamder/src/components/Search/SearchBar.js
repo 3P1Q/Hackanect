@@ -15,7 +15,6 @@ import Tags from "../ProfileEdit/Tags";
 import axios from 'axios';
 import querystring from 'querystring';
 import SERVER_URL from '../../utils/constants';
-import UserSelector from '../Profile/UserSelector';
 
 import Results from './Results'
 
@@ -98,7 +97,7 @@ export default function SearchBar() {
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    if(activeStep ==1)
+    if(activeStep === 1)
       getResults();
   };
 

@@ -19,7 +19,7 @@ router.post("/", (req,res) => {
         }else{
             passport.authenticate("local")(req, res, () => {
                 // res.send("Welcome !")
-                res.send(user)
+                res.send(user);
             })
         }
     })

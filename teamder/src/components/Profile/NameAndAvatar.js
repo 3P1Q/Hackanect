@@ -3,7 +3,6 @@ import {Avatar} from '@material-ui/core';
 import './Profile.css';
 
 const NameAndAvatar = (props) => {
-    console.log(props.src);
     function getInitials(name)
     {
         var initials = name.match(/\b\w/g) || [];

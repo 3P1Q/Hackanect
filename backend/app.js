@@ -90,6 +90,7 @@ const loginRoute = require("./routes/login");
 const registerRoute = require("./routes/register");
 const googleAuth = require("./routes/googleAuth");
 const githubAuth = require("./routes/githubAuth");
+const logoutRoute = require("./routes/logout");
 const editProfile = require("./routes/editProfile");
 const getAllData = require('./routes/getAllData');
 const getUserData = require('./routes/getUserData');
@@ -115,6 +116,7 @@ app.use("/api/login",loginRoute);
 app.use("/api/register",registerRoute);
 app.use("/api/auth/google", googleAuth);
 app.use("/api/auth/github", githubAuth);
+app.use("/api/logout", logoutRoute)
 app.use("/api/profile/edit", editProfile);
 app.use("/api/getalldata", getAllData);
 app.use("/api/getuserdata",getUserData);
@@ -158,7 +160,7 @@ io.on('connection', socket => {
       socket.broadcast.to(chatUser).emit('receive-message',{
         source: username,
         message: message,
-        ts: new Date().getTime()
+        ts: new Date()
       });
     })
     

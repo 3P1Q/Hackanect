@@ -43,7 +43,7 @@ function Navbar() {
     <div className={classes.root}>
       <AppBar position="static" style={{background: '#4D4C7D'}} >
         <Toolbar>
-          <img src="/teamderwithoutname.png" alt="logo" style={{height:"3.5rem"}}/>
+          <img src="/images/logo.png" alt="logo" style={{height:"3.5rem"}}/>
           <p style={{fontSize:"1.5rem", paddingLeft:"0.5rem"}}>Teamder</p>
           
           <Typography className={classes.title}>

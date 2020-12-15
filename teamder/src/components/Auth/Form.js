@@ -4,23 +4,18 @@ import {
     InputLabel,
     InputAdornment,
     FormControl,
-    Card,
     CardContent,
-    CardHeader,
-    Container,
-    Typography
   } from "@material-ui/core";
   import Button from '@material-ui/core/Button';
-  import Divider from '@material-ui/core/Divider';
   import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { makeStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
 import React from "react";
 import axios from 'axios';
 import querystring from 'querystring';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {ReactComponent as GoogleIcon} from '../search.svg';
-import { Redirect } from "react-router-dom";
 import "./Auth.css";
 
 import SERVER_URL from '../../utils/constants';
@@ -68,14 +63,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Form =(props) => {
 
-  function authG(){
-    return <Redirect to="/auth/google" />
-  }
-
-  function sendRequest(){
-    if(props.type==="REGISTER")
+  async function sendRequest(){
+    if(props.type==="REGISTER" && values.password === values.cpassword)
     {
-        axios.post(`${SERVER_URL}/register`, querystring.stringify({username: values.username, password: values.password}), {
+        axios.post(`${SERVER_URL}/register`, querystring.stringify({username: (values.username+values.suffix), password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
@@ -88,11 +79,18 @@ const Form =(props) => {
           window.location = `/profile/${response.data.username}`          
         }
         console.log(response);
+      })
+      .catch((err)=>{
+        console.log(err.response.data);
+        if(err.response.data === "Already Exists")
+        {
+          setExistingUser(true);
+        }
       });
     }
     if(props.type==="LOGIN")
     {
-      axios.post(`${SERVER_URL}/login`, querystring.stringify({username: values.username, password: values.password}), {
+      axios.post(`${SERVER_URL}/login`, querystring.stringify({username: (values.username+values.suffix), password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
@@ -102,12 +100,16 @@ const Form =(props) => {
         if (response.status === 200) {
           localStorage.setItem('username', response.data.username)
           localStorage.setItem('newUser',"false");
-          window.location = `/profile/${response.data.username}`
-          // const data = response.data
-          // console.log(data);
-          // props.setUserData({_id: '1' })
+          window.location = `/profile/${response.data.username}`;
         }
         console.log(response);
+      })
+      .catch((err)=>{
+        console.log(err.response.data);
+        if(err.response.data === "Unauthorized")
+        {
+          setWrongCreds(true);
+        }
       });
     }
     
@@ -122,10 +124,22 @@ const Form =(props) => {
         username: '',
         password: '',
         cpassword: '',
+        suffix: '@teamder-app',
         showPassword: false,
       });
+
+    const [existingUser, setExistingUser] = React.useState(false);
+    const [wrongCreds, setWrongCreds] = React.useState(false);
     
       const handleChange = (prop) => (event) => {
+        if(prop === 'username')
+        {
+          setExistingUser(false);
+        }
+        if(prop === 'password')
+        {
+          setWrongCreds(false);
+        }
         setValues({ ...values, [prop]: event.target.value });
       };
     
@@ -179,8 +193,16 @@ const Form =(props) => {
                       id="username"
                       value={values.username}
                       onChange={handleChange('username')}
-                      // width="125%"
+                      endAdornment={
+                        <InputAdornment position="end">
+                            @teamder-app
+                        </InputAdornment>
+                      }
                       />
+                      {existingUser?
+                      <Alert style={{backgroundColor:"#900c3f"}} severity="error">
+                            Username already exists !
+                      </Alert>:""}
                   </FormControl>
 
                   <FormControl className={classes.Formdata} variant="filled">
@@ -203,8 +225,11 @@ const Form =(props) => {
                           </IconButton>
                       </InputAdornment>
                       }
-                      // labelWidth={70}
                       />
+                      {wrongCreds?
+                      <Alert style={{backgroundColor:"#900c3f"}} severity="error">
+                            Wrong Username or Password !
+                      </Alert>:""}
                   </FormControl>
 
                   {formType==="REGISTER" && (<FormControl className={classes.Formdata} variant="filled">
@@ -228,6 +253,11 @@ const Form =(props) => {
                       }
                       // labelWidth={70}
                       />
+                      {values.password !== values.cpassword?(
+                        <Alert style={{backgroundColor:"#900c3f"}} severity="error">
+                          Passwords don't match !
+                        </Alert>
+                      ) : ""}
                   </FormControl>)}
                   
                   <Button onClick={sendRequest} size="large" className={classes.submitButton} variant="contained" color="primary">{formType}</Button>

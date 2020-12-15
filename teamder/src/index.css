@@ -32,3 +32,27 @@ footer{
 .team-stamp{
     margin-bottom: 1%;
 }
+
+.loader{
+    display: block;
+    margin: auto;
+}
+
+.error-404{
+    margin: auto;
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 25px;
+    border: 5px solid #4D4C7D;
+    padding: 2% 0;
+}
+.error-404 h1{
+    font-size: 5rem;
+}
+.error-404 img{
+    width: 15%;
+}
+.error-404 h4{
+    font-size: 1.5rem;
+}

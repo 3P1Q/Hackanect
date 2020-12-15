@@ -1,8 +1,6 @@
 import React from 'react';
-import ChatIcon from '@material-ui/icons/Chat';
 import axios from 'axios';
 import querystring from 'querystring';
-import {Redirect} from 'react-router-dom';
 
 import SERVER_URL from '../../utils/constants';
 

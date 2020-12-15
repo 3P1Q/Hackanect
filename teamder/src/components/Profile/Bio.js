@@ -7,7 +7,6 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const Bio = (props) => {
-    const links = props.social;
     //console.log(links.facebook);
     return (
         <>

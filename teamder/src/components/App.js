@@ -14,8 +14,8 @@ import Register from './Auth/Register'
 import ProfilePage from './Profile/profilePage'
 import Home from './Land/Home'
 import Hackathon from './Hackathon/Hackathon';
-import Footer from "./Footer/Footer";
 
+import Error404 from './Error404';
 import Google from './OAuth/Google';
 import Github from './OAuth/Github';
 
@@ -62,7 +62,7 @@ const App = () => {
 
           <Route 
             path="/profile/:username" 
-            render={(props)=>logwait?("Loading")
+            render={(props)=>logwait?(<img className="loader" alt="loader" src="/gifs/loader.gif" />)
             :(loggedIn?(
             <ProfilePage routerProps={props}/>
             )
@@ -103,7 +103,7 @@ const App = () => {
 
             <Route 
             path="/chats" 
-            render={(props)=>logwait?("Loading")
+            render={(props)=>logwait?(<img className="loader" alt="loader" src="/gifs/loader.gif" />)
             :(loggedIn?(
             <ChatPage/>
             )
@@ -112,7 +112,7 @@ const App = () => {
 
             <Route 
             path="/connect" 
-            render={(props)=>logwait?("Loading")
+            render={(props)=>logwait?(<img className="loader" alt="loader" src="/gifs/loader.gif" />)
             :(loggedIn?(
             <SearchBar/>
             )
@@ -127,8 +127,12 @@ const App = () => {
             path="/github/login/:username" 
             render={(props)=> <Github routerProps={props}/>} />
 
+          <Route
+            path=""
+            component={Error404}
+          />
+
         </Switch>
-        <Footer />
       </Router>
       </userLoggedInContext.Provider>
     );

@@ -7,17 +7,19 @@ import SERVER_URL from '../../utils/constants';
 
 const ChatColumn = (props) =>{
     const [pics, setPics] = useState([]);
-    useEffect(async ()=>{
-        let users = [];
-        props.chats.forEach((chat)=>{
-            users.push(chat.user);
-        });
-        console.log(users);
-        const res = await axios.post(`${SERVER_URL}/getprofilepictures`, querystring.stringify({users:users}));
-        const data = res.data;
-        console.log(data);
-        setPics(data);
-    },[])
+    useEffect(()=>{
+        async function fetchData(){
+            let users = [];
+            props.chats.forEach((chat)=>{
+                users.push(chat.user);
+            });
+            const res = await axios.post(`${SERVER_URL}/getprofilepictures`, querystring.stringify({users:users}));
+            const data = res.data;
+            console.log(data);
+            setPics(data);
+        }
+        fetchData();
+    },[props.chats])
     function searchPic(user){
         for(let i=0;i<pics.length;i++)
         {

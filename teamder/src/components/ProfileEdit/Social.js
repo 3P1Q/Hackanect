@@ -1,6 +1,4 @@
-import React, { useState} from 'react';
-// import {userDataContext} from '../Profile/profilePage';
-// import {Modal,Button} from 'react-bootstrap';
+import React from 'react';
 import {TextField} from '@material-ui/core';
 import axios from 'axios';
 
@@ -8,15 +6,6 @@ axios.defaults.withCredentials = true;
 
 
 const Social = (props) => {
-
-    // console.log(props.social);
-
-    const social = props.social;
-
-    // const [facebook, setFacebook] = useState("");
-    // const [github, setGithub] = useState("");
-    // const [twitter, seyYwitter] = useState("");
-    // const [linkedin, setLinkedin] = useState("");
 
     function valChanged(e) {
         const s = e.target;
