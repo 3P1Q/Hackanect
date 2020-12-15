@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect} from 'react';
-import {chatData} from './data';
+import React, { useState, useRef, useLayoutEffect} from 'react';
 import {TextField} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
@@ -40,9 +39,9 @@ function Chat(props){
         props.socket.emit('typing',{chatUser: props.currChat.user, typed: e.target.value});
     }
 
-    function makeMessage(msgData){
+    function makeMessage(msgData, index){
         return(
-            <div className={`user-msg-container ${msgData.source!==props.currChat.user?"user-msg-container-right":""}`}>
+            <div key={index} className={`user-msg-container ${msgData.source!==props.currChat.user?"user-msg-container-right":""}`}>
                 <div className={`user-msg ${msgData.source!==props.currChat.user?"user-msg-right":"user-msg-left"}`}>{msgData.message}</div>
             </div>
         )

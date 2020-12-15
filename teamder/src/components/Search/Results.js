@@ -1,13 +1,10 @@
 import React from "react";
-// import { data1 } from "./data";
 import { Avatar } from "@material-ui/core";
 import {Link} from 'react-router-dom';
 import "./Results.css";
 import Fade from 'react-reveal/Fade';
 
 const Results = (props) => {
-
-    const data1 = props.results;
 
   function getInitials(name) {
     var initials = name.match(/\b\w/g) || [];

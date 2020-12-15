@@ -2,17 +2,14 @@ import React, { useContext } from 'react';
 // import Edit from './Edit';
 import Edit from './Edit1';
 import {Link} from 'react-router-dom';
-import {userLoggedInContext} from '../App';
 import {userDataContext} from './profilePage';
 import NewChat from './NewChat';
-import Axios from 'axios';
 import SERVER_URL from '../../utils/constants';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
 const Menu = (props) => {
-    const [loggedIn,SetLoggedIn] = useContext(userLoggedInContext);
     const [data, setData] = useContext(userDataContext);
 
     function handleLogout(){

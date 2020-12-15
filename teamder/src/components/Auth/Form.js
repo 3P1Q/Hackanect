@@ -4,14 +4,9 @@ import {
     InputLabel,
     InputAdornment,
     FormControl,
-    Card,
     CardContent,
-    CardHeader,
-    Container,
-    Typography
   } from "@material-ui/core";
   import Button from '@material-ui/core/Button';
-  import Divider from '@material-ui/core/Divider';
   import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +16,6 @@ import axios from 'axios';
 import querystring from 'querystring';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {ReactComponent as GoogleIcon} from '../search.svg';
-import { Redirect } from "react-router-dom";
 import "./Auth.css";
 
 import SERVER_URL from '../../utils/constants';
@@ -69,14 +63,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Form =(props) => {
 
-  function authG(){
-    return <Redirect to="/auth/google" />
-  }
-
   async function sendRequest(){
     if(props.type==="REGISTER" && values.password === values.cpassword)
     {
-        axios.post(`${SERVER_URL}/register`, querystring.stringify({username: values.username, password: values.password}), {
+        axios.post(`${SERVER_URL}/register`, querystring.stringify({username: (values.username+values.suffix), password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
@@ -100,7 +90,7 @@ const Form =(props) => {
     }
     if(props.type==="LOGIN")
     {
-      axios.post(`${SERVER_URL}/login`, querystring.stringify({username: values.username, password: values.password}), {
+      axios.post(`${SERVER_URL}/login`, querystring.stringify({username: (values.username+values.suffix), password: values.password}), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
@@ -134,6 +124,7 @@ const Form =(props) => {
         username: '',
         password: '',
         cpassword: '',
+        suffix: '@teamder-app',
         showPassword: false,
       });
 

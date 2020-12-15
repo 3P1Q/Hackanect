@@ -1,5 +1,4 @@
 import React from 'react';
-import {Paper, Grid} from '@material-ui/core';
 import './Profile.css';
 
 const TechStack = (props) => {

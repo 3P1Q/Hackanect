@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProjectCards from '../ProjectCards/ProjectCards';
 import NameAndAvatar from './NameAndAvatar';
 import TechStack from './TechStack';
 import Menu from './Menu';
 import Bio from './Bio';
-import NewChat from './NewChat';
-import {Typography} from '@material-ui/core';
 import axios from 'axios';
 
 import querystring from 'querystring';
@@ -13,9 +11,6 @@ import querystring from 'querystring';
 import SERVER_URL from '../../utils/constants';
 
 import './Profile.css'
-
-import {userLoggedInContext} from '../App';
-import { Redirect } from 'react-router-dom';
 
 axios.defaults.withCredentials = true;
 
@@ -39,7 +34,6 @@ function ProfilePage(props){
       })
       .then(res => res.data)
       .then(data => {
-        console.log(data);
           setData(data);
           setLoad(true);
       })    
@@ -62,7 +56,7 @@ function ProfilePage(props){
           
       }, [data])
     
-    return !load?<img className="loader" src="/gifs/loader.gif" />:(
+    return !load?<img className="loader" alt="loader" src="/gifs/loader.gif" />:(
       typeof data.username === 'undefined'?<h1 style={{textAlign:"center"}}>User does not exist</h1>:(
         <userDataContext.Provider value={[data, setData]}>
         <div className="fullpage">

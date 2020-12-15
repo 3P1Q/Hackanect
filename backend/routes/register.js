@@ -8,16 +8,16 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req,res) => {
-    const username = req.body.username+"@teamder-app";
+    // const username = req.body.username+"@teamder-app";
 
-    User.findOne({username: username}, (err, user)=>{
+    User.findOne({username: req.body.username}, (err, user)=>{
         if(user)
         {
             res.status(409).send("Already Exists");
         }
         else
         {
-            User.register({username: username}, req.body.password, (err, user) => {
+            User.register({username: req.body.username}, req.body.password, (err, user) => {
                 if(err){
                     console.log(err);
                 }else{

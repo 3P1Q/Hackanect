@@ -7,12 +7,6 @@ import axios from 'axios';
 
 import SERVER_URL from '../../utils/constants';
 
-function sleep(delay = 0) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
-
 export default function Asynchronous(props) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);

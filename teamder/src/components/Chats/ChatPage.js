@@ -4,7 +4,6 @@ import Chat from './Chat';
 import './Chat.css';
 
 import axios from 'axios';
-import querystring from 'querystring';
 
 import SERVER_URL from '../../utils/constants';
 
@@ -53,8 +52,11 @@ function ChatPage(){
         setChatView(true);
     }
 
-    useEffect(async () => {
-        await getChats();
+    useEffect(() => {
+        async function fetchChats(){
+            await getChats();
+        }
+        fetchChats();
     }, [])
 
     function sortChats(){
@@ -83,7 +85,7 @@ function ChatPage(){
                 getChats();
             }
             sortChats();
-        });
+        },[]);
         return ()=>socket.off('receive-message');
     },[socket, chats])
 

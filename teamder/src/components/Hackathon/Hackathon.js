@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from 'axios';
 import querystring from 'querystring';
 import './Hackathon.css';
-import { data1, data2 } from "./data";
 
 import SERVER_URL from '../../utils/constants';
 
@@ -64,14 +63,6 @@ const Hackathon = () => {
         }
     },[myHackathons])
 
-    // useEffect(()=>{
-    //     const str = myHackathons.map((hack)=>JSON.stringify(hack));
-    //     console.log("myHackathons");
-    //     console.log(str);
-    //     setString(str);
-    // },[myHackathons])
-    //console.log(allHackathons);
-
 
   const [allSelected, setAllSelected] = useState(true);
   const [mySelected, setMySelected] = useState(false);
@@ -126,18 +117,11 @@ const Hackathon = () => {
       console.log("removed");
     const a = evt.target.parentElement.firstChild;
       const name = a.innerHTML;
-      const link = a.href;
-      const obj = {
-          name: name,
-          link: link
-      }
-      //console.log(a);
       const hackind = myHackathons.findIndex(x => {
-          //console.log("reaching here");
-          console.log(x.name);
-          console.log(name);
           if(x.name===name.replace(/\s+/g,' '))
             return true;
+          else
+            return false;
       });
       const hackindString = string.findIndex(x => {
           if(x === '')
@@ -152,9 +136,9 @@ const Hackathon = () => {
   }
 
   //console.log(myHackathons);
-  const viewAllCard = (hack) => {
+  const viewAllCard = (hack, index) => {
     return (
-      <div className="hackathon-card">
+      <div key={index} className="hackathon-card">
         <a href={hack.link}> {hack.name} </a>
         <span onClick={addHackathon} id="add-hack" className="hack-button">
           {" "}
@@ -194,8 +178,8 @@ const Hackathon = () => {
         {/* </ul> */}
       </div>
       <div className={`all-hackathons ${!allSelected && "hide-tab"}`}>
-        {allHackathons.map((hack) => {
-          return viewAllCard(hack);
+        {allHackathons.map((hack, index) => {
+          return viewAllCard(hack, index);
         })}
       </div>
       <div className={`my-hackathons ${!mySelected && "hide-tab"}`}>

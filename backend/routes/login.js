@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req,res) => {
     const user = new User({
-        username: req.body.username+"@teamder-app",
+        username: req.body.username,
         password: req.body.password
     });
 
