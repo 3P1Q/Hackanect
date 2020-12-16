@@ -62,7 +62,7 @@ router.get("/teamder",
     // Successful authentication, redirect to secrets.
     // res.send("Github Authentication Done");
     console.log(req.user);
-    res.redirect(`http://localhost:3000/github/login/${req.user.username}`);
+    res.redirect(`/github/login/${req.user.username}`);
   });
 
   module.exports= router;
