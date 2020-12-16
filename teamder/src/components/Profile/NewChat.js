@@ -19,7 +19,7 @@ const NewChat = (props) => {
     //     <div style={{textAlign:"center", margin:"-15% 0 15%"}}><ChatIcon onClick={createNewChat} style={{fontSize:"2rem", cursor:"pointer"}}/></div>
     //     <span>Connect</span>
     // )
-    return <span onClick={createNewChat}>Connect</span>
+    return <span onClick={createNewChat}>Message</span>
 }
 
 export default NewChat;
