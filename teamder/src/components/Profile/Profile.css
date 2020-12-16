@@ -114,7 +114,7 @@
 }
 
 .menu ul li{
-    margin: 25% 0;
+    margin: 20% 0;
     cursor: pointer;
 }
 .menu ul .icons{
@@ -249,6 +249,7 @@
     
     .menu{
         padding: 1%;
+        display: flex;
         flex-direction: row;
         justify-content: flex-end ;
         position: relative;
@@ -260,8 +261,8 @@
         margin: 0;
     }
     .menu ul li{
-        float: left;
-        margin: 1% 5%;
+        display: inline-block;
+        margin: 2% 10%;
     }
     .bio{
         padding: 200px;
