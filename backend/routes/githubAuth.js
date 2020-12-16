@@ -10,7 +10,7 @@ const router = express.Router();
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "/api/auth/github/teamder",
+    callbackURL: "/api/auth/github/hackanect",
     proxy: true,
   },
   function(accessToken, refreshToken, profile, done) {
@@ -56,7 +56,7 @@ router.get("/",
   passport.authenticate('github', { scope: ["user:email"] })
 );
 
-router.get("/teamder",
+router.get("/hackanect",
   passport.authenticate('github', { failureRedirect: "/login" }),
   function(req, res) {
     // Successful authentication, redirect to secrets.
