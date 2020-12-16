@@ -15,7 +15,6 @@ const ChatColumn = (props) =>{
             });
             const res = await axios.post(`${SERVER_URL}/getprofilepictures`, querystring.stringify({users:users}));
             const data = res.data;
-            console.log(data);
             setPics(data);
         }
         fetchData();
