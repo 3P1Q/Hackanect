@@ -3,6 +3,8 @@ import ChatColumn from './ChatColumn';
 import Chat from './Chat';
 import './Chat.css';
 
+import {userLoggedInContext} from '../App';
+
 import axios from 'axios';
 
 import SERVER_URL from '../../utils/constants';
@@ -12,6 +14,8 @@ import io from 'socket.io-client';
 axios.defaults.withCredentials = true;
 
 function ChatPage(){
+    const [loggedIn] = React.useContext(userLoggedInContext);
+
     const [chats, setChats] = useState([]);
     const [load, setLoad] = useState(false);
 
@@ -26,12 +30,13 @@ function ChatPage(){
     const username = localStorage.getItem("username");
 
     useEffect(() => {
+        if(loggedIn){
+            const newSocket = io("", { query: { username } });
 
-        const newSocket = io("http://localhost:5000", { query: { username } });
+            setSocket(newSocket);
 
-        setSocket(newSocket);
-
-        return () => newSocket.close();
+            return () => newSocket.close();
+        }
     }, [username])
 
     async function getChats() {
