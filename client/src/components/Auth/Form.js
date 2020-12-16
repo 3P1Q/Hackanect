@@ -124,7 +124,7 @@ const Form =(props) => {
         username: '',
         password: '',
         cpassword: '',
-        suffix: '@teamder-app',
+        suffix: '@hackanect-app',
         showPassword: false,
       });
 
