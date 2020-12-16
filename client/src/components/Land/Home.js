@@ -49,7 +49,7 @@ const Home =() =>{
                         <a href="/login" className="sign-button"on>Sign In Here</a>
                     </div>
                     <div className="oval-signin">
-                        <h1>New to Teamder ?</h1>
+                        <h1>New to Hackanect ?</h1>
                         <a type="button" href="/register" className="sign-button">Register here</a>
                     </div>
                 </div>
