@@ -16,6 +16,10 @@ router.post("/", (req,res) => {
     // console.log(typeof hackathon);
     const techStack = req.body.techStack;
     const stackFilter = req.body.stackFilter;
+    if(typeof req.body.techStack === 'string')
+    {
+        techStack = [req.body.techStack];
+    }
     // console.log(stackFilter);
     // console.log(techStack);
     if(req.user)

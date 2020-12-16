@@ -41,7 +41,7 @@ router.get("/teamder",
     // Successful authentication, redirect to secrets.
     // res.send("Google Authentication Done");
     console.log(req.user);
-    res.redirect(`http://localhost:3000/google/login/${req.user.username}`);
+    res.redirect(`/google/login/${req.user.username}`);
   });
 
   module.exports= router;
