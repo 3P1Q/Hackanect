@@ -27,7 +27,7 @@ async function updateHackathon() {
     // // Pass the browser instance to the scraper controller
     // scraperController(browserInstance);
 
-    var browser = await puppeteer.launch({headless: true});
+    var browser = await puppeteer.launch({headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const url ='https://devfolio.co/hackathons';
     var page = await browser.newPage();
     console.log(`Navigating to ${url}...`);
