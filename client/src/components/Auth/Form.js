@@ -169,7 +169,7 @@ const Form =(props) => {
               {/* <Card className={classes.Form}> */}
                 <div>
                   {/* <CardHeader title={formType==="LOGIN" ? "Sign In to TEAMDER" : "Create Account"} className={classes.Head}/> */}
-                  <h1 className={classes.Head}>{formType==="LOGIN" ? "Sign In to TEAMDER" : "Create Account"}</h1>
+                  <h1 className={classes.Head}>{formType==="LOGIN" ? "Sign In to HACKANECT" : "Create Account"}</h1>
                   <div style={{textAlign:"center",marginTop:"4%"}}>
                   <div style={{margin:"2% 1%",display:"inline-block"}}>
                     <Button href="/api/auth/google" style={{backgroundColor: "rgb(66, 133, 244)", color: "white"}} color="secondary">
@@ -195,7 +195,7 @@ const Form =(props) => {
                       onChange={handleChange('username')}
                       endAdornment={
                         <InputAdornment position="end">
-                            @teamder-app
+                            @hackanect-app
                         </InputAdornment>
                       }
                       />
