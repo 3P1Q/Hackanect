@@ -34,6 +34,9 @@
 .tags-input input:focus {
   outline: transparent;
 }
+input.tags-placeholder{
+  text-overflow: ellipsis;
+}
 #tags {
   display: flex;
   flex-wrap: wrap;

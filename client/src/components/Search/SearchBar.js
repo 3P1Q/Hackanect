@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "2% 0"
   },
   heading:{
-    marginLeft: "10%"
+    marginLeft: "25px"
   },
   button: {
     marginTop: theme.spacing(1),
@@ -135,7 +135,7 @@ export default function SearchBar() {
   return (
     <div className={classes.root + " connect-user-container"}>
       <h1 className={classes.heading}>Connect To A User</h1>
-      <Stepper style={{width:"80%", margin:"auto"}} activeStep={activeStep} orientation="vertical">
+      <Stepper style={{margin:"auto"}} activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>

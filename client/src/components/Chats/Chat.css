@@ -43,12 +43,15 @@
     padding: 2% 0;
     border-radius: 15px;
     position: relative;
+    max-width: 98vw;
 }
 .chat-header-user{
     padding: 0 2%;
     border-bottom: 1px solid #dfdfdf;
     font-size: 1.75rem;
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .back-to-all-chats{
     margin:0 2%;

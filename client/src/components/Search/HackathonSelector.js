@@ -60,7 +60,7 @@ export default function Asynchronous(props) {
 
   return (
     <Autocomplete
-    
+    fullWidth
     value={props.hackChoice}
     onChange={(e,v) => {props.setHackChoice(v)} }
       id="asynchronous-demo"
@@ -84,6 +84,7 @@ export default function Asynchronous(props) {
           {...params}
           label="Select Hackathon"
           variant="outlined"
+          fullWidth
           InputProps={{
             ...params.InputProps,
             endAdornment: (
