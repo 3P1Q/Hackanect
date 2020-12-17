@@ -1,6 +1,7 @@
 .chat-page{
     display: flex;
     margin-top: -3%;
+    margin: auto;
     height: 85vh;
 }
 
