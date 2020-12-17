@@ -12,7 +12,6 @@ router.get("/", (req, res) => {
 router.post("/", (req,res) => {
     const hackathon = req.body.data!==''?JSON.parse(req.body.data):'';
     const name = hackathon.name;
-    // console.log(hackathon);
     // console.log(typeof hackathon);
     var techStack = req.body.techStack;
     const stackFilter = req.body.stackFilter;
@@ -55,17 +54,25 @@ router.post("/", (req,res) => {
                 else
                     similars = getResults(req.user._id, results);
 
-                console.log(similars);
                 const sim = similars.map(obj => obj.id);
                 if(typeof hackathon.name !== 'undefined'){
-                    console.log("Reaching");
-                    User.find({_id:{$in : sim},hackathons:{$elemMatch :{name: name}}}, function(err, users){
-                        res.send(users);
-                    })
+                    User.find({_id:{$in : sim}, 'hackathons.name':" "+hackathon.name+" " }, function(err, users){
+                        var newUsers = users.sort((a,b) => {
+                            var ind1 = sim.findIndex((el) => el.toString() === a._id.toString());
+                            var ind2 = sim.findIndex((el) => el.toString() === b._id.toString());
+                            return ind1 - ind2;
+                            });
+                        res.send(newUsers);
+                    });
                 }
                 else{
                     User.find({_id:{$in : sim}}, function(err, users){
-                        res.send(users);
+                        var newUsers = users.sort((a,b) => {
+                            var ind1 = sim.findIndex((el) => el.toString() === a._id.toString());
+                            var ind2 = sim.findIndex((el) => el.toString() === b._id.toString());
+                            return ind1 - ind2;
+                            });
+                        res.send(newUsers);
                     })
                 }
                 

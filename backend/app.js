@@ -174,7 +174,6 @@ io.on('connection', socket => {
     })
     
     socket.on('typing', ({chatUser, typed})=>{
-      console.log("typing");
       socket.broadcast.to(chatUser).emit('typing-received',{source: username, typed:typed});
     })
 });

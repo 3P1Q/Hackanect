@@ -11,14 +11,11 @@ router.post("/", (req,res) => {
         try{
             //console.log("Social"+req.body.socialString);
             const hackathons = req.body.myHackathons;
-            console.log(hackathons);
             const hacks=[];
-            console.log(hackathons.length);
             if(typeof hackathons!=="undefined")
             {
                 if(hackathons.length === 1)
                 {
-                    console.log("length 1");
                     hacks = JSON.parse(req.body.myHackathons);
                 }
                 else{
@@ -34,7 +31,6 @@ router.post("/", (req,res) => {
             // user = {...user, userData};
             //console.log(req.user._id);
             //console.log(req.body.username);
-            console.log(user);
             console.log("updated");
         });
         res.send("authenticetd");

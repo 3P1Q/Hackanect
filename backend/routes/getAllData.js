@@ -12,7 +12,6 @@ router.post("/", (req,res) => {
    if(req.user){
        User.find({}, function(err, users)
        {
-           console.log(users);
            res.send(users);
        })
    }else{

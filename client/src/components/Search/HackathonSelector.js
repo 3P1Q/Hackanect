@@ -28,7 +28,7 @@ export default function Asynchronous(props) {
       //console.log(response);
       const countries = await response.data;
 
-      if(props.hackChoice.name === "")
+      if(props.hackChoice === null)
         props.setHackChoice(countries[0]);
       //console.log(countries);
 
