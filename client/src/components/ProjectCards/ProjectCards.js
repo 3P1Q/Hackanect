@@ -23,7 +23,7 @@ export default function ProjectCard(props) {
                             {card.description}
                             </div>
                             <div className="project-link">
-                              <Link to={card.githubLink}  color="inherit">
+                              <Link href={card.githubLink}  color="inherit">
                                   <GitHubIcon></GitHubIcon>
                               </Link>
                             </div>
