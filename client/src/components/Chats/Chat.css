@@ -88,12 +88,18 @@
     display: inline-block;
     padding: 0.5% 1%;
     border-radius: 10px;
+    max-width: 60%;
 }
 .user-msg-left{
     background-color: #fff3b2;
 }
 .user-msg-right{
     background-color: #dcf8c6;
+}
+
+.MuiInput-inputMultiline{
+    max-height: 4vh;
+    overflow-y: scroll;
 }
 
 @media(max-width: 600px){

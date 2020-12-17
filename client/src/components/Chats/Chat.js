@@ -70,7 +70,7 @@ function Chat(props){
                 <TextField
                     className="type-chat"
                     id="standard-full-width"
-                    style={{ margin: 0 }}
+                    style={{ margin: "0", resize:"none"}}
                     placeholder="Type your message here"
                     fullWidth
                     multiline

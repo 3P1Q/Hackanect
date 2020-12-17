@@ -92,7 +92,7 @@ export default function UserSelector() {
           />
         )}
     />
-    <Button className="search-btn" size="large" variant="contained" color="primary" href={`/profile/${userChoice.name}`}>
+    <Button className="search-btn" size="large" variant="contained" color="primary" href={userChoice!==null?`/profile/${userChoice.name}`:``}>
     Search
     </Button>
     </div>
