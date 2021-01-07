@@ -19,9 +19,18 @@ const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+if(process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    else
+      next()
+  })
+}
+
 if(process.env.NODE_ENV === 'production')
 {
-  app.use(express.static(path.join(__dirname, "../teamder/build")));
+  app.use(express.static(path.join(__dirname, "../client/build")));
 }
 else{
   app.use(
@@ -52,7 +61,7 @@ app.use(session({
 // mongoDB Connection
 var MONGODB_URI = "";
 if (process.env.NODE_ENV === 'production')
-  MONGODB_URI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.l7m6u.mongodb.net/Teamder?retryWrites=true&w=majority`;
+  MONGODB_URI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.qvaqf.mongodb.net/Hackanect?retryWrites=true&w=majority`;
 else
   MONGODB_URI = "mongodb://localhost:27017/test";
 
@@ -142,7 +151,7 @@ const server = app.listen(port, function(){
 if(process.env.NODE_ENV === 'production')
 {
   app.get("*", (req, res) => { 
-    res.sendFile(path.join(__dirname , "../teamder/build/index.html"));
+    res.sendFile(path.join(__dirname , "../client/build/index.html"));
     });
 }
 
@@ -165,7 +174,6 @@ io.on('connection', socket => {
     })
     
     socket.on('typing', ({chatUser, typed})=>{
-      console.log("typing");
       socket.broadcast.to(chatUser).emit('typing-received',{source: username, typed:typed});
     })
 });

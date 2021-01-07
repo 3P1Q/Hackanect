@@ -14,7 +14,6 @@ router.get("/", (req,res) => {
                if(chats){
                 const chatsData = chats;
                 var newChats = chatsData.map((chat) => {
-                    console.log(chat);
                         let user = "";
                         if(chat.users[0] === req.user.username)
                             user = chat.users[1];

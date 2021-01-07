@@ -9,8 +9,6 @@ router.get("/", (req, res) => {
 router.post("/", (req,res) => {
     if (req.user){
         try{
-            console.log("Social"+req.body.socialString);
-            console.log(req.body);
         const userData = {
             name: req.body.name,
             profilePic: req.body.profilePic,

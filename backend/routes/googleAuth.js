@@ -9,7 +9,7 @@ const router = express.Router();
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/api/auth/google/teamder",
+    callbackURL: "/api/auth/google/hackanect",
     // userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     proxy: true
   },
@@ -35,13 +35,13 @@ router.get("/",
   passport.authenticate('google', { scope: ["profile","email"] })
 );
 
-router.get("/teamder",
+router.get("/hackanect",
   passport.authenticate('google', { failureRedirect: "/login" }),
   function(req, res) {
     // Successful authentication, redirect to secrets.
     // res.send("Google Authentication Done");
-    console.log(req.user);
-    res.redirect(`http://localhost:3000/google/login/${req.user.username}`);
+    // console.log(req.user);
+    res.redirect(`/google/login/${req.user.username}`);
   });
 
   module.exports= router;

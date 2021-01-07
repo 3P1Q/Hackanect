@@ -11,7 +11,6 @@ router.post("/", (req, res) => {
 
         var userArray = [chatUser,req.user.username];
         userArray = userArray.sort();
-        console.log(userArray);
         Chat.findOne({users: userArray}, function(err, chat){
             if(!chat)
             {
@@ -22,8 +21,6 @@ router.post("/", (req, res) => {
                 });
 
                 newChat.save();
-
-                console.log(newChat._id);
 
                 User.updateMany({username : { $in : userArray}}, {$push :{ chats : newChat._id }}, function(err, users){
                     if(err) console.log(err);

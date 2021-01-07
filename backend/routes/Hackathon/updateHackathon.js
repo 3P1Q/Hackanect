@@ -27,7 +27,7 @@ async function updateHackathon() {
     // // Pass the browser instance to the scraper controller
     // scraperController(browserInstance);
 
-    var browser = await puppeteer.launch({headless: true});
+    var browser = await puppeteer.launch({headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const url ='https://devfolio.co/hackathons';
     var page = await browser.newPage();
     console.log(`Navigating to ${url}...`);
@@ -47,7 +47,7 @@ async function updateHackathon() {
         }
         return arr1;
     });
-    let hacksNames = await page.$$eval('.kIFYmG', function(a){
+    let hacksNames = await page.$$eval('.hcmcER > span > .sc-fzqBZW', function(a){
         var arr2 = [];
         
         for(var i=0;i<a.length;i++)
@@ -58,7 +58,7 @@ async function updateHackathon() {
         return arr2;
     });
 
-    let validate = await page.$$eval('.ekGSTk', function(a){
+    let validate = await page.$$eval('.hQBLZg', function(a){
         var arr3 = [];
         
         for(var i=0;i<a.length;i++)
